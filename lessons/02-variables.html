@@ -334,12 +334,29 @@
             <div class="playground-badge">⚡ Интерактивная лаборатория переменных</div>
             <h3 class="playground-title">Соберите карточку персонажа</h3>
             <p class="playground-desc">
-              Введите имя персонажа ниже и нажмите «Запустить код». Скрипт создаст переменные разных типов, склеит их через f-строку и выведет в живой терминал:
+              Настройте параметры персонажа ниже и нажмите «Запустить код». Скрипт создаст переменные 4 базовых типов (<code>str</code>, <code>int</code>, <code>float</code>, <code>bool</code>), склеит их через f-строку и выведет в терминал:
             </p>
 
-            <div style="margin-bottom: 1rem; display:flex; gap:0.5rem; align-items:center;">
-              <label for="custom-name-input" style="font-size:0.9rem; color:var(--text-secondary);">Имя героя:</label>
-              <input type="text" id="custom-name-input" class="playground-input" value="Кибер-Ниндзя" style="background:#090c13; border:1px solid var(--border-bright); color:#fff; padding:0.4rem 0.8rem; border-radius:6px; font-family:var(--font-mono); font-size:0.9rem; outline:none; max-width:200px;">
+            <div style="margin-bottom: 1.25rem; display:flex; flex-wrap:wrap; gap:1rem; align-items:center;">
+              <div style="display:flex; align-items:center; gap:0.4rem;">
+                <label for="custom-name-input" style="font-size:0.85rem; color:var(--text-secondary);">Имя героя:</label>
+                <input type="text" id="custom-name-input" class="playground-name-input" value="Кибер-Ниндзя" style="background:#090c13; border:1px solid var(--border-bright); color:#fff; padding:0.4rem 0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem; outline:none; width:140px;">
+              </div>
+
+              <div style="display:flex; align-items:center; gap:0.4rem;">
+                <label for="custom-role-select" style="font-size:0.85rem; color:var(--text-secondary);">Класс:</label>
+                <select id="custom-role-select" class="playground-role-input" style="background:#090c13; border:1px solid var(--border-bright); color:#fff; padding:0.4rem 0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem; outline:none;">
+                  <option value="Кибер-Ниндзя" selected>Кибер-Ниндзя (str)</option>
+                  <option value="Маг огня">Маг огня (str)</option>
+                  <option value="Паладин">Паладин (str)</option>
+                  <option value="Биохакер">Биохакер (str)</option>
+                </select>
+              </div>
+
+              <div style="display:flex; align-items:center; gap:0.4rem;">
+                <label for="custom-level-input" style="font-size:0.85rem; color:var(--text-secondary);">Уровень (int):</label>
+                <input type="number" id="custom-level-input" class="playground-level-input" value="7" min="1" max="99" style="background:#090c13; border:1px solid var(--border-bright); color:#fff; padding:0.4rem 0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem; outline:none; width:70px;">
+              </div>
             </div>
 
             <div class="interactive-controls">
@@ -347,7 +364,7 @@
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                   <polygon points="5 3 19 12 5 21 5 3"></polygon>
                 </svg>
-                <span>Запустить код</span>
+                <span>Инициализировать переменные</span>
               </button>
             </div>
 
@@ -367,24 +384,24 @@
             </div>
 
             <div class="quiz-options">
-              <button class="quiz-btn" data-correct="false" data-explanation="Нет, 12 получилось бы, если бы значения были числами a = 5 и b = 7. Но здесь стоят кавычки, значит это строки!">
+              <button class="quiz-btn" data-correct="false" data-explanation="Число 12 получилось бы, если бы значения a и b были целыми числами int (a = 5 и b = 7). Но здесь оба значения заключены в кавычки, а значит являются строками!">
                 <span class="quiz-option-marker">A</span>
                 <span>12</span>
               </button>
 
-              <button class="quiz-btn" data-correct="true" data-explanation="Браво! Переменные a и b содержат строки '5' и '7'. Для строк оператор '+' выполняет конкатенацию (склеивание), в результате получается строка '57'.">
+              <button class="quiz-btn" data-correct="false" data-explanation="Ошибка TypeError возникла бы при попытке сложить строку с числом ('5' + 7). Но здесь обе переменные — строки, а Python прекрасно умеет объединять строки между собой!">
                 <span class="quiz-option-marker">B</span>
-                <span>"57" (или 57)</span>
+                <span>TypeError: can only concatenate str to str</span>
               </button>
 
-              <button class="quiz-btn" data-correct="false" data-explanation="В Python можно складывать (склеивать) строки между собой оператором '+', ошибки здесь не будет.">
+              <button class="quiz-btn" data-correct="false" data-explanation="Символ '+' вне кавычек является оператором, а не текстом, поэтому он не выводится буквально в терминал, а исполняет команду конкатенации.">
                 <span class="quiz-option-marker">C</span>
-                <span>TypeError: unsupported operand type</span>
+                <span>"5 + 7"</span>
               </button>
 
-              <button class="quiz-btn" data-correct="false" data-explanation="Символ сложения '+' не выводится в терминал, он работает как операция склеивания двух строк.">
+              <button class="quiz-btn" data-correct="true" data-explanation="Браво! Переменные a и b содержат строки '5' и '7'. Для строк оператор '+' выполняет конкатенацию (склеивание), и в результате в терминал выводится строка '57'.">
                 <span class="quiz-option-marker">D</span>
-                <span>5 + 7</span>
+                <span>"57"</span>
               </button>
             </div>
 
@@ -398,7 +415,15 @@
           <div class="callout-content">
             <div class="callout-title">Мини-задание для закрепления</div>
             <p>
-              Напишите в голове программу, которая запрашивает у пользователя его любимое блюдо с помощью <code class="fn">input()</code>, а затем выводит сообщение вида: <code class="str">f"Отличный выбор! Я тоже обожаю {dish}!"</code>.
+              Напишите программу оформления заказа в кафе:
+            </p>
+            <ul style="margin: 0.5rem 0 0.5rem 1.25rem; font-size: 0.95rem; color: var(--text-secondary);">
+              <li>Запросите название блюда: <code>dish = input("Что будете заказывать? ")</code></li>
+              <li>Создайте переменную количества порций: <code>count = 2</code> (тип int)</li>
+              <li>Сформируйте и выведите f-строку: <code>f"Принято: {dish}, количество: {count} шт."</code></li>
+            </ul>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0;">
+              💡 <em>Обратите внимание: переменная внутри фигурных скобок <code>{dish}</code> автоматически преобразуется в текст!</em>
             </p>
           </div>
         </div>

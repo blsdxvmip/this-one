@@ -351,14 +351,20 @@
             <div class="playground-badge">⚡ Интерактивный цикл-обработчик</div>
             <h3 class="playground-title">Сортировка и загрузка корзины покупок</h3>
             <p class="playground-desc">
-              Нажмите кнопку ниже, чтобы запустить скрипт, обходящий коллекцию покупок циклом <code class="kwd">for</code> с красивой форматированной нумерацией:
+              Укажите количество товаров для упаковки и запустите скрипт. Интерпретатор выполнит цикл <code class="kwd">for</code>, последовательно перебирая каждый товар и выводя номер итерации:
             </p>
+
+            <div style="margin-bottom: 1rem; display:flex; flex-wrap:wrap; gap:0.75rem; align-items:center;">
+              <label for="loop-count-input" style="font-size:0.85rem; color:var(--text-secondary);">Количество товаров (от 1 до 10):</label>
+              <input type="number" id="loop-count-input" class="playground-loop-count" value="4" min="1" max="10" style="background:#090c13; border:1px solid var(--border-bright); color:#fff; padding:0.4rem 0.75rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem; outline:none; width:70px;">
+              <span style="font-size:0.85rem; color:var(--text-muted);">(Попробуйте изменить на 3, 6 или 8)</span>
+            </div>
 
             <div class="code-window" style="margin-bottom: 1rem;">
               <div class="code-body">
-                <pre><span class="var">groceries</span> <span class="op">=</span> [<span class="str">"🍎 Яблоки"</span>, <span class="str">"🥖 Свежий хлеб"</span>, <span class="str">"🧀 Сыр"</span>, <span class="str">"☕ Кофе"</span>]
-<span class="kwd">for</span> <span class="var">idx</span>, <span class="var">item</span> <span class="kwd">in</span> <span class="bi">enumerate</span>(<span class="var">groceries</span>, <span class="num">1</span>):
-    <span class="fn">print</span>(<span class="str">f"{idx}. {item}"</span>)</pre>
+                <pre><span class="var">cart</span> <span class="op">=</span> [<span class="str">"🍎 Яблоки"</span>, <span class="str">"🥖 Свежий хлеб"</span>, <span class="str">"🧀 Сыр"</span>, <span class="str">"☕ Кофе"</span>, <span class="str">"..."</span>]
+<span class="kwd">for</span> <span class="var">idx</span>, <span class="var">item</span> <span class="kwd">in</span> <span class="bi">enumerate</span>(<span class="var">cart</span>[:<span class="var">count</span>], <span class="num">1</span>):
+    <span class="fn">print</span>(<span class="str">f"  Итерация {idx}: упакован {item}"</span>)</pre>
               </div>
             </div>
 
@@ -383,28 +389,34 @@
           <div class="quiz-section">
             <div class="quiz-badge">🧠 Проверь себя (Мини-квиз)</div>
             <div class="quiz-question">
-              Что выведет команда <code style="color:var(--accent-cyan);">fruits = ["Киви", "Банан", "Манго"]</code> при вызове <code style="color:var(--accent-cyan);">print(fruits[1])</code>?
+              Что выведет в консоль следующий фрагмент кода с циклом <code class="kwd">for</code>?
+              <div style="margin: 0.75rem 0; background: rgba(0,0,0,0.5); padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); font-family: var(--font-mono); font-size: 0.95rem; color: #e2e8f0; line-height: 1.5;">
+                total = 0<br>
+                for num in range(1, 5):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;total += num<br>
+                print(total)
+              </div>
             </div>
 
             <div class="quiz-options">
-              <button class="quiz-btn" data-correct="false" data-explanation="Помните про отсчет с нуля! 'Киви' находится под индексом 0, а не 1.">
+              <button class="quiz-btn" data-correct="true" data-explanation="Браво! Генератор range(1, 5) генерирует последовательность 1, 2, 3, 4 (число 5 не включается!). Цикл суммирует их: 1 + 2 + 3 + 4 = 10.">
                 <span class="quiz-option-marker">A</span>
-                <span>Киви</span>
+                <span>10</span>
               </button>
 
-              <button class="quiz-btn" data-correct="true" data-explanation="Совершенно верно! В Python индексация с нуля: fruits[0] — это 'Киви', а fruits[1] — это 'Банан'.">
+              <button class="quiz-btn" data-correct="false" data-explanation="Классическая ловушка! Вы включили число 5 в сумму (1 + 2 + 3 + 4 + 5 = 15). Но правая граница в range(start, stop) строго НЕ включается!">
                 <span class="quiz-option-marker">B</span>
-                <span>Банан</span>
+                <span>15</span>
               </button>
 
-              <button class="quiz-btn" data-correct="false" data-explanation="'Манго' — третий по счету элемент, его индекс 2 (или -1).">
+              <button class="quiz-btn" data-correct="false" data-explanation="Число 4 — это значение num на последнем шаге цикла, однако оператор 'total += num' накапливает сумму всех чисел.">
                 <span class="quiz-option-marker">C</span>
-                <span>Манго</span>
+                <span>4</span>
               </button>
 
-              <button class="quiz-btn" data-correct="false" data-explanation="IndexError произошел бы только при попытке обратиться к fruits[3] или большему номеру.">
+              <button class="quiz-btn" data-correct="false" data-explanation="Значение 0 было до запуска цикла. Внутри цикла переменная total увеличивается на каждом шаге: 0 + 1 = 1, + 2 = 3, + 3 = 6, + 4 = 10.">
                 <span class="quiz-option-marker">D</span>
-                <span>IndexError: list index out of range</span>
+                <span>0</span>
               </button>
             </div>
 
@@ -418,7 +430,15 @@
           <div class="callout-content">
             <div class="callout-title">Мини-задача для самостоятельного решения</div>
             <p>
-              Напишите цикл с использованием <code class="bi">range()</code>, который выводит таблицу умножения на 5 от 1 до 5 (результаты: 5, 10, 15, 20, 25).
+              Напишите генератор таблицы умножения на 5:
+            </p>
+            <ul style="margin: 0.5rem 0 0.5rem 1.25rem; font-size: 0.95rem; color: var(--text-secondary);">
+              <li>Используйте цикл <code>for i in range(1, 6):</code> (обратите внимание на границу 6, чтобы включить 5).</li>
+              <li>Внутри цикла посчитайте произведение: <code>result = i * 5</code></li>
+              <li>Выведите строку вида: <code>print(f"5 * {i} = {result}")</code></li>
+            </ul>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0;">
+              💡 <em>Ожидаемый вывод: пять строк от <code>5 * 1 = 5</code> до <code>5 * 5 = 25</code>.</em>
             </p>
           </div>
         </div>

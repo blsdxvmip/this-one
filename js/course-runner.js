@@ -31,11 +31,16 @@
         <p>3. Вывод на экран осуществляется функцией <code>print(...)</code>.</p>
       `,
       starterCode: `# Задача 1: Приветствие на Python
-name = "Исследователь"
-language = "Python"
+# 1. Присвойте переменной name строку с вашим именем
+# 2. Присвойте переменной language строку "Python"
+# 3. Напишите команду print с f-строкой:
+#    Привет, <имя>! Добро пожаловать в мир <язык>.
+
+name = ""
+language = ""
 
 # Напишите print с f-строкой ниже:
-print(f"Привет, {name}! Добро пожаловать в мир {language}.")
+
 `,
       runTests: function (code, runResult) {
         const tests = [];
@@ -98,17 +103,15 @@ print(f"Привет, {name}! Добро пожаловать в мир {languag
       `,
       starterCode: `# Задача 2: Функция расчета сдачи
 def calculate_change(bill, cost):
-    change = bill - cost
-    coins_10 = change // 10
-    remainder = change % 10
-    return {
-        "change": change,
-        "coins_10": coins_10,
-        "remainder": remainder
-    }
+    # TODO: Рассчитайте сдачу:
+    # 1. change — общая сумма сдачи (bill - cost)
+    # 2. coins_10 — сколько целых монет по 10 рублей можно выдать (// 10)
+    # 3. remainder — остаток сдачи (% 10)
+    # 4. Верните словарь с ключами "change", "coins_10", "remainder"
+    pass
 
-# Проверка:
-print(calculate_change(500, 364))
+# Пример проверки вызова:
+# print(calculate_change(500, 364))
 `,
       runTests: function (code, runResult) {
         const tests = [];
@@ -194,18 +197,15 @@ print(calculate_change(500, 364))
       `,
       starterCode: `# Задача 3: Фейсконтроль
 def check_access(age, has_pass, password):
-    if age < 18:
-        return "Доступ запрещен: несовершеннолетний"
-    elif not has_pass:
-        return "Доступ запрещен: отсутствует пропуск"
-    elif password != "secret123":
-        return "Доступ запрещен: неверный пароль"
-    else:
-        return "Доступ разрешен"
+    # TODO: Проверьте условия строго по порядку:
+    # 1. Если age < 18 -> вернуть "Доступ запрещен: несовершеннолетний"
+    # 2. Иначе, если not has_pass -> вернуть "Доступ запрещен: отсутствует пропуск"
+    # 3. Иначе, если password != "secret123" -> вернуть "Доступ запрещен: неверный пароль"
+    # 4. Во всех остальных случаях -> вернуть "Доступ разрешен"
+    pass
 
-# Проверка:
-print(check_access(20, True, "secret123"))
-print(check_access(16, True, "secret123"))
+# Пример проверки вызова:
+# print(check_access(20, True, "secret123"))
 `,
       runTests: function (code, runResult) {
         const tests = [];
@@ -300,22 +300,16 @@ print(check_access(16, True, "secret123"))
       `,
       starterCode: `# Задача 4: Фильтрация и подсчет среднего
 def analyze_numbers(numbers):
-    evens = []
-    for num in numbers:
-        if num % 2 == 0:
-            evens.append(num)
-    
-    count = len(evens)
-    avg = sum(evens) / count if count > 0 else 0.0
-    
-    return {
-        "evens": evens,
-        "count": count,
-        "average": avg
-    }
+    # TODO:
+    # 1. Создайте пустой список evens = []
+    # 2. Переберите numbers циклом for. Если число четное (num % 2 == 0), добавьте его в evens
+    # 3. count — количество четных чисел (len(evens))
+    # 4. average — среднее арифметическое (sum(evens) / count), если count > 0, иначе 0.0
+    # 5. Верните словарь: {"evens": evens, "count": count, "average": avg}
+    pass
 
-# Проверка:
-print(analyze_numbers([1, 2, 3, 4, 5, 6]))
+# Пример проверки вызова:
+# print(analyze_numbers([1, 2, 3, 4, 5, 6]))
 `,
       runTests: function (code, runResult) {
         const tests = [];
@@ -411,19 +405,19 @@ print(analyze_numbers([1, 2, 3, 4, 5, 6]))
       `,
       starterCode: `# Задача 5: Шифр Цезаря для латинских букв
 def encrypt_caesar(text, shift):
-    result = ""
-    for char in text:
-        if 'a' <= char <= 'z':
-            # Сдвиг внутри алфавита (26 букв):
-            new_char = chr(ord('a') + (ord(char) - ord('a') + shift) % 26)
-            result += new_char
-        else:
-            result += char
-    return result
+    # TODO:
+    # 1. Создайте переменную result = ""
+    # 2. Переберите каждый символ char в строке text
+    # 3. Если 'a' <= char <= 'z':
+    #    сдвиньте букву: chr(ord('a') + (ord(char) - ord('a') + shift) % 26)
+    #    добавьте новую букву к result
+    # 4. Иначе:
+    #    добавьте исходный символ char без изменений
+    # 5. Верните result
+    pass
 
-# Проверка:
-print(encrypt_caesar("hello world!", 3))
-print(encrypt_caesar("xyz", 2))
+# Пример проверки вызова:
+# print(encrypt_caesar("hello world!", 3))
 `,
       runTests: function (code, runResult) {
         const tests = [];
@@ -907,6 +901,22 @@ print(encrypt_caesar("xyz", 2))
           selectTask(order[idx + 1]);
         } else {
           alert('🎉 Поздравляем! Вы решили все 5 практических задач курса!');
+        }
+      });
+    }
+
+    // Reset All Tasks Progress Button
+    const resetAllBtn = document.getElementById('reset-all-tasks-btn');
+    if (resetAllBtn) {
+      resetAllBtn.addEventListener('click', () => {
+        if (confirm('Сбросить весь сохраненный прогресс задач и вернуть чистые шаблоны?')) {
+          localStorage.removeItem('python_solved_tasks');
+          ['task1', 'task2', 'task3', 'task4', 'task5'].forEach(tid => {
+            localStorage.removeItem(`python_task_${tid}_code`);
+          });
+          selectTask(currentTaskId);
+          updateTaskIcons();
+          alert('Прогресс задач сброшен! Теперь вы можете решить каждую задачу самостоятельно.');
         }
       });
     }

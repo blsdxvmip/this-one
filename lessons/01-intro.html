@@ -306,12 +306,17 @@
             <div class="playground-badge">⚡ Интерактивный полигон</div>
             <h3 class="playground-title">Запустите свой первый Python-скрипт прямо здесь</h3>
             <p class="playground-desc">
-              Нажмите кнопку ниже, чтобы сымитировать запуск кода в интерпретаторе Python 3.12 и увидеть моментальный отклик программы:
+              Введите произвольный текст ниже и нажмите кнопку. Интерпретатор Python передаст строку в функцию <code class="fn">print()</code> и моментально отобразит результат в консоли:
             </p>
+
+            <div style="margin-bottom: 1rem; display:flex; flex-wrap:wrap; gap:0.75rem; align-items:center;">
+              <label for="playground-intro-input" style="font-size:0.9rem; color:var(--text-secondary);">Аргумент функции print():</label>
+              <input type="text" id="playground-intro-input" class="playground-text-input" value="Привет, Мир! Я пишу на Python 🚀" style="background:#090c13; border:1px solid var(--border-bright); color:#fff; padding:0.45rem 0.85rem; border-radius:6px; font-family:var(--font-mono); font-size:0.9rem; outline:none; flex:1; min-width:240px;">
+            </div>
 
             <div class="code-window" style="margin-bottom: 1rem;">
               <div class="code-body">
-                <pre><span class="fn">print</span>(<span class="str">"Привет, Мир!"</span>)</pre>
+                <pre><span class="fn">print</span>(<span class="str">"&lt;ваш введённый текст&gt;"</span>)</pre>
               </div>
             </div>
 
@@ -371,7 +376,15 @@
           <div class="callout-content">
             <div class="callout-title">Мини-задание для самостоятельной практики</div>
             <p>
-              Попробуйте мысленно или в блокноте написать 3 строки кода, которые выводят на экран ваше имя, ваш любимый фильм и текущий год. Не забудьте про кавычки для текста и круглые скобки!
+              Напишите 3 строки кода, которые выводят визитную карточку разработчика:
+            </p>
+            <ul style="margin: 0.5rem 0 0.5rem 1.25rem; font-size: 0.95rem; color: var(--text-secondary);">
+              <li>1-я строка: выводит ваше имя через строковую константу в кавычках.</li>
+              <li>2-я строка: выводит ваш любимый фильм или книгу.</li>
+              <li>3-я строка: выводит текущий год как число (без кавычек).</li>
+            </ul>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0;">
+              💡 <em>Совет: помните о парных скобках <code>()</code> и строчной букве <code>print</code>.</em>
             </p>
           </div>
         </div>

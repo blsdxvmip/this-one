@@ -222,53 +222,101 @@
 
         terminalOutput.textContent = 'Интерпретатор Python запускается...';
 
+        function escapeHTML(str) {
+          return String(str).replace(/[&<>'"]/g, tag => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            "'": '&#39;',
+            '"': '&quot;'
+          }[tag] || tag));
+        }
+
         setTimeout(() => {
           btn.disabled = false;
           btn.innerHTML = originalBtnHTML;
 
           // Dispatch based on lesson
           if (runnerAction === 'print-hello') {
-            terminalOutput.innerHTML = `<span style="color:#38bdf8;">Привет, Мир!</span><br><span style="color:#94a3b8; font-size:0.8rem;">[Программа завершилась с кодом 0 (OK)]</span>`;
-          } else if (runnerAction === 'run-variables') {
-            const userName = (customPrompt && customPrompt.value.trim()) ? customPrompt.value.trim() : 'Алекс';
+            const customMsgInput = box.querySelector('.playground-text-input') || customPrompt;
+            const msg = (customMsgInput && customMsgInput.value.trim()) ? customMsgInput.value.trim() : 'Привет, Мир!';
             terminalOutput.innerHTML = `
-              <span style="color:#cbd5e1;">Имя игрока: <strong>${userName}</strong></span><br>
-              <span style="color:#cbd5e1;">Уровень: <strong>1</strong> (тип: int)</span><br>
-              <span style="color:#cbd5e1;">Здоровье: <strong>100.0</strong> HP (тип: float)</span><br>
-              <span style="color:#34d399;">f-строка: "Добро пожаловать в игру, ${userName}! У тебя 100.0 HP."</span>
+              <span style="color:#38bdf8;">${escapeHTML(msg)}</span><br>
+              <span style="color:#94a3b8; font-size:0.8rem;">[Команда print() выполнена. Вывод передан в stdout. Код 0 (OK)]</span>
+            `;
+          } else if (runnerAction === 'run-variables') {
+            const userNameInput = box.querySelector('.playground-name-input') || customPrompt;
+            const userRoleInput = box.querySelector('.playground-role-input');
+            const userLevelInput = box.querySelector('.playground-level-input');
+
+            const userName = (userNameInput && userNameInput.value.trim()) ? userNameInput.value.trim() : 'Кибер-Ниндзя';
+            const userRole = (userRoleInput && userRoleInput.value) ? userRoleInput.value : 'Маг';
+            const userLevel = (userLevelInput && !isNaN(parseInt(userLevelInput.value, 10))) ? parseInt(userLevelInput.value, 10) : 7;
+            const hp = (userLevel * 14.5).toFixed(1);
+            const isAlive = true;
+
+            terminalOutput.innerHTML = `
+              <span style="color:#94a3b8;"># Создание и типизация переменных:</span><br>
+              <span style="color:#cbd5e1;">hero_name = <strong>"${escapeHTML(userName)}"</strong> <em style="color:#64748b;">(тип: str)</em></span><br>
+              <span style="color:#cbd5e1;">role = <strong>"${escapeHTML(userRole)}"</strong> <em style="color:#64748b;">(тип: str)</em></span><br>
+              <span style="color:#cbd5e1;">level = <strong>${userLevel}</strong> <em style="color:#64748b;">(тип: int)</em></span><br>
+              <span style="color:#cbd5e1;">hp = <strong>${hp}</strong> <em style="color:#64748b;">(тип: float)</em></span><br>
+              <span style="color:#cbd5e1;">is_alive = <strong>${isAlive}</strong> <em style="color:#64748b;">(тип: bool)</em></span><br>
+              <div style="margin-top: 0.4rem; padding-top: 0.4rem; border-top: 1px dashed rgba(255,255,255,0.15); color:#34d399;">
+                f-строка: "Герой [${escapeHTML(userName)}] класса ${escapeHTML(userRole)} достиг уровня ${userLevel}! Здоровье: ${hp} HP."
+              </div>
             `;
           } else if (runnerAction === 'run-conditions') {
             const ageInput = box.querySelector('.playground-age-input');
+            const vipInput = box.querySelector('.playground-vip-input');
             const age = ageInput ? parseInt(ageInput.value, 10) : 18;
+            const isVip = vipInput ? vipInput.checked : false;
+
             let result = '';
             if (isNaN(age) || age < 0) {
-              result = `<span style="color:#f43f5e;">Ошибка: введите корректный возраст!</span>`;
-            } else if (age < 14) {
-              result = `<span style="color:#fbbf24;">Доступ запрещен: детям до 14 вход только с родителями.</span>`;
-            } else if (age < 18) {
-              result = `<span style="color:#38bdf8;">Подростковый доступ активирован: добро пожаловать!</span>`;
+              result = `<span style="color:#f43f5e;">❌ Ошибка: укажите корректный неотрицательный возраст!</span>`;
+            } else if (age >= 18 && isVip) {
+              result = `<span style="color:#a855f7; font-weight:bold;">👑 VIP-статус подтвержден:</span> <span style="color:#cbd5e1;">Возраст ${age} лет + VIP-билет. Добро пожаловать в закрытый клуб!</span>`;
+            } else if (age >= 18) {
+              result = `<span style="color:#34d399; font-weight:bold;">✅ Полный доступ:</span> <span style="color:#cbd5e1;">Возраст ${age} лет (условие age &gt;= 18 истинно). Добро пожаловать!</span>`;
+            } else if (age >= 14 && isVip) {
+              result = `<span style="color:#38bdf8; font-weight:bold;">🎟️ Подростковый VIP-доступ:</span> <span style="color:#cbd5e1;">Возраст ${age} лет. Доступ разрешен с молодежным куратором.</span>`;
+            } else if (age >= 14) {
+              result = `<span style="color:#fbbf24; font-weight:bold;">⚠️ Ограниченный доступ:</span> <span style="color:#cbd5e1;">Возраст ${age} лет. Доступ разрешен только в дневную зону.</span>`;
             } else {
-              result = `<span style="color:#34d399;">Полный доступ разрешен: добро пожаловать во взрослую категорию!</span>`;
+              result = `<span style="color:#f43f5e; font-weight:bold;">⛔ Доступ запрещен:</span> <span style="color:#cbd5e1;">Возраст ${age} лет. Детям до 14 лет вход строго с родителями.</span>`;
             }
             terminalOutput.innerHTML = result;
           } else if (runnerAction === 'run-loops') {
-            terminalOutput.innerHTML = `
-              <span style="color:#94a3b8;"># Цикл for по списку покупок:</span><br>
-              <span style="color:#38bdf8;">1. 🍎 Яблоки</span><br>
-              <span style="color:#38bdf8;">2. 🥖 Свежий хлеб</span><br>
-              <span style="color:#38bdf8;">3. 🧀 Сыр</span><br>
-              <span style="color:#38bdf8;">4. ☕ Кофе</span><br>
-              <span style="color:#34d399;">Все 4 товара загружены в корзину!</span>
-            `;
+            const countInput = box.querySelector('.playground-loop-count');
+            const count = countInput ? Math.min(10, Math.max(1, parseInt(countInput.value, 10) || 4)) : 4;
+            const items = ["🍎 Яблоки", "🥖 Свежий хлеб", "🧀 Сыр", "☕ Кофе", "🥛 Молоко", "🍊 Апельсины", "🍫 Шоколад", "🥑 Авокадо", "🍯 Мёд", "🍇 Виноград"];
+            const selectedItems = items.slice(0, count);
+
+            let outHTML = `<span style="color:#94a3b8;"># Выполнение цикла for idx, item in enumerate(cart[:${count}], 1):</span><br>`;
+            selectedItems.forEach((item, idx) => {
+              outHTML += `<span style="color:#38bdf8;">  Итерация ${idx + 1}: упакован ${item}</span><br>`;
+            });
+            outHTML += `<span style="color:#34d399; font-weight:600;">✓ Цикл завершен успешно! Обработано элементов: ${count}</span>`;
+            terminalOutput.innerHTML = outHTML;
           } else if (runnerAction === 'run-functions') {
-            const a = 15;
-            const b = 25;
-            const sum = a + b;
+            const priceInput = box.querySelector('.playground-price-input');
+            const discountInput = box.querySelector('.playground-discount-input');
+
+            const price = priceInput ? Math.max(0, parseFloat(priceInput.value) || 1000) : 1000;
+            const discount = discountInput ? Math.min(100, Math.max(0, parseFloat(discountInput.value) || 15)) : 15;
+
+            const discountRub = (price * (discount / 100));
+            const finalPrice = (price - discountRub);
+
             terminalOutput.innerHTML = `
-              <span style="color:#94a3b8;"># Вызов функции calculate_discount(price=1000, discount=15):</span><br>
-              <span style="color:#cbd5e1;">Исходная цена: 1000 ₽</span><br>
-              <span style="color:#cbd5e1;">Скидка: 15% (150 ₽)</span><br>
-              <span style="color:#34d399; font-weight:bold;">Итого к оплате: 850 ₽ (получено через return)</span>
+              <span style="color:#94a3b8;"># Вызов: calc_discount(price=${price}, discount_percent=${discount})</span><br>
+              <span style="color:#cbd5e1;">1. Переданы аргументы: цена = <strong>${price} ₽</strong>, скидка = <strong>${discount}%</strong></span><br>
+              <span style="color:#cbd5e1;">2. Внутри функции рассчитана экономия: <strong>${discountRub.toFixed(1)} ₽</strong></span><br>
+              <span style="color:#cbd5e1;">3. Инструкция <code>return final_price</code> возвращает число <strong>${finalPrice.toFixed(1)}</strong></span><br>
+              <div style="margin-top:0.4rem; padding-top:0.4rem; border-top:1px dashed rgba(255,255,255,0.15); color:#34d399; font-weight:bold;">
+                Итого к оплате сохранено в переменную: ${finalPrice.toFixed(1)} ₽
+              </div>
             `;
           } else {
             terminalOutput.innerHTML = `<span style="color:#34d399;">Код успешно выполнен!</span>`;
