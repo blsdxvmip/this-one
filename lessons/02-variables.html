@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Урок 2: Переменные и типы данных — Память программы</title>
+  <meta name="description" content="Узнайте, как компьютер хранит данные: метафора подписанной коробки, int, float, str, bool, пользовательский ввод input(), преобразование типов и f-строки.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📦</text></svg>">
+
+  <!-- Course Stylesheet -->
+  <link rel="stylesheet" href="../styles/python-course.css">
+</head>
+<body class="course-page" data-lesson="2">
+
+  <!-- Unified Course Header -->
+  <header class="course-header">
+    <div class="header-left">
+      <button class="sidebar-toggle-btn" id="sidebar-toggle-btn" aria-label="Переключить меню уроков">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <a href="../index.html" class="course-brand">
+        <div class="course-brand-icon">🐍</div>
+        <div class="course-brand-text">
+          <h1>Python Starter</h1>
+          <span>Курс для начинающих</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="header-center">
+      <div class="progress-info">
+        <span id="progress-count-text">1 из 5 уроков завершено</span>
+        <span id="progress-percent-text">20%</span>
+      </div>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progress-bar-fill" style="width: 40%;"></div>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <a href="../index.html" class="btn-nav-home">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+        <span>На главную</span>
+      </a>
+    </div>
+  </header>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <!-- Layout Wrapper -->
+  <div class="course-layout">
+
+    <!-- Collapsible Sidebar Navigation -->
+    <aside class="course-sidebar" id="course-sidebar">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Программа курса</div>
+        <ul class="lesson-nav-list">
+          <li class="lesson-nav-item completed" id="nav-lesson-1">
+            <a href="01-intro.html">
+              <span class="lesson-number">1</span>
+              <span class="lesson-title-text">Старт в Python & print()</span>
+              <span class="status-badge-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
+            </a>
+          </li>
+          <li class="lesson-nav-item active" id="nav-lesson-2">
+            <a href="02-variables.html">
+              <span class="lesson-number">2</span>
+              <span class="lesson-title-text">Переменные & Типы данных</span>
+              <span class="status-badge-icon"></span>
+            </a>
+          </li>
+          <li class="lesson-nav-item" id="nav-lesson-3">
+            <a href="03-conditions.html">
+              <span class="lesson-number">3</span>
+              <span class="lesson-title-text">Ветвления & Логика if/else</span>
+              <span class="status-badge-icon"></span>
+            </a>
+          </li>
+          <li class="lesson-nav-item" id="nav-lesson-4">
+            <a href="04-loops.html">
+              <span class="lesson-number">4</span>
+              <span class="lesson-title-text">Списки & Циклы for/while</span>
+              <span class="status-badge-icon"></span>
+            </a>
+          </li>
+          <li class="lesson-nav-item" id="nav-lesson-5">
+            <a href="05-functions.html">
+              <span class="lesson-number">5</span>
+              <span class="lesson-title-text">Функции & Модульность</span>
+              <span class="status-badge-icon"></span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="sidebar-section-title">Практикум</div>
+        <ul class="lesson-nav-list">
+          <li class="lesson-nav-item" id="nav-practice">
+            <a href="#practice">
+              <span class="lesson-number">⚡</span>
+              <span class="lesson-title-text">Тренажер задач (5 уровней)</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-footer">
+        <div>Python 3.12 • Статус: Онлайн</div>
+        <div style="margin-top: 4px; color: var(--accent-cyan);">Интерактивная среда обучения</div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="course-main">
+      <article class="lesson-article">
+
+        <!-- Hero Card -->
+        <div class="lesson-hero-card">
+          <div class="lesson-meta-pill">Урок 2 • Базовый уровень • Время: ~15 мин</div>
+          <h1>Переменные и типы данных — Память программы</h1>
+          <p class="lesson-lead">
+            Если в первом уроке мы научили программу говорить, то сейчас мы подарим ей память! Вы разберётесь, как компьютер сохраняет имена, числа и логические состояния, как спросить пользователя о чём угодно с помощью <code class="fn">input()</code> и как собирать красивые сообщения с помощью современных f-строк.
+          </p>
+        </div>
+
+        <!-- Section 1: Variable Metaphor -->
+        <section class="lesson-section">
+          <h2><span class="section-idx">01.</span> Что такое переменная? Метафора подписанной коробки</h2>
+          <p>
+            В процессе работы программе постоянно нужно что-то помнить: сколько жизней осталось у игрока, как зовут пользователя, какой баланс на карте. Для этого в оперативной памяти выделяется кусочек пространства, которому дают имя.
+          </p>
+
+          <div class="analogy-card">
+            <div class="analogy-header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+              <span>Аналогия: Переменная — это коробка с ярлыком</span>
+            </div>
+            <div class="analogy-body">
+              Представьте картонную коробку, на которой маркером написано слово <strong style="color:var(--accent-cyan);">player_name</strong>. Внутрь этой коробки вы кладёте листок со словом <em>"Артур"</em>. Каждый раз, когда вы в коде обратитесь к <strong style="color:var(--accent-cyan);">player_name</strong>, Python заглянет в эту коробку и достанет оттуда <em>"Артур"</em>. Если позже вы положите туда <em>"Мерлин"</em>, старое значение исчезнет, а коробка теперь хранит новое!
+            </div>
+          </div>
+
+          <p>В Python создание переменной выглядит предельно просто с помощью знака равно <code class="op">=</code> (он называется <strong>оператором присваивания</strong>):</p>
+
+          <div class="code-window">
+            <div class="code-header">
+              <div class="code-dots">
+                <span class="code-dot dot-red"></span>
+                <span class="code-dot dot-yellow"></span>
+                <span class="code-dot dot-green"></span>
+              </div>
+              <div class="code-label">python • variables_intro.py</div>
+              <button class="code-copy-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span>Копировать</span>
+              </button>
+            </div>
+            <div class="code-body">
+              <pre><span class="var">user_name</span> <span class="op">=</span> <span class="str">"Алиса"</span>
+<span class="var">user_score</span> <span class="op">=</span> <span class="num">150</span>
+
+<span class="fn">print</span>(<span class="var">user_name</span>)
+<span class="fn">print</span>(<span class="var">user_score</span>)</pre>
+            </div>
+            <div class="code-output">
+              <div class="output-label">Результат в терминале:</div>
+              <div class="output-text">Алиса
+150</div>
+            </div>
+          </div>
+
+          <div class="callout callout-tip">
+            <div class="callout-icon">📌</div>
+            <div class="callout-content">
+              <div class="callout-title">Правила хорошего тона для имён переменных:</div>
+              <p>
+                Имена переменных пишутся маленькими латинскими буквами, а слова разделяются нижним подчеркиванием (этот стиль называется <code>snake_case</code>, например: <code class="var">hero_health</code>, <code class="var">max_speed</code>). Имя не может начинаться с цифры и не должно содержать пробелов.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 2: Four Basic Data Types -->
+        <section class="lesson-section">
+          <h2><span class="section-idx">02.</span> Четыре кита: Базовые типы данных</h2>
+          <p>
+            В коробку можно положить разные вещи: обувь, книгу или воду. Компьютер должен точно знать, что именно лежит в переменной, чтобы понимать, какие операции с ней разрешены (например, числа можно складывать, а строки — объединять).
+          </p>
+          <p>В Python есть 4 главных базовых типа данных:</p>
+
+          <div class="code-window">
+            <div class="code-header">
+              <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+              <div class="code-label">python • data_types.py</div>
+              <button class="code-copy-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span>Копировать</span>
+              </button>
+            </div>
+            <div class="code-body">
+              <pre><span class="cm"># 1. int (Integer) — целые числа</span>
+<span class="var">age</span> <span class="op">=</span> <span class="num">25</span>
+<span class="var">level</span> <span class="op">=</span> <span class="num">1</span>
+
+<span class="cm"># 2. float (Floating point) — дробные числа (с плавающей точкой)</span>
+<span class="var">price</span> <span class="op">=</span> <span class="num">19.99</span>
+<span class="var">pi</span> <span class="op">=</span> <span class="num">3.14159</span>
+
+<span class="cm"># 3. str (String) — строки, любой текст в кавычках</span>
+<span class="var">title</span> <span class="op">=</span> <span class="str">"Мастер Python"</span>
+
+<span class="cm"># 4. bool (Boolean) — логический тип: только True (Истина) или False (Ложь)</span>
+<span class="var">is_game_over</span> <span class="op">=</span> <span class="kwd">False</span>
+<span class="var">has_key</span> <span class="op">=</span> <span class="kwd">True</span></pre>
+            </div>
+          </div>
+
+          <p>
+            Узнать тип любой переменной в любой момент можно с помощью команды <code class="bi">type(x)</code>:
+          </p>
+
+          <div class="code-window">
+            <div class="code-body">
+              <pre><span class="fn">print</span>(<span class="bi">type</span>(<span class="num">100</span>))      <span class="cm"># &lt;class 'int'&gt;</span>
+<span class="fn">print</span>(<span class="bi">type</span>(<span class="num">3.14</span>))     <span class="cm"># &lt;class 'float'&gt;</span>
+<span class="fn">print</span>(<span class="bi">type</span>(<span class="str">"Привет"</span>)) <span class="cm"># &lt;class 'str'&gt;</span>
+<span class="fn">print</span>(<span class="bi">type</span>(<span class="kwd">True</span>))     <span class="cm"># &lt;class 'bool'&gt;</span></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 3: User Input and Type Conversion -->
+        <section class="lesson-section">
+          <h2><span class="section-idx">03.</span> Ввод пользователя: Функция input() и превращение типов</h2>
+          <p>
+            Программы становятся по-настоящему полезными, когда они умеют слушать человека. Функция <code class="fn">input()</code> ставит программу на паузу и ждет, пока пользователь напечатает текст в консоли и нажмет <kbd style="background:rgba(255,255,255,0.1); padding:2px 6px; border-radius:4px; font-family:var(--font-mono);">Enter</kbd>.
+          </p>
+
+          <div class="callout callout-warning">
+            <div class="callout-icon">🚨</div>
+            <div class="callout-content">
+              <div class="callout-title">Самый коварный капкан новичков: input() ВСЕГДА строка!</div>
+              <p>
+                Даже если пользователь введет в консоли число <code>10</code>, функция <code class="fn">input()</code> вернет не число, а строку <code class="str">"10"</code> (символ в кавычках). Если сложить две такие строки: <code class="str">"10"</code> + <code class="str">"5"</code>, Python не посчитает сумму 15, а «склеит» текст в <code class="str">"105"</code>!
+              </p>
+            </div>
+          </div>
+
+          <p>
+            Чтобы превратить текст в настоящее число для математических вычислений, используют функции преобразования:
+          </p>
+          <ul>
+            <li><code class="bi">int("42")</code> — превращает строку в целое число <code class="num">42</code></li>
+            <li><code class="bi">float("9.99")</code> — превращает строку в дробное число <code class="num">9.99</code></li>
+            <li><code class="bi">str(100)</code> — превращает число обратно в строку <code class="str">"100"</code></li>
+          </ul>
+
+          <div class="code-window">
+            <div class="code-header">
+              <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+              <div class="code-label">python • input_sum.py</div>
+              <button class="code-copy-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span>Копировать</span>
+              </button>
+            </div>
+            <div class="code-body">
+              <pre><span class="cm"># Спрашиваем число и сразу оборачиваем в int():</span>
+<span class="var">age_str</span> <span class="op">=</span> <span class="fn">input</span>(<span class="str">"Сколько вам лет? "</span>)
+<span class="var">age</span> <span class="op">=</span> <span class="bi">int</span>(<span class="var">age_str</span>)
+
+<span class="var">next_year_age</span> <span class="op">=</span> <span class="var">age</span> <span class="op">+</span> <span class="num">1</span>
+<span class="fn">print</span>(<span class="str">"В следующем году вам исполнится:"</span>, <span class="var">next_year_age</span>)</pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 4: Modern f-strings -->
+        <section class="lesson-section">
+          <h2><span class="section-idx">04.</span> Современные f-строки: Магия форматирования текста</h2>
+          <p>
+            Раньше программистам приходилось мучиться со сложением строк через плюсики: <br>
+            <code style="color:#94a3b8;">print("Привет, " + name + "! Тебе уже " + str(age) + " лет.")</code> — это длинно, легко забыть пробел или получить ошибку из-за типа.
+          </p>
+          <p>
+            Начиная с Python 3.6, появилась великолепная конструкция — <strong>f-строки (formatted strings)</strong>. Вы просто ставите букву <code class="str" style="font-weight:700;">f</code> перед открывающей кавычкой, а внутри текста любые переменные и даже вычисления помещаете прямо в фигурные скобки <code style="color:var(--accent-cyan);">{...}</code>!
+          </p>
+
+          <div class="code-window">
+            <div class="code-header">
+              <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+              <div class="code-label">python • f_strings_magic.py</div>
+              <button class="code-copy-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span>Копировать</span>
+              </button>
+            </div>
+            <div class="code-body">
+              <pre><span class="var">hero_name</span> <span class="op">=</span> <span class="str">"Нео"</span>
+<span class="var">level</span> <span class="op">=</span> <span class="num">7</span>
+<span class="var">hp</span> <span class="op">=</span> <span class="num">84.5</span>
+
+<span class="cm"># Обратите внимание на букву 'f' перед кавычкой:</span>
+<span class="var">status_message</span> <span class="op">=</span> <span class="str">f"Герой: {hero_name} | Уровень: {level} | Здоровье: {hp} HP"</span>
+<span class="fn">print</span>(<span class="var">status_message</span>)
+
+<span class="cm"># Внутри фигурных скобок можно даже производить вычисления:</span>
+<span class="fn">print</span>(<span class="str">f"В следующем раунде уровень будет: {level + 1}"</span>)</pre>
+            </div>
+            <div class="code-output">
+              <div class="output-label">Результат в терминале:</div>
+              <div class="output-text">Герой: Нео | Уровень: 7 | Здоровье: 84.5 HP
+В следующем раунде уровень будет: 8</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 5: Interactive Playground -->
+        <section class="lesson-section">
+          <div class="playground-box">
+            <div class="playground-badge">⚡ Интерактивная лаборатория переменных</div>
+            <h3 class="playground-title">Соберите карточку персонажа</h3>
+            <p class="playground-desc">
+              Введите имя персонажа ниже и нажмите «Запустить код». Скрипт создаст переменные разных типов, склеит их через f-строку и выведет в живой терминал:
+            </p>
+
+            <div style="margin-bottom: 1rem; display:flex; gap:0.5rem; align-items:center;">
+              <label for="custom-name-input" style="font-size:0.9rem; color:var(--text-secondary);">Имя героя:</label>
+              <input type="text" id="custom-name-input" class="playground-input" value="Кибер-Ниндзя" style="background:#090c13; border:1px solid var(--border-bright); color:#fff; padding:0.4rem 0.8rem; border-radius:6px; font-family:var(--font-mono); font-size:0.9rem; outline:none; max-width:200px;">
+            </div>
+
+            <div class="interactive-controls">
+              <button class="btn-run-code" data-action="run-variables">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                <span>Запустить код</span>
+              </button>
+            </div>
+
+            <div class="playground-live-terminal">
+              <span class="terminal-prompt">&gt; terminal:</span>
+              <span class="terminal-output" style="color: var(--text-dim);">Готов к инициализации переменных...</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 6: Mini-Quiz for Self-Check -->
+        <section class="lesson-section">
+          <div class="quiz-section">
+            <div class="quiz-badge">🧠 Проверь себя (Мини-квиз)</div>
+            <div class="quiz-question">
+              Что выведет на экран следующий код: <code style="color:var(--accent-cyan);">a = "5"</code> затем <code style="color:var(--accent-cyan);">b = "7"</code> затем <code style="color:var(--accent-cyan);">print(a + b)</code>?
+            </div>
+
+            <div class="quiz-options">
+              <button class="quiz-btn" data-correct="false" data-explanation="Нет, 12 получилось бы, если бы значения были числами a = 5 и b = 7. Но здесь стоят кавычки, значит это строки!">
+                <span class="quiz-option-marker">A</span>
+                <span>12</span>
+              </button>
+
+              <button class="quiz-btn" data-correct="true" data-explanation="Браво! Переменные a и b содержат строки '5' и '7'. Для строк оператор '+' выполняет конкатенацию (склеивание), в результате получается строка '57'.">
+                <span class="quiz-option-marker">B</span>
+                <span>"57" (или 57)</span>
+              </button>
+
+              <button class="quiz-btn" data-correct="false" data-explanation="В Python можно складывать (склеивать) строки между собой оператором '+', ошибки здесь не будет.">
+                <span class="quiz-option-marker">C</span>
+                <span>TypeError: unsupported operand type</span>
+              </button>
+
+              <button class="quiz-btn" data-correct="false" data-explanation="Символ сложения '+' не выводится в терминал, он работает как операция склеивания двух строк.">
+                <span class="quiz-option-marker">D</span>
+                <span>5 + 7</span>
+              </button>
+            </div>
+
+            <div class="quiz-feedback"></div>
+          </div>
+        </section>
+
+        <!-- Mini-Challenge Callout -->
+        <div class="callout callout-task">
+          <div class="callout-icon">🎯</div>
+          <div class="callout-content">
+            <div class="callout-title">Мини-задание для закрепления</div>
+            <p>
+              Напишите в голове программу, которая запрашивает у пользователя его любимое блюдо с помощью <code class="fn">input()</code>, а затем выводит сообщение вида: <code class="str">f"Отличный выбор! Я тоже обожаю {dish}!"</code>.
+            </p>
+          </div>
+        </div>
+
+        <!-- Lesson Navigation Footer -->
+        <footer class="lesson-nav-footer">
+          <a href="01-intro.html" class="btn-lesson-nav btn-lesson-prev">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            <span>К Уроку 1</span>
+          </a>
+
+          <a href="03-conditions.html" class="btn-lesson-nav btn-finish-lesson">
+            <span>Завершить урок и перейти к Уроку 3</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </footer>
+
+      </article>
+    </main>
+  </div>
+
+  <!-- Course Scripts -->
+  <script src="../js/course-progress.js"></script>
+</body>
+</html>

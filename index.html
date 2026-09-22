@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>This One — Next-Gen Autonomous Architecture</title>
-  <meta name="description" content="Ultra-fast, modular, and designed to orchestrate autonomous AI subagents effortlessly. Welcome to This One.">
+  <title>Python Start — Изучение Python с нуля | Интерактивный курс</title>
+  <meta name="description" content="Бесплатный интерактивный многостраничный курс по изучению Python с абсолютного нуля. 5 детальных уроков и 5 практических задач с автоматической проверкой.">
   
   <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐍</text></svg>">
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/python-course.css">
 </head>
-<body>
+<body class="course-page">
 
   <!-- Interactive 60fps Particle Background Canvas -->
   <canvas id="bg-canvas"></canvas>
@@ -22,353 +23,195 @@
   <div class="ambient-glow glow-cyan" style="top: 35%; right: 10%; width: 500px; height: 500px;"></div>
   <div class="ambient-glow glow-violet" style="top: 75%; left: 25%; width: 600px; height: 600px;"></div>
 
-  <!-- Sticky Glassmorphic Navigation -->
-  <nav class="navbar">
-    <div class="container nav-container">
-      <a href="#" class="nav-logo">
-        <div class="nav-logo-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-          </svg>
-        </div>
-        <span>this-one</span>
-      </a>
-
-      <ul class="nav-links">
-        <li><a href="#features" class="nav-link">Capabilities</a></li>
-        <li><a href="#terminal" class="nav-link">Quickstart</a></li>
-        <li><a href="#metrics" class="nav-link">Metrics</a></li>
-        <li><a href="#architecture" class="nav-link">Architecture</a></li>
-      </ul>
-
-      <div class="nav-actions">
-        <a href="https://github.com/blsdxvmip/this-one" target="_blank" rel="noopener noreferrer" class="github-badge">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-          </svg>
-          <span>Star</span>
-          <span class="github-stars-count">★ 1.2k</span>
+  <!-- Top Sticky Header -->
+  <header class="course-header">
+    <div class="course-header-container">
+      <div class="course-brand">
+        <a href="index.html" class="brand-link">
+          <span class="brand-icon">🐍</span>
+          <span class="brand-title">Python Start</span>
+          <span class="brand-tag">v1.0</span>
         </a>
-        <a href="#terminal" class="btn btn-primary">Launch Console</a>
       </div>
 
-      <button class="nav-toggle mobile-toggle" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+      <nav class="course-nav">
+        <a href="index.html" class="nav-item active">Главная</a>
+        <a href="lessons/01-intro.html" class="nav-item">Уроки</a>
+        <a href="practice.html" class="nav-item">Практикум (5 задач)</a>
+        <a href="https://github.com/blsdxvmip/this-one" target="_blank" rel="noopener noreferrer" class="nav-item github-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span>GitHub</span>
+        </a>
+      </nav>
+
+      <div class="course-progress-badge">
+        <div class="progress-label">
+          <span>Прогресс курса:</span>
+          <strong id="progress-percent-text">0%</strong>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-fill" id="progress-bar-fill" style="width: 0%;"></div>
+        </div>
+      </div>
     </div>
-  </nav>
+  </header>
 
   <!-- Hero Section -->
-  <header class="section section-hero">
+  <section class="section section-hero" style="padding-top: 7.5rem; min-height: 80vh;">
     <div class="container hero-content">
       <div class="hero-badge">
-        <span class="hero-badge-tag">v1.0.0 Live</span>
-        <span>Autonomous Multi-Agent Architecture</span>
+        <span class="hero-badge-tag">Курс для начинающих</span>
+        <span>Старт с абсолютного нуля • Интерактивно</span>
       </div>
 
       <h1 class="hero-title">
-        The Next Era of Velocity.<br>
-        <span class="title-cyber">Built for What's Next.</span>
+        Изучай Python.<br>
+        <span class="title-cyber">С нуля до первого кода.</span>
       </h1>
 
       <p class="hero-subtitle">
-        Engineered with precision obsidian aesthetics, high-performance canvas physics, and autonomous subagent coordination. Turn complex systems into pure effortless velocity.
+        Простые аналогии без заумных терминов, 5 структурированных пошаговых уроков и интерактивный тренажер с 5 реальными задачами и автоматической проверкой решений.
       </p>
 
       <div class="hero-actions">
-        <a href="#terminal" class="btn btn-primary">
-          <span>Get Started Instantly</span>
+        <a href="lessons/01-intro.html" class="btn btn-primary">
+          <span>Начать Урок 1: Первая строка</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="5" y1="12" x2="19" y2="12"></line>
             <polyline points="12 5 19 12 12 19"></polyline>
           </svg>
         </a>
-        <a href="https://github.com/blsdxvmip/this-one" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-          </svg>
-          <span>Explore Source</span>
+        <a href="practice.html" class="btn btn-secondary">
+          <span>⚡ Интерактивный практикум</span>
         </a>
       </div>
 
       <div class="hero-status-bar">
         <div class="hero-status-item">
           <span class="status-dot"></span>
-          <span>Core System: <strong>Online</strong></span>
+          <span>Уроков: <strong>5 практических тем</strong></span>
         </div>
         <div class="hero-status-item">
           <span class="status-dot cyan"></span>
-          <span>Subagents: <strong>Synchronized</strong></span>
+          <span>Задач в тренажере: <strong>5 задач с автотестами</strong></span>
         </div>
         <div class="hero-status-item">
-          <span>Latency: <strong>&lt;0.4ms</strong></span>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- Interactive Terminal Showcase Section -->
-  <section class="section" id="terminal">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag cyan">QUICKSTART &amp; CONTROL</span>
-        <h2 class="section-title">Drop In. Initialize. Run.</h2>
-        <p class="section-subtitle">Zero boilerplate, zero dependencies clutter. Test, inspect and integrate seamlessly with our developer-first interface.</p>
-      </div>
-
-      <div class="terminal-wrapper">
-        <div class="terminal-glow-bg"></div>
-        <div class="terminal-container">
-          <!-- Terminal Header -->
-          <div class="terminal-header">
-            <div class="terminal-window-controls">
-              <span class="terminal-dot dot-red"></span>
-              <span class="terminal-dot dot-yellow"></span>
-              <span class="terminal-dot dot-green"></span>
-            </div>
-
-            <div class="terminal-tabs">
-              <button class="terminal-tab active" data-tab="quickstart">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
-                <span>quickstart.sh</span>
-              </button>
-              <button class="terminal-tab" data-tab="config">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-                <span>config.json</span>
-              </button>
-              <button class="terminal-tab" data-tab="agents">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                <span>subagents.ts</span>
-              </button>
-            </div>
-
-            <div class="terminal-actions">
-              <button class="copy-btn" id="copy-code-btn" aria-label="Copy snippet">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                <span id="copy-feedback">Copy</span>
-                <span class="copy-tooltip">Copied!</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Terminal Body -->
-          <div class="terminal-body">
-            <pre><code id="terminal-code"># Clone and step into the project
-git clone https://github.com/blsdxvmip/this-one.git
-cd this-one
-
-# Initialize environment & launch
-npm install && npm run dev
-# ✨ Ready on http://localhost:3000</code></pre>
-            <span class="terminal-cursor"></span>
-          </div>
+          <span>Установка: <strong>Не требуется (работает в браузере)</strong></span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Bento Grid Features Section -->
-  <section class="section" id="features">
+  <!-- Program Roadmap Section -->
+  <section class="section" id="lessons-roadmap">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">CORE CAPABILITIES</span>
-        <h2 class="section-title">Built with Obsessive Craftsmanship</h2>
-        <p class="section-subtitle">Every layer is designed for speed, flexibility, and stunning visual impact.</p>
+        <span class="section-tag cyan">УЧЕБНЫЙ ПЛАН</span>
+        <h2 class="section-title">5 шагов от новичка к коду</h2>
+        <p class="section-subtitle">Каждый урок занимает всего 7–10 минут и включает интерактивные примеры с самопроверкой.</p>
       </div>
 
       <div class="bento-grid">
-        <!-- Feature 1: Subagents (Span 8) -->
-        <div class="bento-card bento-span-8 tilt-card">
+        <!-- Lesson 1 Card -->
+        <a href="lessons/01-intro.html" class="bento-card bento-span-6 tilt-card" style="text-decoration: none;">
           <div>
-            <div class="bento-icon-box indigo">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="2" y1="12" x2="22" y2="12"></line>
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-              </svg>
-            </div>
-            <h3 class="bento-title">Autonomous Subagent Swarm</h3>
+            <div class="bento-icon-box cyan">01</div>
+            <h3 class="bento-title">Урок 1: Первая строка кода</h3>
             <p class="bento-desc">
-              Harness coordinated autonomous subagents acting in parallel. From creative UI design systems to physics particle pipelines, complex deliverables are synthesized in record time.
-            </p>
-          </div>
-          
-          <div class="bento-visual-preview">
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
-              <span style="font-size: 0.8125rem; font-family: var(--font-mono); color: var(--accent-indigo-light);">// Swarm Status</span>
-              <span class="status-indicator"><span class="status-dot"></span> 3 Active Workers</span>
-            </div>
-            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-              <span class="bento-tag">⚡ creative_designer: done</span>
-              <span class="bento-tag">✨ canvas_fx_dev: active</span>
-              <span class="bento-tag">🛡️ qa_audit: passed</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Feature 2: Canvas Physics (Span 4) -->
-        <div class="bento-card bento-span-4 tilt-card">
-          <div>
-            <div class="bento-icon-box">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                <polyline points="2 17 12 22 22 17"></polyline>
-                <polyline points="2 12 12 17 22 12"></polyline>
-              </svg>
-            </div>
-            <h3 class="bento-title">60 FPS Particle Physics</h3>
-            <p class="bento-desc">
-              Hardware-accelerated dynamic canvas constellations reacting organically to mouse and touch interactions with zero frame drops.
+              Как компьютер понимает программы, зачем нужен Python, функция <code>print()</code>, строки и защита от типичных синтаксических ошибок.
             </p>
           </div>
           <div class="bento-tags">
-            <span class="bento-tag">Retina DPI</span>
-            <span class="bento-tag">No Jitter</span>
-            <span class="bento-tag">Canvas2D</span>
+            <span class="bento-tag">print()</span>
+            <span class="bento-tag">Строки</span>
+            <span class="bento-tag">Ошибки новичков</span>
           </div>
-        </div>
+        </a>
 
-        <!-- Feature 3: Zero Config (Span 4) -->
-        <div class="bento-card bento-span-4 tilt-card">
+        <!-- Lesson 2 Card -->
+        <a href="lessons/02-variables.html" class="bento-card bento-span-6 tilt-card" style="text-decoration: none;">
           <div>
-            <div class="bento-icon-box violet">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                <line x1="8" y1="21" x2="16" y2="21"></line>
-                <line x1="12" y1="17" x2="12" y2="21"></line>
-              </svg>
-            </div>
-            <h3 class="bento-title">Zero Friction Setup</h3>
+            <div class="bento-icon-box indigo">02</div>
+            <h3 class="bento-title">Урок 2: Переменные и типы данных</h3>
             <p class="bento-desc">
-              Self-contained architecture that requires zero convoluted bundlers or fragile dependencies. Works natively everywhere right out of the box.
+              Метафора подписанных коробок, числа, текст, ввод пользователя через <code>input()</code> и современные f-строки для форматирования.
             </p>
           </div>
           <div class="bento-tags">
-            <span class="bento-tag">Pure Web</span>
-            <span class="bento-tag">Vanilla Power</span>
+            <span class="bento-tag">int / float / str</span>
+            <span class="bento-tag">input()</span>
+            <span class="bento-tag">f-строки</span>
           </div>
-        </div>
+        </a>
 
-        <!-- Feature 4: Glassmorphic Aesthetics (Span 8) -->
-        <div class="bento-card bento-span-8 tilt-card">
+        <!-- Lesson 3 Card -->
+        <a href="lessons/03-conditions.html" class="bento-card bento-span-4 tilt-card" style="text-decoration: none;">
           <div>
-            <div class="bento-icon-box">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-              </svg>
-            </div>
-            <h3 class="bento-title">Cyber Obsidian Glass Design</h3>
+            <div class="bento-icon-box violet">03</div>
+            <h3 class="bento-title">Урок 3: Ветвления if / else</h3>
             <p class="bento-desc">
-              Crafted with deep obsidian tones, neon indigo and electric cyan glows, 3D mouse-tracking tilt effects, and silky backdrop filters that elevate your work to premier standards.
+              Логика принятия решений, правила 4 пробелов для отступов, операторы сравнения и связки <code>and</code>, <code>or</code>, <code>not</code>.
             </p>
           </div>
           <div class="bento-tags">
-            <span class="bento-tag">Backdrop Blur</span>
-            <span class="bento-tag">Radial Halos</span>
-            <span class="bento-tag">3D Card Tilt</span>
-            <span class="bento-tag">Fluid Layout</span>
+            <span class="bento-tag">if / elif / else</span>
+            <span class="bento-tag">Булевы типы</span>
           </div>
-        </div>
+        </a>
+
+        <!-- Lesson 4 Card -->
+        <a href="lessons/04-loops.html" class="bento-card bento-span-4 tilt-card" style="text-decoration: none;">
+          <div>
+            <div class="bento-icon-box cyan">04</div>
+            <h3 class="bento-title">Урок 4: Списки и циклы</h3>
+            <p class="bento-desc">
+              Автоматизация рутины: цикл <code>for</code>, волшебный генератор <code>range()</code>, списки и защита от зацикливания в <code>while</code>.
+            </p>
+          </div>
+          <div class="bento-tags">
+            <span class="bento-tag">for ... in</span>
+            <span class="bento-tag">range()</span>
+            <span class="bento-tag">Списки []</span>
+          </div>
+        </a>
+
+        <!-- Lesson 5 Card -->
+        <a href="lessons/05-functions.html" class="bento-card bento-span-4 tilt-card" style="text-decoration: none;">
+          <div>
+            <div class="bento-icon-box indigo">05</div>
+            <h3 class="bento-title">Урок 5: Функции</h3>
+            <p class="bento-desc">
+              Принцип DRY, создание собственных инструментов через <code>def</code>, параметры, аргументы и принципиальная разница между <code>print</code> и <code>return</code>.
+            </p>
+          </div>
+          <div class="bento-tags">
+            <span class="bento-tag">def</span>
+            <span class="bento-tag">return</span>
+            <span class="bento-tag">Параметры</span>
+          </div>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- Live Stats Section -->
-  <section class="section" id="metrics">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag cyan">PERFORMANCE BENCHMARKS</span>
-        <h2 class="section-title">Built for Peak Velocity</h2>
-        <p class="section-subtitle">Real-world metrics that guarantee your application stays blazing fast and responsive.</p>
-      </div>
-
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-number counter-val" data-target="99.9" data-suffix="%" data-decimals="1">0%</div>
-          <div class="stat-label">Availability &amp; Uptime</div>
-          <div class="stat-subtext">Rock-solid stability across sessions</div>
-        </div>
-
-        <div class="stat-card indigo">
-          <div class="stat-number counter-val" data-target="0.4" data-suffix="ms" data-decimals="1">0ms</div>
-          <div class="stat-label">Execution Latency</div>
-          <div class="stat-subtext">Instantaneous event responses</div>
-        </div>
-
-        <div class="stat-card violet">
-          <div class="stat-number counter-val" data-target="100" data-suffix="%">0%</div>
-          <div class="stat-label">Modular Architecture</div>
-          <div class="stat-subtext">Every module completely decoupled</div>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-number counter-val" data-target="60" data-suffix="fps">0fps</div>
-          <div class="stat-label">Animation Smoothness</div>
-          <div class="stat-subtext">Flawless rendering on high-refresh screens</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Workflow / Architecture Steps Section -->
-  <section class="section" id="architecture">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">EXECUTION PIPELINE</span>
-        <h2 class="section-title">From Concept to Orbit</h2>
-        <p class="section-subtitle">Three structured phases designed to take your ideas into production with speed and safety.</p>
-      </div>
-
-      <div class="workflow-wrapper">
-        <div class="workflow-steps">
-          <div class="workflow-card">
-            <div class="workflow-step-num">01</div>
-            <h3 class="workflow-step-title">Ingest &amp; Align</h3>
-            <p class="workflow-step-desc">
-              The project workspace connects to the repository, analyzes configuration files, and establishes atomic environment boundaries.
-            </p>
-          </div>
-
-          <div class="workflow-card">
-            <div class="workflow-step-num cyan">02</div>
-            <h3 class="workflow-step-title">Autonomous Synthesis</h3>
-            <p class="workflow-step-desc">
-              Specialized subagents collaborate concurrently to compose layouts, physics simulations, and design tokens to exact specifications.
-            </p>
-          </div>
-
-          <div class="workflow-card">
-            <div class="workflow-step-num violet">03</div>
-            <h3 class="workflow-step-title">Verify &amp; Ship</h3>
-            <p class="workflow-step-desc">
-              Cross-browser rendering tests and performance audits are completed automatically, preparing the artifact for instant deployment.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- High-Impact CTA Banner Section -->
-  <section class="section">
+  <!-- Practice Arena Feature Callout -->
+  <section class="section" style="padding-top: 2rem;">
     <div class="container">
       <div class="cta-banner">
         <div class="cta-banner-content">
-          <h2 class="cta-title">Ready to Elevate Your Project?</h2>
+          <span class="section-tag cyan" style="margin-bottom: 1rem;">ИНТЕРАКТИВНЫЙ ТРЕНАЖЕР</span>
+          <h2 class="cta-title">5 практических задач с автопроверкой</h2>
           <p class="cta-desc">
-            Experience the power of autonomous AI subagents and modern obsidian aesthetics. Everything is configured and ready in your repository.
+            Закрепите теорию на практике: пишите код прямо в браузере, запускайте автотесты, получайте подробные подсказки при затруднениях и сохраняйте свой прогресс.
           </p>
           <div class="cta-actions">
-            <a href="https://github.com/blsdxvmip/this-one" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-              </svg>
-              <span>View On GitHub</span>
+            <a href="practice.html" class="btn btn-primary">
+              <span>Открыть практикум &rarr;</span>
             </a>
-            <a href="#terminal" class="btn btn-secondary">
-              <span>View Installation</span>
+            <a href="lessons/01-intro.html" class="btn btn-secondary">
+              <span>Пройти уроки по порядку</span>
             </a>
           </div>
         </div>
@@ -381,55 +224,48 @@ npm install && npm run dev
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="#" class="nav-logo">
-            <div class="nav-logo-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-              </svg>
-            </div>
-            <span>this-one</span>
+          <a href="#" class="course-brand">
+            <span class="brand-icon">🐍</span>
+            <span class="brand-title">Python Start</span>
           </a>
           <p class="footer-desc">
-            A pioneering developer experience powered by autonomous agentic coordination and ultra-modern web technologies.
+            Современный интерактивный образовательный ресурс по программированию на Python с нуля.
           </p>
-          <div class="status-indicator">
-            <span class="status-dot"></span>
-            <span>All subagent networks operational</span>
-          </div>
         </div>
 
         <div>
-          <h4 class="footer-col-title">Navigation</h4>
+          <h4 class="footer-col-title">Уроки</h4>
           <ul class="footer-links">
-            <li><a href="#features" class="footer-link">Capabilities</a></li>
-            <li><a href="#terminal" class="footer-link">Terminal Console</a></li>
-            <li><a href="#metrics" class="footer-link">Performance</a></li>
-            <li><a href="#architecture" class="footer-link">Workflow</a></li>
+            <li><a href="lessons/01-intro.html" class="footer-link">Урок 1: Первая строка</a></li>
+            <li><a href="lessons/02-variables.html" class="footer-link">Урок 2: Переменные</a></li>
+            <li><a href="lessons/03-conditions.html" class="footer-link">Урок 3: Ветвления</a></li>
+            <li><a href="lessons/04-loops.html" class="footer-link">Урок 4: Циклы</a></li>
+            <li><a href="lessons/05-functions.html" class="footer-link">Урок 5: Функции</a></li>
           </ul>
         </div>
 
         <div>
-          <h4 class="footer-col-title">Ecosystem</h4>
+          <h4 class="footer-col-title">Практикум</h4>
           <ul class="footer-links">
-            <li><a href="https://github.com/blsdxvmip/this-one" class="footer-link">GitHub Repository</a></li>
-            <li><a href="https://github.com/blsdxvmip/this-one/issues" class="footer-link">Issue Tracker</a></li>
-            <li><a href="https://github.com/blsdxvmip/this-one/releases" class="footer-link">Releases</a></li>
+            <li><a href="practice.html" class="footer-link">Задача 1: Приветствие</a></li>
+            <li><a href="practice.html" class="footer-link">Задача 2: Сдача</a></li>
+            <li><a href="practice.html" class="footer-link">Задача 3: Фейсконтроль</a></li>
+            <li><a href="practice.html" class="footer-link">Задача 4: Анализ чисел</a></li>
+            <li><a href="practice.html" class="footer-link">Задача 5: Шифр Цезаря</a></li>
           </ul>
         </div>
 
         <div>
-          <h4 class="footer-col-title">Technology</h4>
+          <h4 class="footer-col-title">Репозиторий</h4>
           <ul class="footer-links">
-            <li><span class="footer-link" style="opacity: 0.6;">HTML5 Canvas 60fps</span></li>
-            <li><span class="footer-link" style="opacity: 0.6;">CSS Glassmorphism</span></li>
-            <li><span class="footer-link" style="opacity: 0.6;">Autonomous Agents</span></li>
-            <li><span class="footer-link" style="opacity: 0.6;">Vanilla ECMAScript</span></li>
+            <li><a href="https://github.com/blsdxvmip/this-one" class="footer-link">GitHub</a></li>
+            <li><span class="footer-link" style="opacity: 0.6;">Лицензия MIT</span></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2026 this-one. Released under the MIT License.</p>
+        <p>&copy; 2026 Python Start. Открытый обучающий проект.</p>
         <div class="footer-bottom-links">
           <a href="https://github.com/blsdxvmip/this-one" class="footer-link">blsdxvmip/this-one</a>
         </div>
@@ -440,5 +276,6 @@ npm install && npm run dev
   <!-- Scripts -->
   <script src="js/particles.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/course-progress.js"></script>
 </body>
 </html>

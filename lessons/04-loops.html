@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Урок 4: Списки и циклы — Автоматизируем рутину</title>
+  <meta name="description" content="Освойте списки в Python, индексацию с нуля, цикл for по коллекциям, функцию range() и цикл while без риска зависания программы.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔄</text></svg>">
+
+  <!-- Course Stylesheet -->
+  <link rel="stylesheet" href="../styles/python-course.css">
+</head>
+<body class="course-page" data-lesson="4">
+
+  <!-- Unified Course Header -->
+  <header class="course-header">
+    <div class="header-left">
+      <button class="sidebar-toggle-btn" id="sidebar-toggle-btn" aria-label="Переключить меню уроков">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <a href="../index.html" class="course-brand">
+        <div class="course-brand-icon">🐍</div>
+        <div class="course-brand-text">
+          <h1>Python Starter</h1>
+          <span>Курс для начинающих</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="header-center">
+      <div class="progress-info">
+        <span id="progress-count-text">3 из 5 уроков завершено</span>
+        <span id="progress-percent-text">60%</span>
+      </div>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progress-bar-fill" style="width: 80%;"></div>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <a href="../index.html" class="btn-nav-home">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+        <span>На главную</span>
+      </a>
+    </div>
+  </header>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <!-- Layout Wrapper -->
+  <div class="course-layout">
+
+    <!-- Collapsible Sidebar Navigation -->
+    <aside class="course-sidebar" id="course-sidebar">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Программа курса</div>
+        <ul class="lesson-nav-list">
+          <li class="lesson-nav-item completed" id="nav-lesson-1">
+            <a href="01-intro.html">
+              <span class="lesson-number">1</span>
+              <span class="lesson-title-text">Старт в Python & print()</span>
+              <span class="status-badge-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
+            </a>
+          </li>
+          <li class="lesson-nav-item completed" id="nav-lesson-2">
+            <a href="02-variables.html">
+              <span class="lesson-number">2</span>
+              <span class="lesson-title-text">Переменные & Типы данных</span>
+              <span class="status-badge-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
+            </a>
+          </li>
+          <li class="lesson-nav-item completed" id="nav-lesson-3">
+            <a href="03-conditions.html">
+              <span class="lesson-number">3</span>
+              <span class="lesson-title-text">Ветвления & Логика if/else</span>
+              <span class="status-badge-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
+            </a>
+          </li>
+          <li class="lesson-nav-item active" id="nav-lesson-4">
+            <a href="04-loops.html">
+              <span class="lesson-number">4</span>
+              <span class="lesson-title-text">Списки & Циклы for/while</span>
+              <span class="status-badge-icon"></span>
+            </a>
+          </li>
+          <li class="lesson-nav-item" id="nav-lesson-5">
+            <a href="05-functions.html">
+              <span class="lesson-number">5</span>
+              <span class="lesson-title-text">Функции & Модульность</span>
+              <span class="status-badge-icon"></span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="sidebar-section-title">Практикум</div>
+        <ul class="lesson-nav-list">
+          <li class="lesson-nav-item" id="nav-practice">
+            <a href="#practice">
+              <span class="lesson-number">⚡</span>
+              <span class="lesson-title-text">Тренажер задач (5 уровней)</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-footer">
+        <div>Python 3.12 • Статус: Онлайн</div>
+        <div style="margin-top: 4px; color: var(--accent-cyan);">Интерактивная среда обучения</div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="course-main">
+      <article class="lesson-article">
+
+        <!-- Hero Card -->
+        <div class="lesson-hero-card">
+          <div class="lesson-meta-pill">Урок 4 • Базовый уровень • Время: ~16 мин</div>
+          <h1>Списки и циклы — Автоматизируем рутину</h1>
+          <p class="lesson-lead">
+            Компьютеры созданы для того, чтобы избавить человека от однообразной скучной работы. Если нужно отправить 10 000 писем или обработать миллион ценников — человек сойдёт с ума за полчаса, а Python выполнит эту задачу за сотые доли секунды. В этом уроке мы научимся объединять данные в списки и мгновенно обрабатывать их циклами!
+          </p>
+        </div>
+
+        <!-- Section 1: Lists -->
+        <section class="lesson-section">
+          <h2><span class="section-idx">01.</span> Списки (Lists) — Органайзер для ваших данных</h2>
+          <p>
+            Представьте, что у вас в интернет-магазине 50 товаров. Создавать 50 отдельных переменных <code class="var">item1</code>, <code class="var">item2</code>, <code class="var">item3</code>... — это путь к катастрофе.
+          </p>
+          <p>
+            Вместо этого в Python используется <strong>список (list)</strong> — упорядоченная коллекция, элементы которой заключаются в <strong>квадратные скобки</strong> <code style="color:var(--accent-cyan);">[...]</code> и разделяются запятыми.
+          </p>
+
+          <div class="code-window">
+            <div class="code-header">
+              <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+              <div class="code-label">python • lists_intro.py</div>
+              <button class="code-copy-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span>Копировать</span>
+              </button>
+            </div>
+            <div class="code-body">
+              <pre><span class="cm"># Список строковых названий:</span>
+<span class="var">fruits</span> <span class="op">=</span> [<span class="str">"Яблоко"</span>, <span class="str">"Банан"</span>, <span class="str">"Апельсин"</span>, <span class="str">"Киви"</span>]
+
+<span class="cm"># Список чисел:</span>
+<span class="var">scores</span> <span class="op">=</span> [<span class="num">100</span>, <span class="num">85</span>, <span class="num">92</span>, <span class="num">74</span>]
+
+<span class="fn">print</span>(<span class="var">fruits</span>)
+<span class="fn">print</span>(<span class="str">"Количество фруктов в корзине:"</span>, <span class="bi">len</span>(<span class="var">fruits</span>))</pre>
+            </div>
+            <div class="code-output">
+              <div class="output-label">Результат в терминале:</div>
+              <div class="output-text">['Яблоко', 'Банан', 'Апельсин', 'Киви']
+Количество фруктов в корзине: 4</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 2: Indexing -->
+        <section class="lesson-section">
+          <h2><span class="section-idx">02.</span> Индексация: Почему всё начинается с нуля?</h2>
+          <p>
+            Каждый элемент списка занимает строго своё место, которое называется <strong>индексом</strong>.
+          </p>
+
+          <div class="analogy-card">
+            <div class="analogy-header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+              <span>Аналогия: Смещение от начала линейки</span>
+            </div>
+            <div class="analogy-body">
+              В повседневной жизни мы считаем: 1-й, 2-й, 3-й. Но в архитектуре компьютеров индекс — это <em>смещение в байтах от начала списка в памяти</em>. Самый первый элемент лежит прямо у старта, поэтому его смещение равно <strong>0</strong>!
+            </div>
+          </div>
+
+          <div class="code-window">
+            <div class="code-header">
+              <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+              <div class="code-label">python • indexing_magic.py</div>
+              <button class="code-copy-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span>Копировать</span>
+              </button>
+            </div>
+            <div class="code-body">
+              <pre><span class="var">items</span> <span class="op">=</span> [<span class="str">"Меч"</span>, <span class="str">"Щит"</span>, <span class="str">"Зелье"</span>]
+
+<span class="fn">print</span>(<span class="var">items</span>[<span class="num">0</span>])   <span class="cm"># 'Меч'   (первый элемент!)</span>
+<span class="fn">print</span>(<span class="var">items</span>[<span class="num">1</span>])   <span class="cm"># 'Щит'   (второй элемент)</span>
+
+<span class="cm"># Супер-способность Python: отрицательные индексы с конца!</span>
+<span class="fn">print</span>(<span class="var">items</span>[<span class="op">-</span><span class="num">1</span>])  <span class="cm"># 'Зелье' (самый последний элемент!)</span></pre>
+            </div>
+          </div>
+
+          <div class="callout callout-warning">
+            <div class="callout-icon">🚨</div>
+            <div class="callout-content">
+              <div class="callout-title">Ошибка IndexError: list index out of range</div>
+              <p>
+                Если в списке 3 элемента (с индексами 0, 1, 2), а вы попытаетесь обратиться к <code>items[3]</code> или <code>items[99]</code>, Python не станет гадать и выбросит исключение <strong>IndexError</strong>: «Такого номера в списке не существует!».
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 3: Loop for -->
+        <section class="lesson-section">
+          <h2><span class="section-idx">03.</span> Цикл for: Перебор элементов в один миг</h2>
+          <p>
+            Цикл <code class="kwd">for</code> в Python создан для идеального перебора элементов любой коллекции. Его синтаксис на естественном языке звучит так: <em>«Для каждого элемента в списке — сделай следующее действие»</em>.
+          </p>
+
+          <div class="code-window">
+            <div class="code-header">
+              <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+              <div class="code-label">python • for_loop.py</div>
+              <button class="code-copy-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span>Копировать</span>
+              </button>
+            </div>
+            <div class="code-body">
+              <pre><span class="var">cart</span> <span class="op">=</span> [<span class="str">"Ноутбук"</span>, <span class="str">"Наушники"</span>, <span class="str">"Мышь"</span>]
+
+<span class="kwd">for</span> <span class="var">product</span> <span class="kwd">in</span> <span class="var">cart</span>:
+    <span class="fn">print</span>(<span class="str">f"📦 Отправляем со склада товар: {product}"</span>)
+
+<span class="fn">print</span>(<span class="str">"✅ Все заказы упакованы!"</span>)</pre>
+            </div>
+            <div class="code-output">
+              <div class="output-label">Результат в терминале:</div>
+              <div class="output-text">📦 Отправляем со склада товар: Ноутбук
+📦 Отправляем со склада товар: Наушники
+📦 Отправляем со склада товар: Мышь
+✅ Все заказы упакованы!</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 4: The range() Generator -->
+        <section class="lesson-section">
+          <h2><span class="section-idx">04.</span> Генератор range(): Как повторить действие 100 раз</h2>
+          <p>
+            Что если у вас нет списка, а вам нужно просто повторить команду 5 раз подряд? Вручную писать <code>[0, 1, 2, 3, 4]</code> не нужно — для этого есть встроенная функция <code class="bi">range()</code>.
+          </p>
+
+          <div class="code-window">
+            <div class="code-header">
+              <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+              <div class="code-label">python • range_generator.py</div>
+              <button class="code-copy-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span>Копировать</span>
+              </button>
+            </div>
+            <div class="code-body">
+              <pre><span class="cm"># range(5) сгенерирует числа от 0 до 4 (5 НЕ включается!):</span>
+<span class="kwd">for</span> <span class="var">i</span> <span class="kwd">in</span> <span class="bi">range</span>(<span class="num">3</span>):
+    <span class="fn">print</span>(<span class="str">f"Итерация №{i}"</span>)
+
+<span class="cm"># range(start, stop, step) — с 1 до 10 с шагом 2:</span>
+<span class="kwd">for</span> <span class="var">n</span> <span class="kwd">in</span> <span class="bi">range</span>(<span class="num">1</span>, <span class="num">7</span>, <span class="num">2</span>):
+    <span class="fn">print</span>(<span class="str">"Нечётное:"</span>, <span class="var">n</span>)</pre>
+            </div>
+            <div class="code-output">
+              <div class="output-label">Результат в терминале:</div>
+              <div class="output-text">Итерация №0
+Итерация №1
+Итерация №2
+Нечётное: 1
+Нечётное: 3
+Нечётное: 5</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 5: The while Loop -->
+        <section class="lesson-section">
+          <h2><span class="section-idx">05.</span> Цикл while: Повторяем, пока условие истинно</h2>
+          <p>
+            Если цикл <code class="kwd">for</code> используется, когда мы знаем диапазон или перебираем список, то цикл <code class="kwd">while</code> (пока) применяется тогда, когда неизвестно, сколько повторений потребуется заранее (например, пока у босса в игре не закончатся жизни).
+          </p>
+
+          <div class="code-window">
+            <div class="code-header">
+              <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+              <div class="code-label">python • countdown_while.py</div>
+              <button class="code-copy-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span>Копировать</span>
+              </button>
+            </div>
+            <div class="code-body">
+              <pre><span class="var">timer</span> <span class="op">=</span> <span class="num">3</span>
+
+<span class="kwd">while</span> <span class="var">timer</span> <span class="op">&gt;</span> <span class="num">0</span>:
+    <span class="fn">print</span>(<span class="str">f"До старта: {timer}..."</span>)
+    <span class="var">timer</span> <span class="op">=</span> <span class="var">timer</span> <span class="op">-</span> <span class="num">1</span>  <span class="cm"># Обязательно уменьшаем таймер!</span>
+
+<span class="fn">print</span>(<span class="str">"🚀 Поехали!"</span>)</pre>
+            </div>
+            <div class="code-output">
+              <div class="output-label">Результат в терминале:</div>
+              <div class="output-text">До старта: 3...
+До старта: 2...
+До старта: 1...
+🚀 Поехали!</div>
+            </div>
+          </div>
+
+          <div class="callout callout-warning">
+            <div class="callout-icon">💀</div>
+            <div class="callout-content">
+              <div class="callout-title">Опасность бесконечного цикла (Infinite Loop)</div>
+              <p>
+                Если в теле <code class="kwd">while</code> забыть изменить условие (например, убрать строчку <code>timer = timer - 1</code>), переменная <code>timer</code> навсегда останется больше 0, и программа будет бесконечно крутить цикл, загружая процессор на 100%. Если ваш скрипт случайно завис — нажмите <kbd style="background:rgba(255,255,255,0.1); padding:2px 6px; border-radius:4px; font-family:var(--font-mono);">Ctrl + C</kbd> в терминале, чтобы экстренно остановить его!
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 6: Interactive Playground -->
+        <section class="lesson-section">
+          <div class="playground-box">
+            <div class="playground-badge">⚡ Интерактивный цикл-обработчик</div>
+            <h3 class="playground-title">Сортировка и загрузка корзины покупок</h3>
+            <p class="playground-desc">
+              Нажмите кнопку ниже, чтобы запустить скрипт, обходящий коллекцию покупок циклом <code class="kwd">for</code> с красивой форматированной нумерацией:
+            </p>
+
+            <div class="code-window" style="margin-bottom: 1rem;">
+              <div class="code-body">
+                <pre><span class="var">groceries</span> <span class="op">=</span> [<span class="str">"🍎 Яблоки"</span>, <span class="str">"🥖 Свежий хлеб"</span>, <span class="str">"🧀 Сыр"</span>, <span class="str">"☕ Кофе"</span>]
+<span class="kwd">for</span> <span class="var">idx</span>, <span class="var">item</span> <span class="kwd">in</span> <span class="bi">enumerate</span>(<span class="var">groceries</span>, <span class="num">1</span>):
+    <span class="fn">print</span>(<span class="str">f"{idx}. {item}"</span>)</pre>
+              </div>
+            </div>
+
+            <div class="interactive-controls">
+              <button class="btn-run-code" data-action="run-loops">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                <span>Выполнить цикл for</span>
+              </button>
+            </div>
+
+            <div class="playground-live-terminal">
+              <span class="terminal-prompt">&gt; loop_console:</span>
+              <span class="terminal-output" style="color: var(--text-dim);">Готов к итерациям... Нажмите кнопку выше.</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 7: Mini-Quiz for Self-Check -->
+        <section class="lesson-section">
+          <div class="quiz-section">
+            <div class="quiz-badge">🧠 Проверь себя (Мини-квиз)</div>
+            <div class="quiz-question">
+              Что выведет команда <code style="color:var(--accent-cyan);">fruits = ["Киви", "Банан", "Манго"]</code> при вызове <code style="color:var(--accent-cyan);">print(fruits[1])</code>?
+            </div>
+
+            <div class="quiz-options">
+              <button class="quiz-btn" data-correct="false" data-explanation="Помните про отсчет с нуля! 'Киви' находится под индексом 0, а не 1.">
+                <span class="quiz-option-marker">A</span>
+                <span>Киви</span>
+              </button>
+
+              <button class="quiz-btn" data-correct="true" data-explanation="Совершенно верно! В Python индексация с нуля: fruits[0] — это 'Киви', а fruits[1] — это 'Банан'.">
+                <span class="quiz-option-marker">B</span>
+                <span>Банан</span>
+              </button>
+
+              <button class="quiz-btn" data-correct="false" data-explanation="'Манго' — третий по счету элемент, его индекс 2 (или -1).">
+                <span class="quiz-option-marker">C</span>
+                <span>Манго</span>
+              </button>
+
+              <button class="quiz-btn" data-correct="false" data-explanation="IndexError произошел бы только при попытке обратиться к fruits[3] или большему номеру.">
+                <span class="quiz-option-marker">D</span>
+                <span>IndexError: list index out of range</span>
+              </button>
+            </div>
+
+            <div class="quiz-feedback"></div>
+          </div>
+        </section>
+
+        <!-- Mini-Challenge Callout -->
+        <div class="callout callout-task">
+          <div class="callout-icon">🎯</div>
+          <div class="callout-content">
+            <div class="callout-title">Мини-задача для самостоятельного решения</div>
+            <p>
+              Напишите цикл с использованием <code class="bi">range()</code>, который выводит таблицу умножения на 5 от 1 до 5 (результаты: 5, 10, 15, 20, 25).
+            </p>
+          </div>
+        </div>
+
+        <!-- Lesson Navigation Footer -->
+        <footer class="lesson-nav-footer">
+          <a href="03-conditions.html" class="btn-lesson-nav btn-lesson-prev">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            <span>К Уроку 3</span>
+          </a>
+
+          <a href="05-functions.html" class="btn-lesson-nav btn-finish-lesson">
+            <span>Завершить урок и перейти к Уроку 5</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 19 12"></polyline></svg>
+          </a>
+        </footer>
+
+      </article>
+    </main>
+  </div>
+
+  <!-- Course Scripts -->
+  <script src="../js/course-progress.js"></script>
+</body>
+</html>

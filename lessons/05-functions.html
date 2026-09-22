@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Урок 5: Функции — Собираем свой инструментарий</title>
+  <meta name="description" content="Узнайте, как создавать собственные функции с помощью def, передавать параметры, соблюдать принцип DRY и раз навсегда понять разницу между print() и return.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛠️</text></svg>">
+
+  <!-- Course Stylesheet -->
+  <link rel="stylesheet" href="../styles/python-course.css">
+</head>
+<body class="course-page" data-lesson="5">
+
+  <!-- Unified Course Header -->
+  <header class="course-header">
+    <div class="header-left">
+      <button class="sidebar-toggle-btn" id="sidebar-toggle-btn" aria-label="Переключить меню уроков">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <a href="../index.html" class="course-brand">
+        <div class="course-brand-icon">🐍</div>
+        <div class="course-brand-text">
+          <h1>Python Starter</h1>
+          <span>Курс для начинающих</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="header-center">
+      <div class="progress-info">
+        <span id="progress-count-text">4 из 5 уроков завершено</span>
+        <span id="progress-percent-text">80%</span>
+      </div>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progress-bar-fill" style="width: 100%;"></div>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <a href="../index.html" class="btn-nav-home">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+        <span>На главную</span>
+      </a>
+    </div>
+  </header>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <!-- Layout Wrapper -->
+  <div class="course-layout">
+
+    <!-- Collapsible Sidebar Navigation -->
+    <aside class="course-sidebar" id="course-sidebar">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Программа курса</div>
+        <ul class="lesson-nav-list">
+          <li class="lesson-nav-item completed" id="nav-lesson-1">
+            <a href="01-intro.html">
+              <span class="lesson-number">1</span>
+              <span class="lesson-title-text">Старт в Python & print()</span>
+              <span class="status-badge-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
+            </a>
+          </li>
+          <li class="lesson-nav-item completed" id="nav-lesson-2">
+            <a href="02-variables.html">
+              <span class="lesson-number">2</span>
+              <span class="lesson-title-text">Переменные & Типы данных</span>
+              <span class="status-badge-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
+            </a>
+          </li>
+          <li class="lesson-nav-item completed" id="nav-lesson-3">
+            <a href="03-conditions.html">
+              <span class="lesson-number">3</span>
+              <span class="lesson-title-text">Ветвления & Логика if/else</span>
+              <span class="status-badge-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
+            </a>
+          </li>
+          <li class="lesson-nav-item completed" id="nav-lesson-4">
+            <a href="04-loops.html">
+              <span class="lesson-number">4</span>
+              <span class="lesson-title-text">Списки & Циклы for/while</span>
+              <span class="status-badge-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
+            </a>
+          </li>
+          <li class="lesson-nav-item active" id="nav-lesson-5">
+            <a href="05-functions.html">
+              <span class="lesson-number">5</span>
+              <span class="lesson-title-text">Функции & Модульность</span>
+              <span class="status-badge-icon"></span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="sidebar-section-title">Практикум</div>
+        <ul class="lesson-nav-list">
+          <li class="lesson-nav-item" id="nav-practice">
+            <a href="#practice">
+              <span class="lesson-number">⚡</span>
+              <span class="lesson-title-text">Тренажер задач (5 уровней)</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-footer">
+        <div>Python 3.12 • Статус: Онлайн</div>
+        <div style="margin-top: 4px; color: var(--accent-cyan);">Интерактивная среда обучения</div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="course-main">
+      <article class="lesson-article">
+
+        <!-- Hero Card -->
+        <div class="lesson-hero-card">
+          <div class="lesson-meta-pill">Урок 5 • Финал базового блока • Время: ~18 мин</div>
+          <h1>Функции — Собираем свой инструментарий</h1>
+          <p class="lesson-lead">
+            Поздравляем с выходом в финал курса! Настоящий программист отличается от новичка тем, что не пишет один и тот же код дважды. Пришло время познакомиться с величайшей суперсилой разработки — <strong>пользовательскими функциями</strong>, научиться упаковывать сложную логику в компактные блоки и раз навсегда понять, чем <code class="fn">print()</code> отличается от <code class="kwd">return</code>.
+          </p>
+        </div>
+
+        <!-- Section 1: Why Functions and DRY -->
+        <section class="lesson-section">
+          <h2><span class="section-idx">01.</span> Зачем нужны функции? Принцип DRY</h2>
+          <p>
+            Представьте, что вам в 10 разных местах интернет-магазина нужно рассчитывать стоимость доставки: учитывать вес, расстояние и персональную скидку. Если скопировать 15 строк вычислений 10 раз — получится 150 строк кода. А если завтра правила доставки изменятся? Вам придется исправлять ошибку во всех 10 местах!
+          </p>
+          <p>
+            В программировании есть главное золотое правило: <strong>DRY — Don't Repeat Yourself</strong> (<em>«Не повторяйся!»</em>).
+          </p>
+
+          <div class="analogy-card">
+            <div class="analogy-header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <span>Аналогия: Функция — это кухонный комбайн</span>
+            </div>
+            <div class="analogy-body">
+              Вам не нужно каждый раз изобретать способ нарезки моркови ножом. Вы покупаете кухонный комбайн (объявляете функцию), нажимаете одну кнопку (вызываете функцию) — и комбайн выдаёт нарезанные овощи. Вы можете использовать его бесконечное количество раз в любой день!
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 2: def Keyword and Arguments -->
+        <section class="lesson-section">
+          <h2><span class="section-idx">02.</span> Ключевое слово def: Создаём свою первую команду</h2>
+          <p>
+            Функция создается с помощью слова <code class="kwd">def</code> (сокращение от англ. <em>define</em> — «определить»). Затем пишется имя функции, круглые скобки (куда передаются входные данные) и двоеточие.
+          </p>
+
+          <div class="code-window">
+            <div class="code-header">
+              <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+              <div class="code-label">python • custom_greeting.py</div>
+              <button class="code-copy-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span>Копировать</span>
+              </button>
+            </div>
+            <div class="code-body">
+              <pre><span class="cm"># 1. Объявление (создание) функции:</span>
+<span class="kwd">def</span> <span class="fn">greet_user</span>(<span class="var">name</span>):
+    <span class="fn">print</span>(<span class="str">f"✨ Привет, {name}! Добро пожаловать в Академию Python."</span>)
+
+<span class="cm"># 2. Вызов функции для разных людей:</span>
+<span class="fn">greet_user</span>(<span class="str">"Алиса"</span>)
+<span class="fn">greet_user</span>(<span class="str">"Борис"</span>)
+<span class="fn">greet_user</span>(<span class="str">"Виктория"</span>)</pre>
+            </div>
+            <div class="code-output">
+              <div class="output-label">Результат в терминале:</div>
+              <div class="output-text">✨ Привет, Алиса! Добро пожаловать в Академию Python.
+✨ Привет, Борис! Добро пожаловать в Академию Python.
+✨ Привет, Виктория! Добро пожаловать в Академию Python.</div>
+            </div>
+          </div>
+
+          <div class="callout callout-tip">
+            <div class="callout-icon">💡</div>
+            <div class="callout-content">
+              <div class="callout-title">Параметры vs Аргументы — в чём разница?</div>
+              <p>
+                <strong>Параметр</strong> — это переменная в круглых скобках при создании функции (например, <code class="var">name</code>).<br>
+                <strong>Аргумент</strong> — это конкретное реальное значение, которое вы передаете внутрь при вызове (например, <code class="str">"Алиса"</code>).
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 3: print() vs return -->
+        <section class="lesson-section">
+          <h2><span class="section-idx">03.</span> Великая битва: print() против return</h2>
+          <p>
+            Это главная концептуальная ступень, на которой спотыкается каждый второй начинающий. Поймите её сейчас — и вы будете на голову опережать большинство самоучек!
+          </p>
+
+          <div class="analogy-card">
+            <div class="analogy-header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+              <span>Аналогия: Официант и Повар</span>
+            </div>
+            <div class="analogy-body">
+              Представьте ресторан:
+              <br>• Команда <code class="fn">print()</code> — это <strong>официант</strong>, который громко выкрикивает в зал: <em>«Блюдо готово!»</em>. Люди в зале услышали (увидели текст на экране), но сам ресторан съесть этот выкрик не может — звуковые волны улетучились.
+              <br>• Команда <code class="kwd">return</code> — это <strong>повар</strong>, который ставит готовое горячее блюдо на стойку выдачи. Теперь это блюдо можно положить в контейнер (сохранить в переменную), добавить к другому блюду (сложить числа) или отправить курьером (передать в другую функцию)!
+            </div>
+          </div>
+
+          <div class="code-window">
+            <div class="code-header">
+              <div class="code-dots"><span class="code-dot dot-red"></span><span class="code-dot dot-yellow"></span><span class="code-dot dot-green"></span></div>
+              <div class="code-label">python • return_vs_print.py</div>
+              <button class="code-copy-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span>Копировать</span>
+              </button>
+            </div>
+            <div class="code-body">
+              <pre><span class="cm"># Функция С ВОЗВРАТОМ ЗНАЧЕНИЯ (return):</span>
+<span class="kwd">def</span> <span class="fn">calc_discount</span>(<span class="var">price</span>, <span class="var">percent</span>):
+    <span class="var">discount_amount</span> <span class="op">=</span> <span class="var">price</span> <span class="op">*</span> (<span class="var">percent</span> <span class="op">/</span> <span class="num">100</span>)
+    <span class="var">final_price</span> <span class="op">=</span> <span class="var">price</span> <span class="op">-</span> <span class="var">discount_amount</span>
+    <span class="kwd">return</span> <span class="var">final_price</span>  <span class="cm"># Отдаём результат наружу!</span>
+
+<span class="cm"># Мы сохраняем возвращённый результат в переменную и продолжаем работать:</span>
+<span class="var">total</span> <span class="op">=</span> <span class="fn">calc_discount</span>(<span class="num">1000</span>, <span class="num">15</span>)
+<span class="fn">print</span>(<span class="str">f"Итого к оплате: {total} ₽"</span>)
+
+<span class="cm"># Можно использовать в дальнейших формулах:</span>
+<span class="var">two_items</span> <span class="op">=</span> <span class="var">total</span> <span class="op">*</span> <span class="num">2</span>
+<span class="fn">print</span>(<span class="str">f"За два таких товара: {two_items} ₽"</span>)</pre>
+            </div>
+            <div class="code-output">
+              <div class="output-label">Результат в терминале:</div>
+              <div class="output-text">Итого к оплате: 850.0 ₽
+За два таких товара: 1700.0 ₽</div>
+            </div>
+          </div>
+
+          <div class="callout callout-warning">
+            <div class="callout-icon">🚨</div>
+            <div class="callout-content">
+              <div class="callout-title">Что будет, если забыть return?</div>
+              <p>
+                Если в функции нет слова <code class="kwd">return</code>, Python автоматически вернет служебное пустое значение <code class="kwd">None</code>. Если попытаться умножить результат такой функции на 2: <code>result * 2</code>, программа упадет с ошибкой <span style="color:#f43f5e; font-family:var(--font-mono);">TypeError: unsupported operand type for NoneType</span>!
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 4: Interactive Playground -->
+        <section class="lesson-section">
+          <div class="playground-box">
+            <div class="playground-badge">⚡ Интерактивный вызов функции с return</div>
+            <h3 class="playground-title">Калькулятор скидки в действии</h3>
+            <p class="playground-desc">
+              Нажмите кнопку ниже, чтобы вызвать функцию <code class="fn">calc_discount(1000, 15)</code> и увидеть, как возвращенное значение через <code class="kwd">return</code> обрабатывается интерпретатором:
+            </p>
+
+            <div class="interactive-controls">
+              <button class="btn-run-code" data-action="run-functions">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                <span>Вызвать функцию calc_discount()</span>
+              </button>
+            </div>
+
+            <div class="playground-live-terminal">
+              <span class="terminal-prompt">&gt; func_runner:</span>
+              <span class="terminal-output" style="color: var(--text-dim);">Функция загружена в память... Нажмите «Вызвать функцию».</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 5: Course Completion Checklist -->
+        <section class="lesson-section">
+          <div class="checklist-card">
+            <div class="checklist-title">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:var(--accent-emerald);">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+              <span>Финальный чек-лист знаний курса</span>
+            </div>
+            <p style="color:var(--text-secondary); margin-bottom: 1.5rem;">
+              Оглянитесь назад: за эти 5 уроков вы прошли путь от человека, который не знал, что такое машинный код, до разработчика, знающего фундамент Python:
+            </p>
+            <ul class="checklist-items">
+              <li class="checklist-item">
+                <div class="check-icon">✓</div>
+                <div><strong>Урок 1:</strong> Понимание работы интерпретатора, функция <code class="fn">print()</code>, строки и защита от SyntaxError.</div>
+              </li>
+              <li class="checklist-item">
+                <div class="check-icon">✓</div>
+                <div><strong>Урок 2:</strong> Переменные, типы данных (int, float, str, bool), ввод через <code class="fn">input()</code> и ультра-удобные f-строки.</div>
+              </li>
+              <li class="checklist-item">
+                <div class="check-icon">✓</div>
+                <div><strong>Урок 3:</strong> Условия <code class="kwd">if / elif / else</code>, священные 4 пробела отступа, операторы сравнения и логика and/or/not.</div>
+              </li>
+              <li class="checklist-item">
+                <div class="check-icon">✓</div>
+                <div><strong>Урок 4:</strong> Списки, индексация с нуля, отрицательные индексы, циклы <code class="kwd">for</code> с <code class="bi">range()</code> и цикл <code class="kwd">while</code>.</div>
+              </li>
+              <li class="checklist-item">
+                <div class="check-icon">✓</div>
+                <div><strong>Урок 5:</strong> Функции через <code class="kwd">def</code>, передача аргументов, соблюдение DRY и разница между <code class="fn">print()</code> и <code class="kwd">return</code>.</div>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Final Call to Action -->
+        <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(6, 182, 212, 0.15)); border: 1px solid rgba(16, 185, 129, 0.35); border-radius: var(--radius-xl); padding: 2.5rem; text-align: center; margin: 3rem 0; box-shadow: var(--shadow-glass);">
+          <div style="font-size: 2.5rem; margin-bottom: 1rem;">🏆 🎓 🚀</div>
+          <h2 style="font-size: 1.8rem; font-weight: 800; color: #fff; margin-bottom: 0.75rem; border: none; justify-content: center;">
+            Теория пройдена на 100%! Время закрепить на практике
+          </h2>
+          <p style="color: var(--text-secondary); max-width: 650px; margin: 0 auto 2rem; font-size: 1.05rem;">
+            Вы освоили весь теоретический каркас языка Python. Настоящее мастерство рождается в решении задач. Переходите в тренажёр и решите 5 практических задач на каждый изученный навык!
+          </p>
+
+          <a href="../practice.html" class="btn-lesson-nav btn-finish-lesson" style="font-size: 1.1rem; padding: 1.1rem 2.2rem; display: inline-flex; border-radius: var(--radius-pill); box-shadow: 0 0 30px rgba(16, 185, 129, 0.4);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+            <span>Перейти к практическому тренажеру (5 задач)!</span>
+          </a>
+        </div>
+
+        <!-- Lesson Navigation Footer -->
+        <footer class="lesson-nav-footer">
+          <a href="04-loops.html" class="btn-lesson-nav btn-lesson-prev">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            <span>К Уроку 4</span>
+          </a>
+
+          <a href="../index.html" class="btn-lesson-nav btn-lesson-prev">
+            <span>В главное меню</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+          </a>
+        </footer>
+
+      </article>
+    </main>
+  </div>
+
+  <!-- Course Scripts -->
+  <script src="../js/course-progress.js"></script>
+</body>
+</html>
