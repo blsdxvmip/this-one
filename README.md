@@ -1,55 +1,112 @@
-# ⚡ this-one
+# 🐍 Python Starter — Интерактивный курс Python с нуля
 
-> Ultra-fast, modular welcome landing page engineered with precision obsidian glassmorphism, dynamic 60fps particle physics, and autonomous agent coordination.
+<p align="center">
+  <img src="https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-blue?style=for-the-badge&logo=github" alt="Live Demo">
+  <img src="https://img.shields.io/badge/Python-3.x%20Ready-yellow?style=for-the-badge&logo=python" alt="Python 3">
+  <img src="https://img.shields.io/badge/Interactive-5%20Lessons%20%2B%205%20Tasks-brightgreen?style=for-the-badge" alt="Lessons & Tasks">
+  <img src="https://img.shields.io/badge/License-MIT-purple?style=for-the-badge" alt="MIT License">
+</p>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Status: Production](https://img.shields.io/badge/Status-Production%20Ready-emerald.svg)](#)
+<p align="center">
+  <b>Бесплатный, интерактивный образовательный портал для изучения программирования на Python с абсолютного нуля.</b><br>
+  Понятные аналогии, практические примеры без заумной терминологии, трекер прогресса и тренажер с автоматической проверкой решений.
+</p>
 
----
-
-## ✨ Features
-
-- 🌌 **60 FPS Constellation Canvas**: Hardware-accelerated dynamic particle system with cursor repulsion and ambient pulse.
-- 💎 **Cyber Obsidian Glassmorphism**: High-contrast dark theme, backdrop blur, glowing borders, and neon accents.
-- 📐 **Interactive Bento Grid**: Responsive 12-column grid with 3D mouse-tracking tilt effects.
-- 💻 **Interactive Code Terminal**: Tabbed code snippet switcher with one-click copy to clipboard.
-- 📊 **Animated Benchmarks**: Smooth scroll-triggered metric counters.
-- 📱 **100% Responsive**: Tailored layouts across mobile, tablet, desktop, and ultra-wide screens.
-- 🚀 **Zero Dependencies**: Pure vanilla HTML5, CSS3, and modern ECMAScript. No build step required.
-
----
-
-## 🚀 Getting Started
-
-Simply open `index.html` directly in your favorite browser, or serve it using any local static file server:
-
-### Using Node.js (npx)
-```bash
-npx serve .
-```
-
-### Using Python 3
-```bash
-python -m http.server 3000
-```
+<p align="center">
+  👉 <b><a href="https://blsdxvmip.github.io/this-one/">Открыть сайт курса (Live Demo)</a></b> | 
+  ⚡ <b><a href="https://blsdxvmip.github.io/this-one/practice.html">Интерактивный практикум</a></b>
+</p>
 
 ---
 
-## 📂 Project Structure
+## 🌟 Главные особенности
+
+- 🎓 **Обучение с абсолютного нуля**: не требуется опыт в программировании или знание высшей математики.
+- 💻 **Встроенный тренажер (Practice Arena)**: пишите и тестируйте код прямо в браузере без установки интерпретаторов.
+- 🤖 **Автоматическая проверка тестов**: мгновенная валидация решений с показом входных данных, ожидаемого и фактического результата.
+- 💡 **Трехуровневые подсказки**: мягкие наводящие подсказки к каждой задаче при затруднениях.
+- 📊 **Сохранение прогресса**: завершенные уроки и решенные задачи автоматически фиксируются в вашем браузере (`localStorage`).
+- 💎 **Современный интерфейс**: темная эстетика Obsidian Glassmorphism, 60fps фоновые частицы и адаптивность под смартфоны и ПК.
+- 🚀 **Zero Dependencies**: чистый нативный веб-стек (HTML5, CSS3, ECMAScript 6+). Запускается везде без сборщиков и Node-модулей.
+
+---
+
+## 📚 Программа курса
+
+### 5 интерактивных уроков
+
+| Урок | Название темы | Описание | Ключевые концепции |
+|:---:|:---|:---|:---|
+| **01** | [**Первая строка кода**](https://blsdxvmip.github.io/this-one/lessons/01-intro.html) | Как работает интерпретатор, зачем нужен Python и первая программа | `print()`, строки, комментарии `#`, `SyntaxError` |
+| **02** | [**Переменные и типы данных**](https://blsdxvmip.github.io/this-one/lessons/02-variables.html) | Метафора подписанных коробок, числа, текст и пользовательский ввод | `int`, `float`, `str`, `bool`, `input()`, f-строки |
+| **03** | [**Ветвления if / elif / else**](https://blsdxvmip.github.io/this-one/lessons/03-conditions.html) | Логика принятия решений, правила отступов и булевы операции | `if`, `elif`, `else`, отступы в 4 пробела, `and`, `or`, `not` |
+| **04** | [**Списки и циклы**](https://blsdxvmip.github.io/this-one/lessons/04-loops.html) | Автоматизация рутины, списки элементов и диапазоны чисел | `for ... in`, генератор `range()`, списки `[]`, цикл `while` |
+| **05** | [**Функции**](https://blsdxvmip.github.io/this-one/lessons/05-functions.html) | Создание собственных переиспользуемых инструментов и чистый код | Принцип DRY, `def`, параметры, отличие `print()` от `return` |
+
+---
+
+## ⚡ Интерактивный практикум (5 задач)
+
+В разделе [**practice.html**](https://blsdxvmip.github.io/this-one/practice.html) доступен редактор кода с запуском решений (`Ctrl + Enter`) и тест-сьютами:
+
+1. **Задача 1: «Привет, исследователь!»** *(Сложность: Легко)*  
+   Объявление переменных и форматированный вывод приветствия через современные f-строки.
+2. **Задача 2: «Калькулятор сдачи»** *(Сложность: Легко)*  
+   Функция `calculate_change(bill, cost)`: арифметические вычисления, целочисленное деление `//` и остаток `%`.
+3. **Задача 3: «Фейсконтроль в клуб»** *(Сложность: Средне)*  
+   Функция `check_access(age, has_pass, password)`: построение строгой цепочки условий и проверка прав доступа.
+4. **Задача 4: «Анализатор чисел»** *(Сложность: Средне)*  
+   Функция `analyze_numbers(numbers)`: перебор списка циклом `for`, фильтрация четных чисел и расчет среднего значения.
+5. **Задача 5: «Шифр Цезаря»** *(Сложность: Интересно)*  
+   Функция `encrypt_caesar(text, shift)`: криптографический сдвиг латинских букв по кодам символов `ord()` и `chr()`.
+
+---
+
+## 📂 Структура репозитория
 
 ```text
 this-one/
-├── index.html          # Semantic HTML5 markup & section structure
+├── index.html                  # Главный дашборд и обзор программы курса
+├── practice.html               # Интерактивный тренажер на 5 задач с автопроверкой
+├── lessons/
+│   ├── 01-intro.html           # Урок 1: Первая строка кода
+│   ├── 02-variables.html       # Урок 2: Переменные и типы данных
+│   ├── 03-conditions.html      # Урок 3: Ветвления и логика
+│   ├── 04-loops.html           # Урок 4: Списки и циклы
+│   └── 05-functions.html       # Урок 5: Функции
 ├── styles/
-│   └── main.css        # Comprehensive design system & animations
+│   ├── main.css                # Базовая дизайн-система и анимации
+│   └── python-course.css       # Стили учебной платформы и тренажера
 ├── js/
-│   ├── particles.js    # Interactive canvas physics engine
-│   └── app.js          # Terminal, 3D tilt, counters & interactions
-└── README.md           # Documentation
+│   ├── particles.js            # 60fps канвас-фон с интерактивной сеткой
+│   ├── app.js                  # Интерактивность и эффекты
+│   ├── course-progress.js      # Трекер прогресса в LocalStorage
+│   └── course-runner.js        # Браузерный движок исполнения и проверки тестов Python
+└── README.md                   # Документация проекта
 ```
 
 ---
 
-## 📄 License
+## 🚀 Локальный запуск
 
-Distributed under the [MIT License](LICENSE).
+Репозиторий готов к работе сразу после клонирования — не требуется установка библиотек или сборка:
+
+```bash
+# 1. Клонировать репозиторий
+git clone https://github.com/blsdxvmip/this-one.git
+cd this-one
+
+# 2. Открыть в браузере напрямую:
+# дважды кликните по index.html
+
+# Либо запустить любой локальный сервер (например, Python 3):
+python -m http.server 3000
+# Откройте: http://localhost:3000
+```
+
+---
+
+## 📄 Лицензия
+
+Проект распространяется под открытой лицензией [MIT License](LICENSE).
+Каждый может свободно использовать материалы для обучения и преподавания.
