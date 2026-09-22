@@ -487,6 +487,7 @@ print(encrypt_caesar("xyz", 2))
     const lines = pyCode.split('\n');
     let jsLines = [];
     let indentStack = [0];
+    let bracketDepth = 0;
 
     // Helper functions preamble
     jsLines.push(`
@@ -530,22 +531,22 @@ print(encrypt_caesar("xyz", 2))
 
     for (let i = 0; i < lines.length; i++) {
       let rawLine = lines[i];
-      // Skip empty or comment-only lines
       if (!rawLine.trim() || rawLine.trim().startsWith('#')) {
         continue;
       }
 
-      // Calculate leading indent spaces
       const indent = rawLine.match(/^(\s*)/)[1].length;
       let line = rawLine.trim();
 
-      // Adjust indentation stack
-      while (indent < indentStack[indentStack.length - 1]) {
-        indentStack.pop();
-        jsLines.push('}');
+      // Adjust indentation stack ONLY when NOT inside brackets
+      if (bracketDepth === 0) {
+        while (indent < indentStack[indentStack.length - 1]) {
+          indentStack.pop();
+          jsLines.push('}');
+        }
       }
 
-      // 1. Remove comments at the end of code
+      // 1. Remove comments at the end of code (outside quotes)
       line = line.replace(/(['"].*?['"])|(#.*$)/g, (m, str, com) => str || '');
 
       // 2. Transform f-strings: f"Hello {name}" -> `Hello ${name}`
@@ -565,13 +566,19 @@ print(encrypt_caesar("xyz", 2))
       line = line.replace(/\bnot\s+/g, '!');
 
       // 5. Integer division: a // b -> Math.floor(a / b)
-      line = line.replace(/([a-zA-Z0-9_]+)\s*\/\/\s*([a-zA-Z0-9_]+)/g, 'Math.floor($1 / $2)');
+      line = line.replace(/([a-zA-Z0-9_().]+)\s*\/\/\s*([a-zA-Z0-9_().]+)/g, 'Math.floor($1 / $2)');
 
       // 6. Ternary: val if cond else other -> (cond ? val : other)
       line = line.replace(/([a-zA-Z0-9_().+\-*/\s]+?)\s+if\s+([a-zA-Z0-9_().<>=!+\-*/\s]+?)\s+else\s+([a-zA-Z0-9_().+\-*/\s]+)/g, '($2 ? $1 : $3)');
 
       // 7. Chained comparisons: 'a' <= char <= 'z'
       line = line.replace(/([a-zA-Z0-9_'"().]+)\s*<=\s*([a-zA-Z0-9_]+)\s*<=\s*([a-zA-Z0-9_'"().]+)/g, '($2 >= $1 && $2 <= $3)');
+
+      // Count bracket depth changes
+      for (let char of line) {
+        if (char === '(' || char === '[' || char === '{') bracketDepth++;
+        else if (char === ')' || char === ']' || char === '}') bracketDepth = Math.max(0, bracketDepth - 1);
+      }
 
       // 8. Control structures:
       if (line.startsWith('def ')) {
@@ -592,24 +599,18 @@ print(encrypt_caesar("xyz", 2))
 
       if (line.startsWith('elif ')) {
         const cond = line.slice(5, line.endsWith(':') ? -1 : undefined);
-        // replace previous closing bracket
-        jsLines.push('}');
-        indentStack.pop();
         indentStack.push(indent + 4);
         jsLines.push(`else if (${cond}) {`);
         continue;
       }
 
       if (line.startsWith('else:')) {
-        jsLines.push('}');
-        indentStack.pop();
         indentStack.push(indent + 4);
         jsLines.push(`else {`);
         continue;
       }
 
       if (line.startsWith('for ')) {
-        // for item in iter:
         const m = line.match(/^for\s+([a-zA-Z0-9_]+)\s+in\s+(.*?):/);
         if (m) {
           indentStack.push(indent + 4);
@@ -625,8 +626,12 @@ print(encrypt_caesar("xyz", 2))
         continue;
       }
 
-      // Simple variable assignment or statements
-      jsLines.push(line + ';');
+      // Semicolon handling: avoid semicolon inside bracket continuation or comma
+      if (bracketDepth > 0 || line.endsWith('{') || line.endsWith('(') || line.endsWith('[') || line.endsWith(',')) {
+        jsLines.push(line);
+      } else {
+        jsLines.push(line + ';');
+      }
     }
 
     // Close remaining open blocks
