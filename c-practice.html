@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Практикум Python: 5 интерактивных задач — this-one</title>
-  <meta name="description" content="Интерактивный тренажер Python: решите 5 практических задач с автоматической проверкой тестов прямо в браузере.">
+  <title>Практикум по Си: 5 интерактивных задач — this-one</title>
+  <meta name="description" content="Интерактивный тренажер по языку Си (C): решите 5 практических задач с автоматической проверкой тестов прямо в браузере.">
   
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐍</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/python-course.css">
 </head>
@@ -17,17 +17,17 @@
     <div class="course-header-container">
       <div class="course-brand">
         <a href="index.html" class="brand-link">
-          <span class="brand-icon">🐍</span>
-          <span class="brand-title">Python Start</span>
-          <span class="brand-tag">v1.0</span>
+          <span class="brand-icon">⚡</span>
+          <span class="brand-title">C Starter</span>
+          <span class="brand-tag" style="background: rgba(59, 130, 246, 0.15); color: #60a5fa; border-color: rgba(59, 130, 246, 0.3);">Язык Си</span>
         </a>
       </div>
 
       <nav class="course-nav">
         <a href="index.html" class="nav-item">Главная</a>
-        <a href="lessons/01-intro.html" class="nav-item">Уроки Python</a>
-        <a href="practice.html" class="nav-item active">Практикум Python</a>
-        <a href="c-practice.html" class="nav-item" style="opacity: 0.85;">⚡ Курс Си (C)</a>
+        <a href="c-lessons/01-intro.html" class="nav-item">Уроки Си</a>
+        <a href="c-practice.html" class="nav-item active">Практикум Си</a>
+        <a href="practice.html" class="nav-item" style="opacity: 0.8;">🐍 Курс Python</a>
         <a href="https://github.com/blsdxvmip/this-one" target="_blank" rel="noopener noreferrer" class="nav-item github-link">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
@@ -38,7 +38,7 @@
 
       <div class="course-progress-badge">
         <div class="progress-label">
-          <span>Прогресс:</span>
+          <span>Прогресс Си:</span>
           <strong id="header-progress-text">0%</strong>
         </div>
         <div class="progress-bar-wrap">
@@ -53,7 +53,7 @@
     <!-- Tasks Sidebar -->
     <aside class="practice-sidebar">
       <div class="sidebar-header">
-        <h3>Задачи практикума</h3>
+        <h3>Задачи по языку Си</h3>
         <span class="tasks-counter" id="solved-count">0 / 5 решено</span>
       </div>
 
@@ -62,7 +62,7 @@
           <span class="task-status-icon" id="status-task1">⭕</span>
           <div class="task-nav-info">
             <span class="task-nav-num">Задача 1</span>
-            <span class="task-nav-title">Привет, исследователь!</span>
+            <span class="task-nav-title">Привет, Си!</span>
           </div>
           <span class="task-diff-tag diff-easy">Легко</span>
         </button>
@@ -80,7 +80,7 @@
           <span class="task-status-icon" id="status-task3">⭕</span>
           <div class="task-nav-info">
             <span class="task-nav-num">Задача 3</span>
-            <span class="task-nav-title">Фейсконтроль в клуб</span>
+            <span class="task-nav-title">Фейсконтроль доступа</span>
           </div>
           <span class="task-diff-tag diff-medium">Средне</span>
         </button>
@@ -89,7 +89,7 @@
           <span class="task-status-icon" id="status-task4">⭕</span>
           <div class="task-nav-info">
             <span class="task-nav-num">Задача 4</span>
-            <span class="task-nav-title">Анализатор чисел</span>
+            <span class="task-nav-title">Анализ массива</span>
           </div>
           <span class="task-diff-tag diff-medium">Средне</span>
         </button>
@@ -98,19 +98,19 @@
           <span class="task-status-icon" id="status-task5">⭕</span>
           <div class="task-nav-info">
             <span class="task-nav-num">Задача 5</span>
-            <span class="task-nav-title">Шифр Цезаря</span>
+            <span class="task-nav-title">Возведение в степень</span>
           </div>
           <span class="task-diff-tag diff-hard">Интересно</span>
         </button>
       </nav>
 
       <div class="sidebar-footer-tip">
-        <p>💡 Код проверяется автоматически прямо в браузере. Вы можете запускать его сколько угодно раз!</p>
+        <p>💡 Код компилируется и проверяется прямо в браузере. Вы можете тестировать решение сколько угодно раз!</p>
       </div>
 
       <div class="sidebar-reset-section" style="margin-top: 0.85rem;">
         <button class="btn btn-sm btn-ghost" id="reset-all-tasks-btn" style="width: 100%; justify-content: center; font-size: 0.75rem; color: #f87171; border-color: rgba(248, 113, 113, 0.3);">
-          🔄 Сбросить весь прогресс задач
+          🔄 Сбросить весь прогресс задач Си
         </button>
       </div>
     </aside>
@@ -121,9 +121,9 @@
       <section class="task-meta-header">
         <div class="task-title-group">
           <div class="task-breadcrumbs">
-            <span>Практикум</span> &gt; <span id="current-task-category">Вывод и f-строки</span>
+            <span>Практикум Си</span> &gt; <span id="current-task-category">Вывод и printf</span>
           </div>
-          <h1 class="current-task-title" id="current-task-title">Задача 1: Привет, исследователь!</h1>
+          <h1 class="current-task-title" id="current-task-title">Задача 1: Привет, Си!</h1>
         </div>
 
         <div class="task-actions-top">
@@ -159,7 +159,7 @@
           <div class="pane-header">
             <div class="pane-title">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-              <span>Редактор решения (Python)</span>
+              <span>Редактор решения (C / C99)</span>
             </div>
             <span class="editor-hint-shortcut">Ctrl + Enter для запуска</span>
           </div>
@@ -168,7 +168,7 @@
             <div class="line-numbers" id="editor-line-numbers">
               <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
             </div>
-            <textarea id="code-editor" class="code-textarea" spellcheck="false" placeholder="# Напишите ваш код на Python здесь..."></textarea>
+            <textarea id="code-editor" class="code-textarea" spellcheck="false" placeholder="// Напишите ваш код на языке Си здесь..."></textarea>
           </div>
 
           <div class="editor-controls">
@@ -195,7 +195,7 @@
 
           <!-- Console Screen -->
           <div class="terminal-screen" id="terminal-screen">
-            <div class="terminal-line text-dim"># Терминал готов к работе. Нажмите «Запустить код» или «Проверить решение».</div>
+            <div class="terminal-line text-dim"># Компилятор C готов. Нажмите «Запустить код» или «Проверить решение».</div>
           </div>
 
           <!-- Test Cases Box -->
@@ -216,8 +216,8 @@
         <div class="success-banner-content">
           <div class="success-icon">🎉</div>
           <div>
-            <h3>Великолепно! Все тесты успешно пройдены!</h3>
-            <p>Вы блестяще справились с этой задачей. Прогресс сохранен.</p>
+            <h3>Отлично! Все тесты на Си успешно пройдены!</h3>
+            <p>Вы успешно решили задачу на Си. Прогресс сохранен.</p>
           </div>
         </div>
         <button class="btn btn-primary" id="next-task-btn">
@@ -228,7 +228,6 @@
   </div>
 
   <!-- Scripts -->
-  <script src="js/course-progress.js"></script>
-  <script src="js/course-runner.js"></script>
+  <script src="js/c-runner.js"></script>
 </body>
 </html>

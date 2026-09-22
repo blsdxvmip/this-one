@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Урок 1: Введение в Си — Первая программа и компилятор</title>
+  <meta name="description" content="Урок 1: Введение в язык программирования Си с нуля. Компиляция против интерпретации, #include <stdio.h>, int main(void), printf, \n и точка с запятой.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/python-course.css">
+</head>
+<body class="course-page" data-lesson="1">
+
+  <!-- Unified Course Header -->
+  <header class="course-header">
+    <div class="header-left">
+      <button class="sidebar-toggle-btn" id="sidebar-toggle-btn" aria-label="Переключить меню уроков">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <a href="../index.html" class="course-brand">
+        <div class="course-brand-icon" style="background: linear-gradient(135deg, #3b82f6, #6366f1); box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);">⚡</div>
+        <div class="course-brand-text">
+          <h1>C Starter</h1>
+          <span>Курс по Си для начинающих</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="header-center">
+      <div class="progress-info">
+        <span id="progress-count-text">0 из 5 уроков завершено</span>
+        <span id="progress-percent-text">0%</span>
+      </div>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progress-bar-fill" style="width: 20%;"></div>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <a href="../c-practice.html" class="btn-nav-home" style="margin-right: 0.5rem; background: rgba(59, 130, 246, 0.12); border-color: rgba(59, 130, 246, 0.3); color: #60a5fa;">
+        <span>⚡ Практикум Си</span>
+      </a>
+      <a href="../index.html" class="btn-nav-home">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+        <span>На главную</span>
+      </a>
+    </div>
+  </header>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <!-- Layout Wrapper -->
+  <div class="course-layout">
+
+    <!-- Collapsible Sidebar Navigation -->
+    <aside class="course-sidebar" id="course-sidebar">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Программа курса Си</div>
+        <ul class="lesson-nav-list">
+          <li class="lesson-nav-item active" id="nav-lesson-1">
+            <a href="01-intro.html">
+              <span class="lesson-number">1</span>
+              <span class="lesson-title-text">Введение & main() & printf()</span>
+              <span class="status-badge-icon"></span>
+            </a>
+          </li>
+          <li class="lesson-nav-item" id="nav-lesson-2">
+            <a href="02-variables.html">
+              <span class="lesson-number">2</span>
+              <span class="lesson-title-text">Типы данных, память & scanf()</span>
+              <span class="status-badge-icon"></span>
+            </a>
+          </li>
+          <li class="lesson-nav-item" id="nav-lesson-3">
+            <a href="03-conditions.html">
+              <span class="lesson-number">3</span>
+              <span class="lesson-title-text">Ветвления, логика & switch</span>
+              <span class="status-badge-icon"></span>
+            </a>
+          </li>
+          <li class="lesson-nav-item" id="nav-lesson-4">
+            <a href="04-loops.html">
+              <span class="lesson-number">4</span>
+              <span class="lesson-title-text">Циклы & статические массивы</span>
+              <span class="status-badge-icon"></span>
+            </a>
+          </li>
+          <li class="lesson-nav-item" id="nav-lesson-5">
+            <a href="05-functions.html">
+              <span class="lesson-number">5</span>
+              <span class="lesson-title-text">Функции & основы указателей</span>
+              <span class="status-badge-icon"></span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="sidebar-section-title">Тренажер и Практика</div>
+        <ul class="lesson-nav-list">
+          <li class="lesson-nav-item" id="nav-practice">
+            <a href="../c-practice.html">
+              <span class="lesson-number">⚡</span>
+              <span class="lesson-title-text">Практикум Си (5 задач)</span>
+            </a>
+          </li>
+          <li class="lesson-nav-item">
+            <a href="../lessons/01-intro.html">
+              <span class="lesson-number">🐍</span>
+              <span class="lesson-title-text">Курс Python Starter</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-footer">
+        <div>C17 / GCC • Нативная скорость</div>
+        <div style="margin-top: 4px; color: var(--accent-cyan);">Интерактивный курс Си с нуля</div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="course-main">
+      <article class="lesson-article">
+
+        <!-- Hero Card -->
+        <div class="lesson-hero-card">
+          <div class="lesson-meta-pill">Урок 1 • Фундамент Си • Время: ~12 мин</div>
+          <h1>Урок 1: Введение в Си — Первая программа и компилятор</h1>
+          <p class="lesson-lead">
+            Язык Си (C) — это латинский алфавит компьютерной индустрии. Написанный в 1972 году Деннисом Ритчи в Bell Labs, он стал фундаментом современных операционных систем, баз данных и высокоуровневых языков. В этом уроке мы разберем, как код превращается в машинные нули и единицы, и напишем первую каноническую программу.
+          </p>
+        </div>
+
+        <!-- Section 1: Why Learn C? -->
+        <section class="lesson-section">
+          <h2><span class="section-idx">01.</span> Зачем учить Си в XXI веке?</h2>
+          <p>
+            Сегодня существует множество языков с автоматической сборкой мусора и дружелюбным синтаксисом: Python, JavaScript, Go. Зачем же инженеры продолжают учить и использовать язык полувековой давности?
+          </p>
+
+          <div class="analogy-card">
+            <div class="analogy-header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              <span>Архитектурная аналогия: Чертежи и фундамент</span>
+            </div>
+            <div class="analogy-body">
+              Если Python — это роскошный пентхаус с готовой мебелью и голосовым управлением, то <strong>Си — это железобетонный фундамент, водопроводные трубы и электрическая проводка в стенах</strong>. Вы можете жить в пентхаусе, не зная физики тока, но если вы хотите стать настоящим архитектором и понимать, почему программы работают быстро или тормозят — вам необходимо знать Си.
+            </div>
+          </div>
+
+          <p>Вот где язык Си незаменим прямо сейчас:</p>
+          <ul>
+            <li><strong>Операционные системы:</strong> Ядро Linux (на котором работают 90% мировых серверов и Android), Windows NT и macOS X написаны преимущественно на Си.</li>
+            <li><strong>Сам Python:</strong> Стандартный и самый популярный интерпретатор Python (CPython) целиком написан на Си. Когда вы вызываете быстрые библиотеки вроде NumPy или PyTorch — под капотом выполняется сверхбыстрый Си-код.</li>
+            <li><strong>Базы данных:</strong> PostgreSQL, SQLite, Redis — критически важные хранилища данных, требующие предсказуемого расхода каждого байта памяти.</li>
+            <li><strong>Встраиваемые системы (IoT) и микроконтроллеры:</strong> Бортовые компьютеры автомобилей, датчики «умного дома», медицинское оборудование и космические аппараты работают на чистом Си.</li>
+          </ul>
+        </section>
+
+        <!-- Section 2: Compilation vs Interpretation -->
+        <section class="lesson-section">
+          <h2><span class="section-idx">02.</span> Компиляция против Интерпретации</h2>
+          <p>
+            Процессор компьютера (CPU) понимает исключительно последовательности электрических сигналов — машинный код (нули и единицы). Человек же пишет текст на понятном ему языке. Как преодолевается эта пропасть?
+          </p>
+
+          <div class="callout callout-tip">
+            <div class="callout-icon">⚙️</div>
+            <div class="callout-content">
+              <div class="callout-title">Интерпретатор vs Компилятор: Синхронный переводчик против Издательства</div>
+              <p>
+                <strong>В Python (интерпретация):</strong> Программа-интерпретатор читает исходный файл строка за строкой прямо во время запуска и на лету отдает инструкции процессору. Если на 1000-й строке опечатка — программа упадет только тогда, когда выполнение дойдет до нее.
+              </p>
+              <p>
+                <strong>В Си (компиляция):</strong> Специальная программа — <em>компилятор</em> (например, <code>gcc</code> или <code>clang</code>) — заранее берет весь файл целиком, тщательно проверяет все типы и синтаксис, оптимизирует код и превращает его в готовый исполняемый файл (<code>.exe</code> в Windows или бинарник в Linux). На целевом компьютере для запуска Си-программы не нужно устанавливать ничего лишнего!
+              </p>
+            </div>
+          </div>
+
+          <h3>4 стадии рождения Си-программы:</h3>
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1.25rem; margin: 1rem 0;">
+            <ol style="margin-left: 1.25rem; color: var(--text-secondary); line-height: 1.8;">
+              <li><strong style="color: var(--accent-cyan);">Препроцессинг (Preprocessing):</strong> Обработка директив с решеткой (например, <code>#include</code>). Текст подключаемых библиотек вставляется в файл.</li>
+              <li><strong style="color: var(--accent-indigo);">Компиляция (Compilation):</strong> Преобразование чистого Си-кода в инструкции ассемблера под конкретную архитектуру процессора (x86_64, ARM).</li>
+              <li><strong style="color: var(--syntax-number);">Ассемблирование (Assembly):</strong> Перевод ассемблерных мнемоник в машинный двоичный объектный код (<code>.o</code> / <code>.obj</code>).</li>
+              <li><strong style="color: var(--syntax-string);">Компоновка (Linking):</strong> Линковщик собирает ваши объектные файлы вместе со стандартной библиотекой языка (libc) в единый исполняемый бинарник.</li>
+            </ol>
+          </div>
+        </section>
+
+        <!-- Section 3: Anatomy of Hello World -->
+        <section class="lesson-section">
+          <h2><span class="section-idx">03.</span> Анатомия первой программы «Hello, World!»</h2>
+          <p>
+            Взгляните на классическую программу на Си. В отличие от Python, где достаточно написать <code>print("Привет")</code>, в Си требуется строгая структура:
+          </p>
+
+          <div class="code-window">
+            <div class="code-header">
+              <div class="code-dots">
+                <span class="code-dot dot-red"></span>
+                <span class="code-dot dot-yellow"></span>
+                <span class="code-dot dot-green"></span>
+              </div>
+              <div class="code-label">c • main.c</div>
+              <button class="code-copy-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span>Копировать</span>
+              </button>
+            </div>
+            <div class="code-body">
+              <pre><span class="kw">#include</span> <span class="str">&lt;stdio.h&gt;</span>
+
+<span class="kw">int</span> <span class="fn">main</span>(<span class="kw">void</span>) {
+    <span class="fn">printf</span>(<span class="str">"Hello, World!\n"</span>);
+    <span class="kw">return</span> <span class="num">0</span>;
+}</pre>
+            </div>
+            <div class="code-output">
+              <div class="output-label">Терминал:</div>
+              <div class="output-text">Hello, World!</div>
+            </div>
+          </div>
+
+          <p>Разберем каждую строку под микроскопом:</p>
+
+          <h3>1. <code>#include &lt;stdio.h&gt;</code></h3>
+          <p>
+            В самом Си нет встроенных ключевых слов для вывода текста на экран или чтения с клавиатуры. Все эти возможности предоставляются библиотеками. Директива <code>#include</code> приказывает препроцессору найти заголовочный файл <strong>stdio.h</strong> (расшифровывается как <em>Standard Input / Output header</em>) и подключить его. Именно там находится объявление функции <code>printf</code>.
+          </p>
+
+          <h3>2. <code>int main(void)</code> — Главная входная дверь</h3>
+          <p>
+            Любая программа на Си обязана содержать ровно одну функцию с именем <code>main</code>. С неё операционная система начинает выполнение программы:
+          </p>
+          <ul>
+            <li><code>int</code> (integer — целое число): тип данных, который функция вернет обратно операционной системе после завершения.</li>
+            <li><code>main</code>: строго зарезервированное имя точки входа.</li>
+            <li><code>(void)</code>: явное указание на то, что функция не принимает входных аргументов при запуске.</li>
+          </ul>
+
+          <h3>3. Фигурные скобки <code>{ ... }</code></h3>
+          <p>
+            Если в Python границы блоков определяются отступами (4 пробела), то в Си тело функции строго ограничивается открывающей фигурной скобкой <code>{</code> и закрывающей <code>}</code>. Отступы нужны только для удобства чтения программистом.
+          </p>
+
+          <h3>4. <code>printf("Hello, World!\n");</code></h3>
+          <p>
+            <code>printf</code> (от англ. <em>print formatted</em> — форматированная печать) выводит строку на экран. 
+          </p>
+          <ul>
+            <li><strong>Символ <code>\n</code>:</strong> это специальная <em>escape-последовательность</em>, обозначающая перенос каретки на новую строку. Без него следующий вывод «прилипнет» к предыдущему тексту вплотную.</li>
+            <li><strong>Точка с запятой <code>;</code>:</strong> категорически обязательна в конце каждой инструкции! Для компилятора точка с запятой — это знак точки в предложении. Если забыть <code>;</code>, компилятор не поймет, где кончается команда, и откажется собирать бинарник.</li>
+          </ul>
+
+          <h3>5. <code>return 0;</code></h3>
+          <p>
+            Инструкция завершает работу функции <code>main</code> и передает число <code>0</code> операционной системе. В стандартах POSIX и Windows код <code>0</code> означает: <em>«Программа выполнена успешно, ошибок не произошло»</em>. Любое ненулевое число (1, -1, 42) сигнализирует ОС о коде ошибки.
+          </p>
+        </section>
+
+        <!-- Section 4: Interactive Playground -->
+        <section class="lesson-section">
+          <div class="playground-box">
+            <div class="playground-badge">⚡ Симулятор компиляции Си (GCC)</div>
+            <h3 class="playground-title">Запустите первую Си-программу в браузере</h3>
+            <p class="playground-desc">
+              Измените текст вывода функции <code>printf()</code>, включите или отключите символ перевода строки <code>\n</code> и нажмите кнопку. Симулятор воспроизведет все фазы компиляции GCC и покажет результат работы функции <code>main()</code>:
+            </p>
+
+            <div style="margin-bottom: 1rem; display:flex; flex-wrap:wrap; gap:0.75rem; align-items:center;">
+              <label for="c-playground-text-input" style="font-size:0.9rem; color:var(--text-secondary);">Текст внутри кавычек printf():</label>
+              <input type="text" id="c-playground-text-input" class="c-playground-text" value="Я запускаю свой первый Си-код! 🚀" style="background:#090c13; border:1px solid var(--border-bright); color:#fff; padding:0.45rem 0.85rem; border-radius:6px; font-family:var(--font-mono); font-size:0.9rem; outline:none; flex:1; min-width:240px;">
+            </div>
+
+            <div style="margin-bottom: 1rem; display:flex; align-items:center; gap:0.5rem;">
+              <input type="checkbox" id="c-playground-newline-cb" class="c-playground-newline" checked style="accent-color:var(--accent-indigo); width:16px; height:16px;">
+              <label for="c-playground-newline-cb" style="font-size:0.9rem; color:var(--text-secondary); cursor:pointer;">
+                Добавлять символ переноса строки <code>\n</code> в конце текста
+              </label>
+            </div>
+
+            <div class="code-window" style="margin-bottom: 1rem;">
+              <div class="code-body">
+                <pre><span class="kw">#include</span> <span class="str">&lt;stdio.h&gt;</span>
+
+<span class="kw">int</span> <span class="fn">main</span>(<span class="kw">void</span>) {
+    <span class="fn">printf</span>(<span class="str">"&lt;ваш текст&gt;"</span>);
+    <span class="kw">return</span> <span class="num">0</span>;
+}</pre>
+              </div>
+            </div>
+
+            <div class="interactive-controls">
+              <button class="btn-run-code" data-action="c-run-intro">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                <span>Скомпилировать и запустить (gcc)</span>
+              </button>
+            </div>
+
+            <div class="playground-live-terminal">
+              <span class="terminal-prompt">&gt; terminal:</span>
+              <span class="terminal-output" style="color: var(--text-dim);">Нажмите кнопку выше, чтобы запустить сборку и исполнение Си-файла...</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 5: Quiz -->
+        <section class="lesson-section">
+          <div class="quiz-section">
+            <div class="quiz-badge">🧠 Проверь себя (Мини-квиз по основам Си)</div>
+            <div class="quiz-question">
+              Что произойдет, если в коде на Си написать две инструкции <code>printf("A"); printf("B");</code> без управляющего символа <code>\n</code>?
+            </div>
+
+            <div class="quiz-options">
+              <button class="quiz-btn" data-correct="false" data-explanation="В отличие от функции print() в Python, printf() в Си не переносит строку автоматически по умолчанию.">
+                <span class="quiz-option-marker">A</span>
+                <span>Буквы 'A' и 'B' напечатаются на двух разных строках, так как это два отдельных вызова</span>
+              </button>
+
+              <button class="quiz-btn" data-correct="true" data-explanation="Абсолютно верно! Функция printf выводит строго те символы, которые ей передали. Без '\n' курсор терминала остается на том же месте, поэтому на экране появится слитное 'AB'.">
+                <span class="quiz-option-marker">B</span>
+                <span>Буквы напечатаются на одной строке слитно как 'AB'</span>
+              </button>
+
+              <button class="quiz-btn" data-correct="false" data-explanation="Компилятор GCC не требует обязательного наличия '\n', это не ошибка компиляции, а вопрос поведения форматирования вывода.">
+                <span class="quiz-option-marker">C</span>
+                <span>Компилятор выдаст фатальную ошибку синтаксиса 'missing newline'</span>
+              </button>
+
+              <button class="quiz-btn" data-correct="false" data-explanation="Вторая инструкция не заменяет первую — данные аккуратно направляются в выходной буфер stdout последовательно.">
+                <span class="quiz-option-marker">D</span>
+                <span>Буква 'B' перезапишет букву 'A' на экране</span>
+              </button>
+            </div>
+
+            <div class="quiz-feedback"></div>
+          </div>
+        </section>
+
+        <!-- Mini-Challenge Callout -->
+        <div class="callout callout-task">
+          <div class="callout-icon">🎯</div>
+          <div class="callout-content">
+            <div class="callout-title">Задание для закрепления: Карточка терминала</div>
+            <p>
+              Представьте, что вы пишете консольную заставку для сервера. Напишите код функции <code>main</code>, который с помощью <code>printf</code> выводит ровно три строки:
+            </p>
+            <ul style="margin: 0.5rem 0 0.5rem 1.25rem; font-size: 0.95rem; color: var(--text-secondary);">
+              <li>Строка 1: <code>=== СИСТЕМА УПРАВЛЕНИЯ СИ v1.0 ===</code></li>
+              <li>Строка 2: <code>Статус: Компилятор готов к работе</code></li>
+              <li>Строка 3: <code>Память: 0 байт утечек</code></li>
+            </ul>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0;">
+              💡 <em>Совет: Не забудьте в конце каждой строки поставить <code>\n</code> и завершить каждую команду точкой с запятой <code>;</code>.</em>
+            </p>
+          </div>
+        </div>
+
+        <!-- Lesson Navigation Footer -->
+        <footer class="lesson-nav-footer">
+          <a href="../index.html" class="btn-lesson-nav btn-lesson-prev">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            <span>В главное меню</span>
+          </a>
+
+          <a href="02-variables.html" class="btn-lesson-nav btn-finish-lesson">
+            <span>Завершить урок и перейти к Уроку 2</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </footer>
+
+      </article>
+    </main>
+  </div>
+
+  <!-- Course Scripts -->
+  <script src="../js/c-progress.js"></script>
+</body>
+</html>

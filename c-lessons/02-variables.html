@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Урок 2: Переменные, типы данных и ввод — C Starter</title>
+  <meta name="description" content="Урок 2: Статическая типизация в Си, размеры типов в байтах int, float, double, char, чтение ввода через scanf() и оператор адреса &amp;.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/python-course.css">
+</head>
+<body class="course-page" data-lesson="2">
+
+  <!-- Unified Course Header -->
+  <header class="course-header">
+    <div class="header-left">
+      <button class="sidebar-toggle-btn" id="sidebar-toggle-btn" aria-label="Переключить меню уроков">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <a href="../index.html" class="course-brand">
+        <div class="course-brand-icon" style="background: linear-gradient(135deg, #3b82f6, #6366f1); box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);">⚡</div>
+        <div class="course-brand-text">
+          <h1>C Starter</h1>
+          <span>Курс по Си для начинающих</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="header-center">
+      <div class="progress-info">
+        <span id="progress-count-text">0 из 5 уроков завершено</span>
+        <span id="progress-percent-text">0%</span>
+      </div>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progress-bar-fill" style="width: 40%;"></div>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <a href="../c-practice.html" class="btn-nav-home" style="margin-right: 0.5rem; background: rgba(59, 130, 246, 0.12); border-color: rgba(59, 130, 246, 0.3); color: #60a5fa;">
+        <span>⚡ Практикум Си</span>
+      </a>
+      <a href="../index.html" class="btn-nav-home">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+        <span>На главную</span>
+      </a>
+    </div>
+  </header>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <!-- Layout Wrapper -->
+  <div class="course-layout">
+
+    <!-- Collapsible Sidebar Navigation -->
+    <aside class="course-sidebar" id="course-sidebar">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Программа курса Си</div>
+        <ul class="lesson-nav-list">
+          <li class="lesson-nav-item" id="nav-lesson-1">
+            <a href="01-intro.html">
+              <span class="lesson-number">1</span>
+              <span class="lesson-title-text">Введение & main() & printf()</span>
+              <span class="status-badge-icon"></span>
+            </a>
+          </li>
+          <li class="lesson-nav-item active" id="nav-lesson-2">
+            <a href="02-variables.html">
+              <span class="lesson-number">2</span>
+              <span class="lesson-title-text">Типы данных, память & scanf()</span>
+              <span class="status-badge-icon"></span>
+            </a>
+          </li>
+          <li class="lesson-nav-item" id="nav-lesson-3">
+            <a href="03-conditions.html">
+              <span class="lesson-number">3</span>
+              <span class="lesson-title-text">Ветвления, логика & switch</span>
+              <span class="status-badge-icon"></span>
+            </a>
+          </li>
+          <li class="lesson-nav-item" id="nav-lesson-4">
+            <a href="04-loops.html">
+              <span class="lesson-number">4</span>
+              <span class="lesson-title-text">Циклы & статические массивы</span>
+              <span class="status-badge-icon"></span>
+            </a>
+          </li>
+          <li class="lesson-nav-item" id="nav-lesson-5">
+            <a href="05-functions.html">
+              <span class="lesson-number">5</span>
+              <span class="lesson-title-text">Функции & основы указателей</span>
+              <span class="status-badge-icon"></span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="sidebar-section-title">Тренажер и Практика</div>
+        <ul class="lesson-nav-list">
+          <li class="lesson-nav-item" id="nav-practice">
+            <a href="../c-practice.html">
+              <span class="lesson-number">⚡</span>
+              <span class="lesson-title-text">Практикум Си (5 задач)</span>
+            </a>
+          </li>
+          <li class="lesson-nav-item">
+            <a href="../lessons/01-intro.html">
+              <span class="lesson-number">🐍</span>
+              <span class="lesson-title-text">Курс Python Starter</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-footer">
+        <div>C17 / GCC • Нативная скорость</div>
+        <div style="margin-top: 4px; color: var(--accent-cyan);">Интерактивный курс Си с нуля</div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="course-main">
+      <article class="lesson-article">
+
+        <!-- Hero Card -->
+        <div class="lesson-hero-card">
+          <div class="lesson-meta-pill">Урок 2 • Память и Типы • Время: ~14 мин</div>
+          <h1>Урок 2: Переменные, типы данных и ввод</h1>
+          <p class="lesson-lead">
+            В языках вроде Python переменная — это гибкая бирка, которую можно перевесить на любой объект. В языке Си переменная — это конкретная область в микросхеме оперативной памяти (RAM) с фиксированным размером в байтах и физическим адресом. В этом уроке мы научимся выделять память, использовать базовые типы и запрашивать данные у пользователя через <code>scanf()</code>.
+          </p>
+        </div>
+
+        <!-- Section 1: Static Typing -->
+        <section class="lesson-section">
+          <h2><span class="section-idx">01.</span> Статическая типизация: Память по расписанию</h2>
+          <p>
+            Язык Си обладает <strong>статической типизацией</strong>. Это означает две фундаментальные вещи:
+          </p>
+          <ol>
+            <li>Вы обязаны объявить тип переменной <em>до того</em>, как начнете с ней работать.</li>
+            <li>Тип переменной <em>никогда не может измениться</em> во время выполнения программы. Если переменная создана как целое число, положить в неё текст не получится — компилятор выдаст строгую ошибку.</li>
+          </ol>
+
+          <div class="analogy-card">
+            <div class="analogy-header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="M15 3v18"/><path d="M3 9h18"/><path d="M3 15h18"/></svg>
+              <span>Аналогия из жизни: Камеры хранения на вокзале</span>
+            </div>
+            <div class="analogy-body">
+              Представьте ячейки автоматической камеры хранения на вокзале. В Си вы приходите к диспетчеру (компилятору) и говорите: <em>«Мне нужна металлическая ячейка ровно на 4 байта под целое число»</em>. Диспетчер выделяет вам строго этот отсек, присваивает ему порядковый номер (адрес в памяти) и вешает вашу бирку (имя переменной). Другой размер туда физически не поместится!
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 2: Fundamental Data Types -->
+        <section class="lesson-section">
+          <h2><span class="section-idx">02.</span> Четыре фундаментальных типа данных</h2>
+          <p>
+            Вся архитектура Си опирается на 4 базовых строительных кирпича:
+          </p>
+
+          <div style="overflow-x: auto; margin: 1.5rem 0;">
+            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.95rem; border: 1px solid var(--border-medium); border-radius: 8px; overflow: hidden;">
+              <thead>
+                <tr style="background: rgba(255, 255, 255, 0.06); border-bottom: 1px solid var(--border-medium);">
+                  <th style="padding: 0.75rem 1rem;">Тип в Си</th>
+                  <th style="padding: 0.75rem 1rem;">Размер в RAM</th>
+                  <th style="padding: 0.75rem 1rem;">Диапазон / Назначение</th>
+                  <th style="padding: 0.75rem 1rem;">Спецификатор printf/scanf</th>
+                </tr>
+              </thead>
+              <tbody style="line-height: 1.6;">
+                <tr style="border-bottom: 1px solid var(--border-subtle);">
+                  <td style="padding: 0.75rem 1rem;"><code class="kw">char</code></td>
+                  <td style="padding: 0.75rem 1rem; color: var(--syntax-number);">1 байт (8 бит)</td>
+                  <td style="padding: 0.75rem 1rem;">Одиночный символ ASCII (от -128 до 127 или 0..255)</td>
+                  <td style="padding: 0.75rem 1rem;"><code class="str">%c</code></td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border-subtle); background: rgba(255,255,255,0.01);">
+                  <td style="padding: 0.75rem 1rem;"><code class="kw">int</code></td>
+                  <td style="padding: 0.75rem 1rem; color: var(--syntax-number);">4 байта (32 бита)</td>
+                  <td style="padding: 0.75rem 1rem;">Целые числа от -2 147 483 648 до +2 147 483 647</td>
+                  <td style="padding: 0.75rem 1rem;"><code class="str">%d</code> (или <code>%i</code>)</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border-subtle);">
+                  <td style="padding: 0.75rem 1rem;"><code class="kw">float</code></td>
+                  <td style="padding: 0.75rem 1rem; color: var(--syntax-number);">4 байта (32 бита)</td>
+                  <td style="padding: 0.75rem 1rem;">Дробные числа (одинарная точность, ~6-7 значащих цифр)</td>
+                  <td style="padding: 0.75rem 1rem;"><code class="str">%f</code></td>
+                </tr>
+                <tr>
+                  <td style="padding: 0.75rem 1rem;"><code class="kw">double</code></td>
+                  <td style="padding: 0.75rem 1rem; color: var(--syntax-number);">8 байт (64 бита)</td>
+                  <td style="padding: 0.75rem 1rem;">Дробные числа высокой точности (~15 значащих цифр)</td>
+                  <td style="padding: 0.75rem 1rem;"><code class="str">%lf</code> (long float)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout callout-tip">
+            <div class="callout-icon">💡</div>
+            <div class="callout-content">
+              <div class="callout-title">Символ char — это на самом деле просто число!</div>
+              <p>
+                В Си символы оборачиваются в одинарные кавычки: <code>'A'</code>. Но в памяти компьютер хранит не букву «А», а её числовой код по стандарту ASCII — число <code>65</code>. Если вы напишете <code>printf("%c", 65);</code>, на экране отобразится буква <code>A</code>! А если написать <code>'A' + 1</code>, получится <code>'B'</code> (66).
+              </p>
+            </div>
+          </div>
+
+          <h3>Пример объявления переменных и вывода через спецификаторы:</h3>
+
+          <div class="code-window">
+            <div class="code-header">
+              <div class="code-dots">
+                <span class="code-dot dot-red"></span>
+                <span class="code-dot dot-yellow"></span>
+                <span class="code-dot dot-green"></span>
+              </div>
+              <div class="code-label">c • variables.c</div>
+              <button class="code-copy-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span>Копировать</span>
+              </button>
+            </div>
+            <div class="code-body">
+              <pre><span class="kw">#include</span> <span class="str">&lt;stdio.h&gt;</span>
+
+<span class="kw">int</span> <span class="fn">main</span>(<span class="kw">void</span>) {
+    <span class="kw">int</span> age = <span class="num">20</span>;
+    <span class="kw">float</span> weight = <span class="num">72.5f</span>;
+    <span class="kw">double</span> pi = <span class="num">3.1415926535</span>;
+    <span class="kw">char</span> grade = <span class="str">'A'</span>;
+
+    <span class="fn">printf</span>(<span class="str">"Возраст: %d лет\n"</span>, age);
+    <span class="fn">printf</span>(<span class="str">"Вес: %.1f кг\n"</span>, weight);
+    <span class="fn">printf</span>(<span class="str">"Число Пи: %.5lf\n"</span>, pi);
+    <span class="fn">printf</span>(<span class="str">"Оценка: %c (код ASCII: %d)\n"</span>, grade, grade);
+
+    <span class="kw">return</span> <span class="num">0</span>;
+}</pre>
+            </div>
+            <div class="code-output">
+              <div class="output-label">Результат:</div>
+              <div class="output-text">Возраст: 20 лет
+Вес: 72.5 кг
+Число Пи: 3.14159
+Оценка: A (код ASCII: 65)</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 3: User Input via scanf and Ampersand & -->
+        <section class="lesson-section">
+          <h2><span class="section-idx">03.</span> Ввод данных через scanf() и магия амперсанда (&amp;)</h2>
+          <p>
+            Для получения данных от пользователя с клавиатуры используется функция <code>scanf()</code> (scan formatted). Но здесь новичков подстерегает главная ловушка:
+          </p>
+
+          <div class="code-window">
+            <div class="code-body">
+              <pre><span class="kw">int</span> user_age;
+<span class="fn">printf</span>(<span class="str">"Сколько вам лет? "</span>);
+<span class="fn">scanf</span>(<span class="str">"%d"</span>, &amp;user_age); <span class="cmt">// ОБРАТИТЕ ВНИМАНИЕ НА ЗНАК &amp; ПЕРЕД user_age!</span></pre>
+            </div>
+          </div>
+
+          <h3>Почему перед переменной ОБЯЗАТЕЛЕН знак <code>&amp;</code>?</h3>
+          <p>
+            Символ <code>&amp;</code> в Си называется <strong>оператором взятия адреса (address-of operator)</strong>.
+          </p>
+          <p>
+            В Си все аргументы передаются в функцию <em>по значению</em> — то есть функция получает лишь изолированную копию числа. Если бы мы написали <code>scanf("%d", user_age)</code>, функция <code>scanf</code> получила бы старое случайное значение (мусор) из переменной, но никак не смогла бы изменить саму переменную в памяти.
+          </p>
+
+          <div class="analogy-card">
+            <div class="analogy-header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Аналогия с курьером доставки</span>
+            </div>
+            <div class="analogy-body">
+              Представьте, что вы звоните в доставку пиццы. Вы же не говорите курьеру: <em>«Привези пиццу в пустую коробку, которую я держу в руках»</em>. Вы диктуете курьеру <strong>свой домашний почтовый адрес</strong> (например: <em>ул. Ленина, дом 42, кв. 7</em>). Курьер приезжает по этому адресу и кладет горячую пиццу внутрь. Знак <code>&amp;user_age</code> — это и есть точный физический адрес вашей ячейки памяти в чипе RAM!
+            </div>
+          </div>
+
+          <div class="callout callout-warning">
+            <div class="callout-icon">⚠️</div>
+            <div class="callout-content">
+              <div class="callout-title">Что произойдет, если забыть знак &amp; в scanf?</div>
+              <p>
+                Если переменная хранила число <code>0</code>, а вы вызвали <code>scanf("%d", age)</code>, функция <code>scanf</code> воспримет число <code>0</code> как адрес памяти и попытается записать пользовательский ввод по адресу <code>0x0</code> (NULL). Операционная система мгновенно пресечет такую незаконную операцию и аварийно завершит программу ошибкой <strong>Segmentation fault (core dumped)</strong>.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 4: Interactive Memory & scanf Simulator -->
+        <section class="lesson-section">
+          <div class="playground-box">
+            <div class="playground-badge">⚡ Интерактивный симулятор памяти и scanf()</div>
+            <h3 class="playground-title">Исследуйте байты, адреса и поведение scanf()</h3>
+            <p class="playground-desc">
+              Выберите тип переменной, укажите значение и проверьте, как данные размещаются в оперативной памяти компьютера. Попробуйте снять флаг <code>&amp;</code>, чтобы увидеть крах программы при ошибке адресации:
+            </p>
+
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-bottom:1rem;">
+              <div>
+                <label for="c-var-type-select" style="font-size:0.85rem; color:var(--text-secondary); display:block; margin-bottom:4px;">Тип данных:</label>
+                <select id="c-var-type-select" class="c-var-type" style="background:#090c13; border:1px solid var(--border-bright); color:#fff; padding:0.45rem 0.85rem; border-radius:6px; font-family:var(--font-mono); font-size:0.9rem; width:100%; outline:none;">
+                  <option value="int">int (целое число, 4 байта)</option>
+                  <option value="float">float (вещественное, 4 байта)</option>
+                  <option value="double">double (двойная точность, 8 байт)</option>
+                  <option value="char">char (символ, 1 байт)</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="c-var-val-input" style="font-size:0.85rem; color:var(--text-secondary); display:block; margin-bottom:4px;">Вводимое значение:</label>
+                <input type="text" id="c-var-val-input" class="c-var-val" value="42" style="background:#090c13; border:1px solid var(--border-bright); color:#fff; padding:0.45rem 0.85rem; border-radius:6px; font-family:var(--font-mono); font-size:0.9rem; width:100%; outline:none;">
+              </div>
+            </div>
+
+            <div style="margin-bottom:1rem;">
+              <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.9rem; color:var(--text-secondary); cursor:pointer;">
+                <input type="checkbox" class="c-var-ampersand" checked style="accent-color:var(--accent-indigo); width:16px; height:16px;">
+                <span>Передавать адрес через амперсанд <code>&amp;my_var</code> (корректный Си-код)</span>
+              </label>
+            </div>
+
+            <div class="interactive-controls">
+              <button class="btn-run-code" data-action="c-run-variables">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                <span>Выполнить scanf() и инспектировать RAM</span>
+              </button>
+            </div>
+
+            <div class="playground-live-terminal">
+              <span class="terminal-prompt">&gt; memory-debugger:</span>
+              <span class="terminal-output" style="color: var(--text-dim);">Нажмите кнопку выше для инспекции ячейки памяти и размера в байтах...</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 5: Quiz -->
+        <section class="lesson-section">
+          <div class="quiz-section">
+            <div class="quiz-badge">🧠 Проверь себя (Мини-квиз)</div>
+            <div class="quiz-question">
+              У вас есть переменная типа <code>double speed;</code>. Какая из следующих строчек корректно считает с клавиатуры число с плавающей точкой в эту переменную?
+            </div>
+
+            <div class="quiz-options">
+              <button class="quiz-btn" data-correct="false" data-explanation="Спецификатор %d предназначен для целых чисел (int), а не для double. Кроме того, потерян знак адреса &amp;.">
+                <span class="quiz-option-marker">A</span>
+                <span>scanf("%d", speed);</span>
+              </button>
+
+              <button class="quiz-btn" data-correct="false" data-explanation="Для вывода через printf() действительно допустим %f, но функция scanf() для типа double строго требует спецификатор %lf (long float), иначе произойдет повреждение памяти (запись 4 байт вместо 8).">
+                <span class="quiz-option-marker">B</span>
+                <span>scanf("%f", &amp;speed);</span>
+              </button>
+
+              <button class="quiz-btn" data-correct="true" data-explanation="Идеально! Для переменной типа double в scanf используется строго спецификатор %lf, а перед именем переменной обязательно стоит оператор взятия адреса &amp;.">
+                <span class="quiz-option-marker">C</span>
+                <span>scanf("%lf", &amp;speed);</span>
+              </button>
+
+              <button class="quiz-btn" data-correct="false" data-explanation="Спецификатор %s предназначен для строк (массивов символов), а не для чисел с плавающей точкой double.">
+                <span class="quiz-option-marker">D</span>
+                <span>scanf("%s", &amp;speed);</span>
+              </button>
+            </div>
+
+            <div class="quiz-feedback"></div>
+          </div>
+        </section>
+
+        <!-- Mini-Challenge Callout -->
+        <div class="callout callout-task">
+          <div class="callout-icon">🎯</div>
+          <div class="callout-content">
+            <div class="callout-title">Задание: Конвертер температур</div>
+            <p>
+              Напишите программу на Си, которая:
+            </p>
+            <ol style="margin: 0.5rem 0 0.5rem 1.25rem; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">
+              <li>Объявляет переменную <code>float celsius;</code>.</li>
+              <li>Спрашивает у пользователя температуру в градусах Цельсия через <code>scanf("%f", &amp;celsius);</code>.</li>
+              <li>Считает температуру по Фаренгейту по формуле: <code>float fahrenheit = (celsius * 9.0f / 5.0f) + 32.0f;</code></li>
+              <li>Выводит результат на экран с точностью до 1 знака после запятой (<code>%.1f</code>).</li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- Lesson Navigation Footer -->
+        <footer class="lesson-nav-footer">
+          <a href="01-intro.html" class="btn-lesson-nav btn-lesson-prev">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            <span>К Уроку 1</span>
+          </a>
+
+          <a href="03-conditions.html" class="btn-lesson-nav btn-finish-lesson">
+            <span>Завершить урок и перейти к Уроку 3</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </footer>
+
+      </article>
+    </main>
+  </div>
+
+  <!-- Course Scripts -->
+  <script src="../js/c-progress.js"></script>
+</body>
+</html>

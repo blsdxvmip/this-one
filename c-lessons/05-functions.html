@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Урок 5: Функции и основы указателей — C Starter</title>
+  <meta name="description" content="Урок 5: Прототипы и определение функций в Си, передача по значению, концепция адресов памяти &amp;, указатели * и разыменование.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/python-course.css">
+</head>
+<body class="course-page" data-lesson="5">
+
+  <!-- Unified Course Header -->
+  <header class="course-header">
+    <div class="header-left">
+      <button class="sidebar-toggle-btn" id="sidebar-toggle-btn" aria-label="Переключить меню уроков">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <a href="../index.html" class="course-brand">
+        <div class="course-brand-icon" style="background: linear-gradient(135deg, #3b82f6, #6366f1); box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);">⚡</div>
+        <div class="course-brand-text">
+          <h1>C Starter</h1>
+          <span>Курс по Си для начинающих</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="header-center">
+      <div class="progress-info">
+        <span id="progress-count-text">0 из 5 уроков завершено</span>
+        <span id="progress-percent-text">0%</span>
+      </div>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progress-bar-fill" style="width: 100%;"></div>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <a href="../c-practice.html" class="btn-nav-home" style="margin-right: 0.5rem; background: rgba(59, 130, 246, 0.12); border-color: rgba(59, 130, 246, 0.3); color: #60a5fa;">
+        <span>⚡ Практикум Си</span>
+      </a>
+      <a href="../index.html" class="btn-nav-home">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+        <span>На главную</span>
+      </a>
+    </div>
+  </header>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <!-- Layout Wrapper -->
+  <div class="course-layout">
+
+    <!-- Collapsible Sidebar Navigation -->
+    <aside class="course-sidebar" id="course-sidebar">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Программа курса Си</div>
+        <ul class="lesson-nav-list">
+          <li class="lesson-nav-item" id="nav-lesson-1">
+            <a href="01-intro.html">
+              <span class="lesson-number">1</span>
+              <span class="lesson-title-text">Введение & main() & printf()</span>
+              <span class="status-badge-icon"></span>
+            </a>
+          </li>
+          <li class="lesson-nav-item" id="nav-lesson-2">
+            <a href="02-variables.html">
+              <span class="lesson-number">2</span>
+              <span class="lesson-title-text">Типы данных, память & scanf()</span>
+              <span class="status-badge-icon"></span>
+            </a>
+          </li>
+          <li class="lesson-nav-item" id="nav-lesson-3">
+            <a href="03-conditions.html">
+              <span class="lesson-number">3</span>
+              <span class="lesson-title-text">Ветвления, логика & switch</span>
+              <span class="status-badge-icon"></span>
+            </a>
+          </li>
+          <li class="lesson-nav-item" id="nav-lesson-4">
+            <a href="04-loops.html">
+              <span class="lesson-number">4</span>
+              <span class="lesson-title-text">Циклы & статические массивы</span>
+              <span class="status-badge-icon"></span>
+            </a>
+          </li>
+          <li class="lesson-nav-item active" id="nav-lesson-5">
+            <a href="05-functions.html">
+              <span class="lesson-number">5</span>
+              <span class="lesson-title-text">Функции & основы указателей</span>
+              <span class="status-badge-icon"></span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="sidebar-section-title">Тренажер и Практика</div>
+        <ul class="lesson-nav-list">
+          <li class="lesson-nav-item" id="nav-practice">
+            <a href="../c-practice.html">
+              <span class="lesson-number">⚡</span>
+              <span class="lesson-title-text">Практикум Си (5 задач)</span>
+            </a>
+          </li>
+          <li class="lesson-nav-item">
+            <a href="../lessons/01-intro.html">
+              <span class="lesson-number">🐍</span>
+              <span class="lesson-title-text">Курс Python Starter</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-footer">
+        <div>C17 / GCC • Нативная скорость</div>
+        <div style="margin-top: 4px; color: var(--accent-cyan);">Интерактивный курс Си с нуля</div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="course-main">
+      <article class="lesson-article">
+
+        <!-- Hero Card -->
+        <div class="lesson-hero-card">
+          <div class="lesson-meta-pill">Урок 5 • Финал теории • Время: ~16 мин</div>
+          <h1>Урок 5: Функции и основы указателей</h1>
+          <p class="lesson-lead">
+            Поздравляем с выходом на финишную прямую теоретического курса! В этом уроке мы разберем главный супер-инструмент языка Си — <strong>указатели (pointers)</strong>. Указатели часто пугают новичков, но на самом деле их концепция предельно проста и наглядна. Мы разберем, зачем нужны прототипы функций, почему значения копируются при вызове и как указатели позволяют управлять памятью напрямую.
+          </p>
+        </div>
+
+        <!-- Section 1: Functions and Prototypes -->
+        <section class="lesson-section">
+          <h2><span class="section-idx">01.</span> Функции и загадка прототипов (Function Prototypes)</h2>
+          <p>
+            В Си программа компилируется компилятором сверху вниз в один проход. Представьте, что вы написали такой код:
+          </p>
+
+          <div class="code-window">
+            <div class="code-body">
+              <pre><span class="kw">#include</span> <span class="str">&lt;stdio.h&gt;</span>
+
+<span class="kw">int</span> <span class="fn">main</span>(<span class="kw">void</span>) {
+    <span class="kw">int</span> res = <span class="fn">calculate_sum</span>(<span class="num">10</span>, <span class="num">20</span>); <span class="cmt">// ОШИБКА: компилятор еще не знает о calculate_sum!</span>
+    <span class="fn">printf</span>(<span class="str">"%d\n"</span>, res);
+    <span class="kw">return</span> <span class="num">0</span>;
+}
+
+<span class="kw">int</span> <span class="fn">calculate_sum</span>(<span class="kw">int</span> a, <span class="kw">int</span> b) {
+    <span class="kw">return</span> a + b;
+}</pre>
+            </div>
+          </div>
+
+          <p>
+            Когда компилятор дойдет до вызова <code>calculate_sum</code> внутри <code>main</code>, он выдаст предупреждение или ошибку: <em>«implicit declaration of function»</em>. Ведь он ещё не прочитал строки ниже!
+          </p>
+
+          <div class="callout callout-tip">
+            <div class="callout-icon">📜</div>
+            <div class="callout-content">
+              <div class="callout-title">Прототип — это паспорт функции перед ее телом</div>
+              <p>
+                Чтобы код был аккуратным, а функция <code>main</code> оставалась вверху файла как оглавление книги, используют <strong>прототипы функций (forward declarations)</strong>.
+              </p>
+              <p>
+                Прототип — это просто заголовок функции с точкой с запятой в конце, помещенный <em>до</em> функции <code>main</code>:
+              </p>
+              <pre style="margin: 0.5rem 0; font-family: var(--font-mono); color: #38bdf8;">int calculate_sum(int a, int b); // Прототип: обещание компилятору</pre>
+              <p>
+                Компилятор видит прототип и говорит: <em>«Отлично! Я знаю, что функция принимает два целых числа и вернет int. Продолжаю сборку!»</em>. А саму реализацию вы спокойно размещаете внизу.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 2: Pass by Value -->
+        <section class="lesson-section">
+          <h2><span class="section-idx">02.</span> Передача аргументов по значению: Почему переменная не меняется?</h2>
+          <p>
+            Рассмотрим классическую попытку новичка увеличить число в функции:
+          </p>
+
+          <div class="code-window">
+            <div class="code-header">
+              <div class="code-dots">
+                <span class="code-dot dot-red"></span>
+                <span class="code-dot dot-yellow"></span>
+                <span class="code-dot dot-green"></span>
+              </div>
+              <div class="code-label">c • pass_by_value.c</div>
+              <button class="code-copy-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span>Копировать</span>
+              </button>
+            </div>
+            <div class="code-body">
+              <pre><span class="kw">#include</span> <span class="str">&lt;stdio.h&gt;</span>
+
+<span class="kw">void</span> <span class="fn">add_ten</span>(<span class="kw">int</span> num) {
+    num = num + <span class="num">10</span>; <span class="cmt">// Изменяется только ЛОКАЛЬНАЯ копия в стеке!</span>
+}
+
+<span class="kw">int</span> <span class="fn">main</span>(<span class="kw">void</span>) {
+    <span class="kw">int</span> score = <span class="num">50</span>;
+    <span class="fn">add_ten</span>(score);
+    <span class="fn">printf</span>(<span class="str">"Счет: %d\n"</span>, score); <span class="cmt">// На экране по-прежнему 50!</span>
+    <span class="kw">return</span> <span class="num">0</span>;
+}</pre>
+            </div>
+          </div>
+
+          <p>
+            В Си параметры функций передаются строго <strong>по значению (pass-by-value)</strong>. Это значит, что значение <code>50</code> было скопировано в новую, отдельную ячейку памяти аргумента <code>num</code>. Когда функция <code>add_ten</code> завершилась, эта временная ячейка была уничтожена. Переменная <code>score</code> в <code>main</code> осталась нетронутой!
+          </p>
+          <p>
+            Как же заставить функцию изменить оригинальную переменную? <strong>Передать её адрес с помощью указателя!</strong>
+          </p>
+        </section>
+
+        <!-- Section 3: Pointers Explained Simply -->
+        <section class="lesson-section">
+          <h2><span class="section-idx">03.</span> Указатели: Адрес против Содержимого</h2>
+          <p>
+            Что такое указатель? Снимите ореол таинственности:
+          </p>
+          <div class="callout callout-tip">
+            <div class="callout-icon">🎯</div>
+            <div class="callout-content">
+              <div class="callout-title">Указатель — это просто переменная, хранящая числовой адрес другой ячейки памяти</div>
+              <p>
+                Обычная переменная <code>int x = 42;</code> хранит число <strong>42</strong>.<br>
+                Указатель <code>int *p = &amp;x;</code> хранит числовой адрес — например, <strong>0x7ffd510</strong>.
+              </p>
+            </div>
+          </div>
+
+          <div class="analogy-card">
+            <div class="analogy-header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Аналогия: Записка с адресом банковской ячейки</span>
+            </div>
+            <div class="analogy-body">
+              Представьте, что у вас в сейфе лежат золотые слитки (переменная <code>x</code>). Вместо того чтобы носить тяжелый сейф с собой, вы берете клочок бумаги и записываете на нем: <em>«Банк ВТБ, сейф № 402»</em> (это указатель <code>p</code>). Вы можете передать эту записку любому доверенному лицу (функции), и этот человек придет прямо к сейфу № 402 и положит туда новое золото!
+            </div>
+          </div>
+
+          <h3>Два главных оператора при работе с указателями:</h3>
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1.25rem; margin: 1rem 0;">
+            <ul style="margin-left: 1.25rem; color: var(--text-secondary); line-height: 2;">
+              <li>
+                <strong style="color: var(--accent-cyan); font-family: var(--font-mono); font-size: 1.1rem;">&amp; (Взятие адреса):</strong> 
+                «Скажи мне, по какому адресу в RAM лежит эта переменная?» (например, <code>&amp;x</code>).
+              </li>
+              <li>
+                <strong style="color: var(--syntax-builtin); font-family: var(--font-mono); font-size: 1.1rem;">* (Разыменование):</strong> 
+                «Иди по сохраненному адресу и возьми то, что там лежит!» (например, <code>*ptr = 100;</code>).
+              </li>
+            </ul>
+          </div>
+
+          <h3>Правильный код с изменением через указатель:</h3>
+          <div class="code-window">
+            <div class="code-header">
+              <div class="code-dots">
+                <span class="code-dot dot-red"></span>
+                <span class="code-dot dot-yellow"></span>
+                <span class="code-dot dot-green"></span>
+              </div>
+              <div class="code-label">c • pass_by_pointer.c</div>
+              <button class="code-copy-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span>Копировать</span>
+              </button>
+            </div>
+            <div class="code-body">
+              <pre><span class="kw">#include</span> <span class="str">&lt;stdio.h&gt;</span>
+
+<span class="cmt">// Функция принимает УКАЗАТЕЛЬ на int (адрес ячейки памяти)</span>
+<span class="kw">void</span> <span class="fn">add_ten_real</span>(<span class="kw">int</span> *ptr) {
+    *ptr = *ptr + <span class="num">10</span>; <span class="cmt">// Разыменование: идем по адресу и прибавляем 10 к оригиналу!</span>
+}
+
+<span class="kw">int</span> <span class="fn">main</span>(<span class="kw">void</span>) {
+    <span class="kw">int</span> score = <span class="num">50</span>;
+    <span class="fn">add_ten_real</span>(&amp;score); <span class="cmt">// Передаем АДРЕС переменной score через &amp;</span>
+    <span class="fn">printf</span>(<span class="str">"Обновленный счет: %d\n"</span>, score); <span class="cmt">// Выведет: 60!</span>
+    <span class="kw">return</span> <span class="num">0</span>;
+}</pre>
+            </div>
+            <div class="code-output">
+              <div class="output-label">Результат:</div>
+              <div class="output-text">Обновленный счет: 60</div>
+            </div>
+          </div>
+          <p style="font-size: 0.95rem; color: var(--text-secondary);">
+            💡 <em>Теперь вы понимаете, почему во втором уроке мы писали <code>scanf("%d", &amp;var)</code>! Функция <code>scanf</code> принимает указатель <code>int *</code>, чтобы записать ввод пользователя прямо в вашу переменную в памяти!</em>
+          </p>
+        </section>
+
+        <!-- Section 4: Interactive Pointer Sandbox -->
+        <section class="lesson-section">
+          <div class="playground-box">
+            <div class="playground-badge">⚡ Интерактивный тренажер указателей</div>
+            <h3 class="playground-title">Прямое изменение памяти через разыменование *ptr</h3>
+            <p class="playground-desc">
+              Ниже смоделированы две ячейки памяти: переменная <code>int x</code> и указатель <code>int *p = &amp;x</code>. Введите новое число и выполните операцию. Наблюдайте, как разыменование указателя изменяет оригинальную переменную:
+            </p>
+
+            <div style="margin-bottom: 1rem; display:flex; flex-wrap:wrap; gap:0.75rem; align-items:center;">
+              <label for="c-ptr-val-field" style="font-size:0.9rem; color:var(--text-secondary);">Новое число для записи:</label>
+              <input type="number" id="c-ptr-val-field" class="c-ptr-val" value="99" style="background:#090c13; border:1px solid var(--border-bright); color:#fff; padding:0.45rem 0.85rem; border-radius:6px; font-family:var(--font-mono); font-size:0.9rem; width:120px; outline:none;">
+            </div>
+
+            <div style="margin-bottom:1rem;">
+              <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.9rem; color:var(--text-secondary); cursor:pointer;">
+                <input type="checkbox" class="c-ptr-mode" checked style="accent-color:var(--accent-indigo); width:16px; height:16px;">
+                <span>Записывать значение через разыменование указателя (<code>*p = val;</code>)</span>
+              </label>
+            </div>
+
+            <div class="interactive-controls">
+              <button class="btn-run-code" data-action="c-run-pointers">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                <span>Выполнить инструкцию памяти</span>
+              </button>
+            </div>
+
+            <div class="playground-live-terminal">
+              <span class="terminal-prompt">&gt; pointer-debugger:</span>
+              <span class="terminal-output" style="color: var(--text-dim);">Нажмите кнопку выше, чтобы запустить симуляцию адресации в RAM...</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 5: Course Completion Checklist -->
+        <section class="lesson-section">
+          <h2><span class="section-idx">05.</span> Итоговый чек-лист знаний языка Си</h2>
+          <p>
+            Вы прошли всю базовую теоретическую программу! Сравните свой багаж знаний с чек-листом профессионала:
+          </p>
+
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-medium); border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;">
+              <div style="display:flex; gap:0.5rem; align-items:flex-start;">
+                <span style="color:#10b981; font-weight:bold;">✓</span>
+                <div>
+                  <strong>Компиляция и GCC:</strong>
+                  <div style="font-size:0.85rem; color:var(--text-muted);">Разница с интерпретатором, стадии сборки, main(), stdio.h</div>
+                </div>
+              </div>
+
+              <div style="display:flex; gap:0.5rem; align-items:flex-start;">
+                <span style="color:#10b981; font-weight:bold;">✓</span>
+                <div>
+                  <strong>Типы и память:</strong>
+                  <div style="font-size:0.85rem; color:var(--text-muted);">int, float, double, char, байты, scanf("%d", &amp;val)</div>
+                </div>
+              </div>
+
+              <div style="display:flex; gap:0.5rem; align-items:flex-start;">
+                <span style="color:#10b981; font-weight:bold;">✓</span>
+                <div>
+                  <strong>Логика Си:</strong>
+                  <div style="font-size:0.85rem; color:var(--text-muted);">0 — ложь, не 0 — истина, if/else, switch/case и break</div>
+                </div>
+              </div>
+
+              <div style="display:flex; gap:0.5rem; align-items:flex-start;">
+                <span style="color:#10b981; font-weight:bold;">✓</span>
+                <div>
+                  <strong>Массивы и циклы:</strong>
+                  <div style="font-size:0.85rem; color:var(--text-muted);">for, while, do-while, непрерывная память arr[5], Buffer Overflow</div>
+                </div>
+              </div>
+
+              <div style="display:flex; gap:0.5rem; align-items:flex-start;">
+                <span style="color:#10b981; font-weight:bold;">✓</span>
+                <div>
+                  <strong>Функции и Указатели:</strong>
+                  <div style="font-size:0.85rem; color:var(--text-muted);">Прототипы, взятие адреса &amp;, разыменование *ptr</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 6: Quiz -->
+        <section class="lesson-section">
+          <div class="quiz-section">
+            <div class="quiz-badge">🧠 Финальный квиз курса</div>
+            <div class="quiz-question">
+              Что произойдет при выполнении следующего кода?<br>
+              <code>int a = 5; int *p = &amp;a; *p = 12; printf("%d\n", a);</code>
+            </div>
+
+            <div class="quiz-options">
+              <button class="quiz-btn" data-correct="false" data-explanation="Переменная а не останется равной 5, так как инструкция *p = 12 разыменовывает указатель и меняет значение именно в ячейке а.">
+                <span class="quiz-option-marker">A</span>
+                <span>Напечатается 5, так как значение а не перезаписывалось напрямую</span>
+              </button>
+
+              <button class="quiz-btn" data-correct="true" data-explanation="Великолепно! Указатель р хранит адрес переменной а. Инструкция *p = 12 переходит по этому адресу в память и записывает туда число 12. Поэтому переменная а теперь хранит 12!">
+                <span class="quiz-option-marker">B</span>
+                <span>Напечатается 12, так как *p обращается напрямую к ячейке памяти переменной a</span>
+              </button>
+
+              <button class="quiz-btn" data-correct="false" data-explanation="На экран выведется именно значение, а не шестнадцатеричный адрес памяти (для адреса использовался бы спецификатор %p и сам указатель p).">
+                <span class="quiz-option-marker">C</span>
+                <span>Напечатается шестнадцатеричный адрес памяти вроде 0x7ffd510</span>
+              </button>
+
+              <button class="quiz-btn" data-correct="false" data-explanation="Синтаксис абсолютно валиден и каноничен для языка Си.">
+                <span class="quiz-option-marker">D</span>
+                <span>Ошибка компиляции: нельзя присваивать число указателю</span>
+              </button>
+            </div>
+
+            <div class="quiz-feedback"></div>
+          </div>
+        </section>
+
+        <!-- Grand Celebration & CTA to Practice -->
+        <div class="callout callout-tip" style="border-color: rgba(59, 130, 246, 0.4); background: rgba(59, 130, 246, 0.08);">
+          <div class="callout-icon">🚀</div>
+          <div class="callout-content">
+            <div class="callout-title">Пора переходить к написанию реального Си-кода!</div>
+            <p>
+              Теория без практики быстро забывается. В интерактивном практикуме вас ждут 5 задач с автотестами прямо в браузере: от первой программы до калькулятора сдачи, фейсконтроля и анализа массивов.
+            </p>
+            <div style="margin-top: 1rem;">
+              <a href="../c-practice.html" class="btn btn-primary" style="display:inline-flex; align-items:center; gap:0.5rem; text-decoration:none;">
+                <span>⚡ Перейти к практикуму Си (5 задач)</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lesson Navigation Footer -->
+        <footer class="lesson-nav-footer">
+          <a href="04-loops.html" class="btn-lesson-nav btn-lesson-prev">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 19"></polyline></svg>
+            <span>К Уроку 4</span>
+          </a>
+
+          <a href="../c-practice.html" class="btn-lesson-nav btn-finish-lesson" style="background: linear-gradient(135deg, #3b82f6, #6366f1); border-color: transparent;">
+            <span>Перейти к практикуму Си</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </footer>
+
+      </article>
+    </main>
+  </div>
+
+  <!-- Course Scripts -->
+  <script src="../js/c-progress.js"></script>
+</body>
+</html>

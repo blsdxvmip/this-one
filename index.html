@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Python Start — Изучение Python с нуля | Интерактивный курс</title>
-  <meta name="description" content="Бесплатный интерактивный многостраничный курс по изучению Python с абсолютного нуля. 5 детальных уроков и 5 практических задач с автоматической проверкой.">
+  <title>DevStarter — Интерактивные курсы программирования: Python & Си (C)</title>
+  <meta name="description" content="Бесплатные многостраничные интерактивные курсы по Python и Си (C) с нуля. 10 подробных уроков, симуляторы памяти и 10 практических задач с автоматической проверкой прямо в браузере.">
   
   <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐍</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="styles/main.css">
@@ -15,29 +15,23 @@
 </head>
 <body class="course-page">
 
-  <!-- Interactive 60fps Particle Background Canvas -->
-  <canvas id="bg-canvas"></canvas>
-
-  <!-- Ambient Glow Background Orbs -->
-  <div class="ambient-glow glow-indigo" style="top: 5%; left: 15%; width: 550px; height: 550px;"></div>
-  <div class="ambient-glow glow-cyan" style="top: 35%; right: 10%; width: 500px; height: 500px;"></div>
-  <div class="ambient-glow glow-violet" style="top: 75%; left: 25%; width: 600px; height: 600px;"></div>
-
   <!-- Top Sticky Header -->
   <header class="course-header">
     <div class="course-header-container">
       <div class="course-brand">
         <a href="index.html" class="brand-link">
-          <span class="brand-icon">🐍</span>
-          <span class="brand-title">Python Start</span>
-          <span class="brand-tag">v1.0</span>
+          <span class="brand-icon">💻</span>
+          <span class="brand-title">DevStarter</span>
+          <span class="brand-tag">v2.0</span>
         </a>
       </div>
 
       <nav class="course-nav">
         <a href="index.html" class="nav-item active">Главная</a>
-        <a href="lessons/01-intro.html" class="nav-item">Уроки</a>
-        <a href="practice.html" class="nav-item">Практикум (5 задач)</a>
+        <a href="lessons/01-intro.html" class="nav-item">🐍 Уроки Python</a>
+        <a href="practice.html" class="nav-item">🐍 Практикум Python</a>
+        <a href="c-lessons/01-intro.html" class="nav-item">⚡ Уроки Си</a>
+        <a href="c-practice.html" class="nav-item">⚡ Практикум Си</a>
         <a href="https://github.com/blsdxvmip/this-one" target="_blank" rel="noopener noreferrer" class="nav-item github-link">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
@@ -45,82 +39,108 @@
           <span>GitHub</span>
         </a>
       </nav>
-
-      <div class="course-progress-badge">
-        <div class="progress-label">
-          <span>Прогресс курса:</span>
-          <strong id="progress-percent-text">0%</strong>
-        </div>
-        <div class="progress-bar-wrap">
-          <div class="progress-bar-fill" id="progress-bar-fill" style="width: 0%;"></div>
-        </div>
-      </div>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section class="section section-hero" style="padding-top: 7.5rem; min-height: 80vh;">
+  <section class="section section-hero" style="padding-top: 6.5rem; min-height: 75vh;">
     <div class="container hero-content">
       <div class="hero-badge">
-        <span class="hero-badge-tag">Курс для начинающих</span>
-        <span>Старт с абсолютного нуля • Интерактивно</span>
+        <span class="hero-badge-tag">Открытая платформа</span>
+        <span>Старт с абсолютного нуля • Интерактивно в браузере</span>
       </div>
 
-      <h1 class="hero-title">
-        Изучай Python.<br>
-        <span class="title-cyber">С нуля до первого кода.</span>
+      <h1 class="hero-title" style="letter-spacing: -0.03em;">
+        Два языка. Два фундамента.<br>
+        <span style="color: #60a5fa;">Python и Си (C).</span>
       </h1>
 
       <p class="hero-subtitle">
-        Простые аналогии без заумных терминов, 5 структурированных пошаговых уроков и интерактивный тренажер с 5 реальными задачами и автоматической проверкой решений.
+        Выбирайте свой путь: высокоуровневый и дружелюбный <strong>Python</strong> для автоматизации и алгоритмов, либо низкоуровневый и быстрый <strong>Си (C)</strong> для глубокого понимания памяти и системного программирования. Без установки компиляторов — всё запускается и тестируется прямо на страницах сайта.
       </p>
 
-      <div class="hero-actions">
-        <a href="lessons/01-intro.html" class="btn btn-primary">
-          <span>Начать Урок 1: Первая строка</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
-          </svg>
-        </a>
-        <a href="practice.html" class="btn btn-secondary">
-          <span>⚡ Интерактивный практикум</span>
-        </a>
+      <!-- Primary Track Cards in Hero -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; width: 100%; max-width: 860px; margin-bottom: 2.5rem; text-align: left;">
+        
+        <!-- Track 1: Python -->
+        <div style="background: var(--bg-secondary); border: 1px solid var(--border-medium); border-radius: 12px; padding: 1.75rem; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
+              <span style="font-size: 2rem;">🐍</span>
+              <span style="font-size: 0.75rem; font-family: var(--font-mono); color: #34d399; background: rgba(52, 211, 153, 0.1); border: 1px solid rgba(52, 211, 153, 0.3); padding: 0.2rem 0.5rem; border-radius: 9999px;">Легкий старт</span>
+            </div>
+            <h3 style="font-size: 1.25rem; font-weight: 700; color: #f4f4f5; margin-bottom: 0.5rem;">Курс Python с нуля</h3>
+            <p style="font-size: 0.9rem; color: #a1a1aa; line-height: 1.6; margin-bottom: 1.25rem;">
+              Синтаксис, переменные, f-строки, списки, циклы, функции и решение 5 практических задач в интерактивной песочнице.
+            </p>
+          </div>
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <a href="lessons/01-intro.html" class="btn btn-primary" style="flex: 1; min-width: 140px; justify-content: center;">
+              <span>Начать уроки</span>
+            </a>
+            <a href="practice.html" class="btn btn-secondary" style="flex: 1; min-width: 140px; justify-content: center;">
+              <span>Тренажер (5 задач)</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Track 2: C -->
+        <div style="background: var(--bg-secondary); border: 1px solid var(--border-medium); border-radius: 12px; padding: 1.75rem; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
+              <span style="font-size: 2rem;">⚡</span>
+              <span style="font-size: 0.75rem; font-family: var(--font-mono); color: #60a5fa; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); padding: 0.2rem 0.5rem; border-radius: 9999px;">Фундамент CS</span>
+            </div>
+            <h3 style="font-size: 1.25rem; font-weight: 700; color: #f4f4f5; margin-bottom: 0.5rem;">Курс Си (C) с нуля</h3>
+            <p style="font-size: 0.9rem; color: #a1a1aa; line-height: 1.6; margin-bottom: 1.25rem;">
+              Компиляция, статическая типизация, оперативная память, scanf, указатели, массивы и 5 интерактивных задач на Си.
+            </p>
+          </div>
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <a href="c-lessons/01-intro.html" class="btn btn-primary" style="flex: 1; min-width: 140px; justify-content: center; background: #3b82f6;">
+              <span>Начать уроки</span>
+            </a>
+            <a href="c-practice.html" class="btn btn-secondary" style="flex: 1; min-width: 140px; justify-content: center;">
+              <span>Тренажер (5 задач)</span>
+            </a>
+          </div>
+        </div>
+
       </div>
 
       <div class="hero-status-bar">
         <div class="hero-status-item">
           <span class="status-dot"></span>
-          <span>Уроков: <strong>5 практических тем</strong></span>
+          <span>Всего уроков: <strong>10 пошаговых тем</strong></span>
         </div>
         <div class="hero-status-item">
-          <span class="status-dot cyan"></span>
-          <span>Задач в тренажере: <strong>5 задач с автотестами</strong></span>
+          <span class="status-dot"></span>
+          <span>Задач в практикуме: <strong>10 задач с автопроверкой</strong></span>
         </div>
         <div class="hero-status-item">
-          <span>Установка: <strong>Не требуется (работает в браузере)</strong></span>
+          <span>Установка компиляторов: <strong>Не требуется</strong></span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Program Roadmap Section -->
-  <section class="section" id="lessons-roadmap">
+  <!-- Program Roadmap Section: Python -->
+  <section class="section" id="python-roadmap" style="border-top: 1px solid var(--border-subtle); padding-top: 4.5rem;">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag cyan">УЧЕБНЫЙ ПЛАН</span>
-        <h2 class="section-title">5 шагов от новичка к коду</h2>
-        <p class="section-subtitle">Каждый урок занимает всего 7–10 минут и включает интерактивные примеры с самопроверкой.</p>
+        <span class="section-tag">🐍 ТРЕК 1</span>
+        <h2 class="section-title">Программа курса по Python (5 уроков)</h2>
+        <p class="section-subtitle">Освойте основы одного из самых популярных языков мира всего за несколько практических занятий.</p>
       </div>
 
       <div class="bento-grid">
         <!-- Lesson 1 Card -->
         <a href="lessons/01-intro.html" class="bento-card bento-span-6 tilt-card" style="text-decoration: none;">
           <div>
-            <div class="bento-icon-box cyan">01</div>
+            <div class="bento-icon-box">01</div>
             <h3 class="bento-title">Урок 1: Первая строка кода</h3>
             <p class="bento-desc">
-              Как компьютер понимает программы, зачем нужен Python, функция <code>print()</code>, строки и защита от типичных синтаксических ошибок.
+              Как компьютер понимает программы, интерпретатор Python, функция <code>print()</code>, строки и защита от типичных синтаксических ошибок.
             </p>
           </div>
           <div class="bento-tags">
@@ -133,7 +153,7 @@
         <!-- Lesson 2 Card -->
         <a href="lessons/02-variables.html" class="bento-card bento-span-6 tilt-card" style="text-decoration: none;">
           <div>
-            <div class="bento-icon-box indigo">02</div>
+            <div class="bento-icon-box">02</div>
             <h3 class="bento-title">Урок 2: Переменные и типы данных</h3>
             <p class="bento-desc">
               Метафора подписанных коробок, числа, текст, ввод пользователя через <code>input()</code> и современные f-строки для форматирования.
@@ -149,71 +169,201 @@
         <!-- Lesson 3 Card -->
         <a href="lessons/03-conditions.html" class="bento-card bento-span-4 tilt-card" style="text-decoration: none;">
           <div>
-            <div class="bento-icon-box violet">03</div>
-            <h3 class="bento-title">Урок 3: Ветвления if / else</h3>
+            <div class="bento-icon-box">03</div>
+            <h3 class="bento-title">Урок 3: Логика и ветвления</h3>
             <p class="bento-desc">
-              Логика принятия решений, правила 4 пробелов для отступов, операторы сравнения и связки <code>and</code>, <code>or</code>, <code>not</code>.
+              Операторы <code>if</code>, <code>elif</code>, <code>else</code>, логические связки <code>and</code>, <code>or</code>, <code>not</code>.
             </p>
           </div>
           <div class="bento-tags">
             <span class="bento-tag">if / elif / else</span>
-            <span class="bento-tag">Булевы типы</span>
+            <span class="bento-tag">Логика</span>
           </div>
         </a>
 
         <!-- Lesson 4 Card -->
         <a href="lessons/04-loops.html" class="bento-card bento-span-4 tilt-card" style="text-decoration: none;">
           <div>
-            <div class="bento-icon-box cyan">04</div>
-            <h3 class="bento-title">Урок 4: Списки и циклы</h3>
+            <div class="bento-icon-box">04</div>
+            <h3 class="bento-title">Урок 4: Циклы и списки</h3>
             <p class="bento-desc">
-              Автоматизация рутины: цикл <code>for</code>, волшебный генератор <code>range()</code>, списки и защита от зацикливания в <code>while</code>.
+              Повторение действий без копипаста: циклы <code>for</code> и <code>while</code>, списки, методы <code>append</code>, <code>len()</code>, <code>sum()</code>.
             </p>
           </div>
           <div class="bento-tags">
-            <span class="bento-tag">for ... in</span>
-            <span class="bento-tag">range()</span>
-            <span class="bento-tag">Списки []</span>
+            <span class="bento-tag">for / while</span>
+            <span class="bento-tag">Списки list</span>
           </div>
         </a>
 
         <!-- Lesson 5 Card -->
         <a href="lessons/05-functions.html" class="bento-card bento-span-4 tilt-card" style="text-decoration: none;">
           <div>
-            <div class="bento-icon-box indigo">05</div>
-            <h3 class="bento-title">Урок 5: Функции</h3>
+            <div class="bento-icon-box">05</div>
+            <h3 class="bento-title">Урок 5: Функции и чистый код</h3>
             <p class="bento-desc">
-              Принцип DRY, создание собственных инструментов через <code>def</code>, параметры, аргументы и принципиальная разница между <code>print</code> и <code>return</code>.
+              Создание собственных команд с <code>def</code>, передача аргументов, инструкция <code>return</code> и переход в практикум.
             </p>
           </div>
           <div class="bento-tags">
             <span class="bento-tag">def</span>
             <span class="bento-tag">return</span>
-            <span class="bento-tag">Параметры</span>
+            <span class="bento-tag">Практикум</span>
           </div>
+        </a>
+      </div>
+
+      <div style="text-align: center; margin-top: 2rem;">
+        <a href="practice.html" class="btn btn-secondary">
+          <span>Перейти к 5 практическим задачам по Python &rarr;</span>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Practice Arena Feature Callout -->
-  <section class="section" style="padding-top: 2rem;">
+  <!-- Program Roadmap Section: C Language -->
+  <section class="section" id="c-roadmap" style="border-top: 1px solid var(--border-subtle); padding-top: 4.5rem;">
     <div class="container">
-      <div class="cta-banner">
-        <div class="cta-banner-content">
-          <span class="section-tag cyan" style="margin-bottom: 1rem;">ИНТЕРАКТИВНЫЙ ТРЕНАЖЕР</span>
-          <h2 class="cta-title">5 практических задач с автопроверкой</h2>
-          <p class="cta-desc">
-            Закрепите теорию на практике: пишите код прямо в браузере, запускайте автотесты, получайте подробные подсказки при затруднениях и сохраняйте свой прогресс.
-          </p>
-          <div class="cta-actions">
-            <a href="practice.html" class="btn btn-primary">
-              <span>Открыть практикум &rarr;</span>
-            </a>
-            <a href="lessons/01-intro.html" class="btn btn-secondary">
-              <span>Пройти уроки по порядку</span>
-            </a>
+      <div class="section-header">
+        <span class="section-tag">⚡ ТРЕК 2</span>
+        <h2 class="section-title">Программа курса по языку Си (C) (5 уроков)</h2>
+        <p class="section-subtitle">Погрузитесь в фундамент программирования, поймите устройство памяти и компиляторов.</p>
+      </div>
+
+      <div class="bento-grid">
+        <!-- C Lesson 1 -->
+        <a href="c-lessons/01-intro.html" class="bento-card bento-span-6 tilt-card" style="text-decoration: none;">
+          <div>
+            <div class="bento-icon-box">01</div>
+            <h3 class="bento-title">Урок 1: Введение в Си и компилятор</h3>
+            <p class="bento-desc">
+              Зачем учить Си, компиляция vs интерпретация, заголовочные файлы <code>#include &lt;stdio.h&gt;</code>, точка входа <code>int main(void)</code>, вывод через <code>printf</code> и точки с запятой.
+            </p>
           </div>
+          <div class="bento-tags">
+            <span class="bento-tag">main()</span>
+            <span class="bento-tag">printf()</span>
+            <span class="bento-tag">GCC / Clang</span>
+          </div>
+        </a>
+
+        <!-- C Lesson 2 -->
+        <a href="c-lessons/02-variables.html" class="bento-card bento-span-6 tilt-card" style="text-decoration: none;">
+          <div>
+            <div class="bento-icon-box">02</div>
+            <h3 class="bento-title">Урок 2: Переменные, типы данных и ввод</h3>
+            <p class="bento-desc">
+              Статическая типизация, размеры типов в байтах: <code>int</code> (%d), <code>float</code> (%f), <code>double</code> (%lf), <code>char</code> (%c), функция <code>scanf()</code> и оператор взятия адреса <code>&amp;</code>.
+            </p>
+          </div>
+          <div class="bento-tags">
+            <span class="bento-tag">int/float/char</span>
+            <span class="bento-tag">scanf()</span>
+            <span class="bento-tag">&amp; адрес</span>
+          </div>
+        </a>
+
+        <!-- C Lesson 3 -->
+        <a href="c-lessons/03-conditions.html" class="bento-card bento-span-4 tilt-card" style="text-decoration: none;">
+          <div>
+            <div class="bento-icon-box">03</div>
+            <h3 class="bento-title">Урок 3: Ветвления и логика в Си</h3>
+            <p class="bento-desc">
+              Условные конструкции <code>if</code>, <code>else if</code>, <code>else</code>, логические операторы <code>&amp;&amp;</code>, <code>||</code>, <code>!</code>, представление истины (0 — ложь, не 0 — истина) и оператор <code>switch/case</code>.
+            </p>
+          </div>
+          <div class="bento-tags">
+            <span class="bento-tag">if / else</span>
+            <span class="bento-tag">&amp;&amp; || !</span>
+            <span class="bento-tag">switch / case</span>
+          </div>
+        </a>
+
+        <!-- C Lesson 4 -->
+        <a href="c-lessons/04-loops.html" class="bento-card bento-span-4 tilt-card" style="text-decoration: none;">
+          <div>
+            <div class="bento-icon-box">04</div>
+            <h3 class="bento-title">Урок 4: Циклы и статические массивы</h3>
+            <p class="bento-desc">
+              Циклы <code>for (int i=0; i&lt;N; i++)</code>, <code>while</code>, <code>do-while</code>, непрерывная память массивов, индексация с 0 и защита от переполнения буфера.
+            </p>
+          </div>
+          <div class="bento-tags">
+            <span class="bento-tag">for / while</span>
+            <span class="bento-tag">int arr[N]</span>
+            <span class="bento-tag">Buffer overflow</span>
+          </div>
+        </a>
+
+        <!-- C Lesson 5 -->
+        <a href="c-lessons/05-functions.html" class="bento-card bento-span-4 tilt-card" style="text-decoration: none;">
+          <div>
+            <div class="bento-icon-box">05</div>
+            <h3 class="bento-title">Урок 5: Функции и основы указателей</h3>
+            <p class="bento-desc">
+              Прототипы и объявления функций, передача аргументов по значению, адреса переменных и указатели (<code>*ptr</code>, <code>&amp;var</code>), итоговый чек-лист.
+            </p>
+          </div>
+          <div class="bento-tags">
+            <span class="bento-tag">Прототипы</span>
+            <span class="bento-tag">* Указатели</span>
+            <span class="bento-tag">&amp; Адреса</span>
+          </div>
+        </a>
+      </div>
+
+      <div style="text-align: center; margin-top: 2rem;">
+        <a href="c-practice.html" class="btn btn-secondary">
+          <span>Перейти к 5 практическим задачам по Си &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Arenas Showcase -->
+  <section class="section" style="border-top: 1px solid var(--border-subtle); padding: 5rem 0;">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">ПРАКТИКУМ С АВТОПРОВЕРКОЙ</span>
+        <h2 class="section-title">Пишите код прямо в браузере</h2>
+        <p class="section-subtitle">Запускайте автотесты в один клик. Никаких настроек — встроенные интерпретатор и симулятор.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+        <!-- Python Arena Card -->
+        <div style="background: var(--bg-secondary); border: 1px solid var(--border-medium); border-radius: 12px; padding: 2rem;">
+          <div style="font-size: 1.5rem; margin-bottom: 0.75rem;">🐍 Практикум Python</div>
+          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.25rem;">
+            5 задач: от форматированного вывода и расчета сдачи до фейсконтроля, фильтрации списков и классического шифра Цезаря.
+          </p>
+          <ul style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 1.5rem; padding-left: 1.25rem; line-height: 1.7;">
+            <li>Задача 1: Приветствие с f-строкой</li>
+            <li>Задача 2: Функция расчета сдачи</li>
+            <li>Задача 3: Проверка клубного пропуска</li>
+            <li>Задача 4: Анализ четных чисел</li>
+            <li>Задача 5: Шифр Цезаря</li>
+          </ul>
+          <a href="practice.html" class="btn btn-primary" style="width: 100%; justify-content: center;">
+            <span>Открыть тренажер Python</span>
+          </a>
+        </div>
+
+        <!-- C Arena Card -->
+        <div style="background: var(--bg-secondary); border: 1px solid var(--border-medium); border-radius: 12px; padding: 2rem;">
+          <div style="font-size: 1.5rem; margin-bottom: 0.75rem;">⚡ Практикум Си (C)</div>
+          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.25rem;">
+            5 задач на Си: от вывода через printf и арифметики до фейсконтроля доступа, подсчета суммы четных в массиве и алгоритма power.
+          </p>
+          <ul style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 1.5rem; padding-left: 1.25rem; line-height: 1.7;">
+            <li>Задача 1: Привет, Си! (printf)</li>
+            <li>Задача 2: Калькулятор сдачи</li>
+            <li>Задача 3: Фейсконтроль доступа</li>
+            <li>Задача 4: Анализ массива (sum_evens)</li>
+            <li>Задача 5: Возведение в степень (power)</li>
+          </ul>
+          <a href="c-practice.html" class="btn btn-primary" style="width: 100%; justify-content: center; background: #3b82f6;">
+            <span>Открыть тренажер Си</span>
+          </a>
         </div>
       </div>
     </div>
@@ -225,56 +375,57 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="#" class="course-brand">
-            <span class="brand-icon">🐍</span>
-            <span class="brand-title">Python Start</span>
+            <span class="brand-icon">💻</span>
+            <span class="brand-title">DevStarter</span>
           </a>
           <p class="footer-desc">
-            Современный интерактивный образовательный ресурс по программированию на Python с нуля.
+            Современная платформа для быстрого старта в программировании. Практика без лишней теории и сложных установок.
           </p>
         </div>
 
         <div>
-          <h4 class="footer-col-title">Уроки</h4>
+          <h4 class="footer-col-title">Курс Python</h4>
           <ul class="footer-links">
             <li><a href="lessons/01-intro.html" class="footer-link">Урок 1: Первая строка</a></li>
             <li><a href="lessons/02-variables.html" class="footer-link">Урок 2: Переменные</a></li>
-            <li><a href="lessons/03-conditions.html" class="footer-link">Урок 3: Ветвления</a></li>
+            <li><a href="lessons/03-conditions.html" class="footer-link">Урок 3: Условия</a></li>
             <li><a href="lessons/04-loops.html" class="footer-link">Урок 4: Циклы</a></li>
             <li><a href="lessons/05-functions.html" class="footer-link">Урок 5: Функции</a></li>
+            <li><a href="practice.html" class="footer-link" style="color: #60a5fa;">Практикум Python</a></li>
           </ul>
         </div>
 
         <div>
-          <h4 class="footer-col-title">Практикум</h4>
+          <h4 class="footer-col-title">Курс Си (C)</h4>
           <ul class="footer-links">
-            <li><a href="practice.html" class="footer-link">Задача 1: Приветствие</a></li>
-            <li><a href="practice.html" class="footer-link">Задача 2: Сдача</a></li>
-            <li><a href="practice.html" class="footer-link">Задача 3: Фейсконтроль</a></li>
-            <li><a href="practice.html" class="footer-link">Задача 4: Анализ чисел</a></li>
-            <li><a href="practice.html" class="footer-link">Задача 5: Шифр Цезаря</a></li>
+            <li><a href="c-lessons/01-intro.html" class="footer-link">Урок 1: Введение и main</a></li>
+            <li><a href="c-lessons/02-variables.html" class="footer-link">Урок 2: Переменные и scanf</a></li>
+            <li><a href="c-lessons/03-conditions.html" class="footer-link">Урок 3: Ветвления и switch</a></li>
+            <li><a href="c-lessons/04-loops.html" class="footer-link">Урок 4: Циклы и массивы</a></li>
+            <li><a href="c-lessons/05-functions.html" class="footer-link">Урок 5: Функции и указатели</a></li>
+            <li><a href="c-practice.html" class="footer-link" style="color: #60a5fa;">Практикум Си</a></li>
           </ul>
         </div>
 
         <div>
           <h4 class="footer-col-title">Репозиторий</h4>
           <ul class="footer-links">
-            <li><a href="https://github.com/blsdxvmip/this-one" class="footer-link">GitHub</a></li>
+            <li><a href="https://github.com/blsdxvmip/this-one" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub blsdxvmip/this-one</a></li>
             <li><span class="footer-link" style="opacity: 0.6;">Лицензия MIT</span></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2026 Python Start. Открытый обучающий проект.</p>
+        <p>&copy; 2026 DevStarter. Открытый обучающий проект.</p>
         <div class="footer-bottom-links">
-          <a href="https://github.com/blsdxvmip/this-one" class="footer-link">blsdxvmip/this-one</a>
+          <a href="https://github.com/blsdxvmip/this-one" class="footer-link">GitHub Pages</a>
         </div>
       </div>
     </div>
   </footer>
 
   <!-- Scripts -->
-  <script src="js/particles.js"></script>
   <script src="js/app.js"></script>
   <script src="js/course-progress.js"></script>
 </body>
